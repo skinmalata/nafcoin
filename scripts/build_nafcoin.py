@@ -451,6 +451,12 @@ def main():
 
     write_404()
 
+    # Apply idempotent SEO enhancements after all HTML/CSS is generated
+    import subprocess
+    import sys
+    seo_script = os.path.join(os.path.dirname(os.path.abspath(__file__)), "seo_enhance.py")
+    subprocess.run([sys.executable, seo_script], check=True)
+
     print("Build complete.")
     print("Root pages:", len(ROOT_HTML))
     print("Tool pages:", len(PAGE_HTML))

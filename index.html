@@ -18,7 +18,7 @@
     <meta name="description" content="Free cryptocurrency analysis tools. Real-time prices, portfolio tracking, token security, airdrop discovery, and data-driven trade signals.">
     <meta name="keywords" content="crypto tools, cryptocurrency, bitcoin, ethereum, trading, portfolio, DeFi">
     <meta property="og:title" content="Nafcoin - Professional Crypto Analysis Platform">
-    <meta property="og:description" content="Free crypto tools for traders and investors">
+    <meta property="og:description" content="Free cryptocurrency analysis tools. Real-time prices, portfolio tracking, token security, airdrop discovery, and data-driven trade signals.">
     <meta name="twitter:title" content="Nafcoin - Professional Crypto Analysis Platform">
     <link rel="canonical" href="https://nafcoin.com/">
     <link rel="stylesheet" href="css/style.css">
@@ -28,7 +28,7 @@
       "@type": "WebPage",
       "name": "Nafcoin - Professional Crypto Analysis Platform",
       "description": "Free cryptocurrency analysis tools. Real-time prices, portfolio tracking, token security, airdrop discovery, and data-driven trade signals.",
-      "url": "https://nafcoin.com/index.html",
+      "url": "https://nafcoin.com/",
       "author": {
         "@type": "Organization",
         "name": "Nafcoin",
@@ -43,20 +43,58 @@
     <meta name="robots" content="index,follow,max-image-preview:large">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap"></noscript>
     <script src="js/nav.js" defer></script>
     <link rel="icon" href="favicon-32.png" type="image/png">
     <link rel="manifest" href="/manifest.webmanifest">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <meta name="theme-color" content="#7c3aed">
     <link rel="alternate" type="application/rss+xml" title="Nafcoin Blog" href="/rss.xml">
+    <meta property="og:url" content="https://nafcoin.com/">
+    <meta property="og:type" content="website">
+    <meta name="twitter:description" content="Free cryptocurrency analysis tools. Real-time prices, portfolio tracking, token security, airdrop discovery, and data-driven trade signals.">
+    <!-- SEO site schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://nafcoin.com/#organization",
+      "name": "Nafcoin",
+      "url": "https://nafcoin.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://nafcoin.com/logo-512.png",
+        "width": 512,
+        "height": 512
+      },
+      "sameAs": [
+        "https://t.me/nafcoin"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://nafcoin.com/#website",
+      "name": "Nafcoin",
+      "url": "https://nafcoin.com/",
+      "publisher": {
+        "@id": "https://nafcoin.com/#organization"
+      },
+      "inLanguage": "en"
+    }
+  ]
+}
+    </script>
 </head>
 
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-brand">
-            <img src="logo-64.png" alt="Nafcoin Logo" style="width: 24px; height: 24px; vertical-align: middle;"> Nafcoin
+            <img src="logo-64.png" alt="Nafcoin Logo" style="width: 24px; height: 24px; vertical-align: middle;" width="24" height="24" decoding="async"> Nafcoin
         </div>
         <button class="mobile-menu-btn" onclick="toggleMenu()">
             <span></span>
@@ -92,6 +130,11 @@
 
     <!-- Main Content -->
     <main class="container">
+        <!-- SEO home intro -->
+        <h1 class="home-title">Crypto Prices, Analysis Tools &amp; Beginner Guides</h1>
+        <p class="home-intro">Track live prices, research coins, and use free crypto tools built for smarter decisions.</p>
+
+
         <!-- Global Stats -->
         <section>
             <div id="home-global-stats" class="stats-grid">

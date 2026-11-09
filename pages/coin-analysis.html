@@ -11,7 +11,7 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coin Analysis | Nafcoin</title>
+    <title>Crypto Coin Analysis &amp; Live Charts | Nafcoin</title>
     <meta name="description" content="Detailed cryptocurrency analysis with technical indicators, RSI, MACD, and data-driven trade signals.">
     <link rel="canonical" href="https://nafcoin.com/pages/coin-analysis.html">
     <link rel="stylesheet" href="../css/style.css">
@@ -23,18 +23,103 @@
     <meta name="robots" content="index,follow,max-image-preview:large">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap"></noscript>
     <script src="../js/nav.js" defer></script>
     <link rel="icon" href="../favicon-32.png" type="image/png">
     <link rel="manifest" href="/manifest.webmanifest">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <meta name="theme-color" content="#7c3aed">
     <link rel="alternate" type="application/rss+xml" title="Nafcoin Blog" href="/rss.xml">
+    <meta property="og:title" content="Crypto Coin Analysis &amp; Live Charts | Nafcoin">
+    <meta property="og:description" content="Detailed cryptocurrency analysis with technical indicators, RSI, MACD, and data-driven trade signals.">
+    <meta property="og:url" content="https://nafcoin.com/pages/coin-analysis.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:title" content="Crypto Coin Analysis &amp; Live Charts | Nafcoin">
+    <meta name="twitter:description" content="Detailed cryptocurrency analysis with technical indicators, RSI, MACD, and data-driven trade signals.">
+    <!-- SEO tool schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Crypto Coin Analysis & Live Charts",
+      "url": "https://nafcoin.com/pages/coin-analysis.html",
+      "description": "Analyze crypto price action with live charts, RSI, MACD, momentum, and market structure in one free tool.",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Nafcoin",
+        "url": "https://nafcoin.com"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What indicators does the tool use?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The analysis view includes price action, trend and momentum readings, RSI, MACD, and volume context. The exact panels update with live market data."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can technical analysis predict prices?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Technical analysis describes probabilities and market behavior, not certainties. Use it with fundamental research and risk management."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How often does the data update?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Market data refreshes automatically while the page is open. Crypto markets trade 24/7, so confirm the latest price on your exchange before acting."
+          }
+        }
+      ]
+    }
+  ]
+}
+    </script>
+    <!-- SEO breadcrumb -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://nafcoin.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Crypto Coin Analysis & Live Charts",
+      "item": "https://nafcoin.com/pages/coin-analysis.html"
+    }
+  ]
+}
+    </script>
 </head>
 
 <body>
     <nav class="navbar">
-        <div class="nav-brand"><a href="../index.html" style="color: inherit; text-decoration: none;"><img src="../logo-64.png" alt="Nafcoin Logo" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 4px;"> Nafcoin</a></div>
+        <div class="nav-brand"><a href="../index.html" style="color: inherit; text-decoration: none;"><img src="../logo-64.png" alt="Nafcoin Logo" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 4px;" width="24" height="24" decoding="async"> Nafcoin</a></div>
         <button class="mobile-menu-btn" onclick="toggleMenu()">
             <span></span>
             <span></span>
@@ -67,6 +152,10 @@
     </nav>
 
     <main class="container">
+        <!-- SEO page intro -->
+        <h1 class="page-title">Crypto Coin Analysis &amp; Live Charts</h1>
+        <p class="page-intro">Analyze price action, momentum, RSI, MACD, and market structure for major cryptocurrencies.</p>
+
         <a href="../index.html" class="back-link">Back to Home</a>
 
         <div id="refresh-bar" style="display: none; align-items: center; justify-content: space-between; background: var(--bg-card); border: 1px solid rgba(255,255,255,0.06); border-radius: var(--radius-lg); padding: 0.75rem 1.25rem; margin-bottom: 1.5rem; animation: fadeInUp 0.4s ease;">
@@ -90,6 +179,27 @@
                 Join Our Telegram for Live Alerts
             </a>
         </div>
+        <!-- SEO content -->
+        <section class="seo-content" aria-labelledby="seo-about">
+            <h2 id="seo-about">Crypto Coin Analysis &amp; Live Charts</h2>
+            <p>Coin analysis combines price charts, market structure, momentum, and volume to help you understand what traders are doing. Technical indicators such as RSI and MACD can add context, but they do not predict the future on their own.</p>
+            <p>Use this page to review a coin&#x27;s trend, recent price action, and key indicators before you research the fundamentals. Combine the chart with market data, project research, and a clear risk plan rather than relying on a single signal.</p>
+            <p>No indicator is perfect. False breakouts, sudden news, and thin liquidity can invalidate a setup quickly. Always use stop losses, position sizing, and independent research.</p>
+            <p>A practical workflow is to start with the higher timeframe, mark support and resistance, then use lower timeframes to time entries. Check volume and market context before acting, and write down your invalidation level so a losing trade stays small. Reviewing past setups also helps you learn which signals work for each coin, and which ones fail in choppy markets.</p>
+            <h3>Frequently asked questions</h3>
+            <div class="faq">
+                <details class="faq-item"><summary>What indicators does the tool use?</summary><p>The analysis view includes price action, trend and momentum readings, RSI, MACD, and volume context. The exact panels update with live market data.</p></details>
+                <details class="faq-item"><summary>Can technical analysis predict prices?</summary><p>No. Technical analysis describes probabilities and market behavior, not certainties. Use it with fundamental research and risk management.</p></details>
+                <details class="faq-item"><summary>How often does the data update?</summary><p>Market data refreshes automatically while the page is open. Crypto markets trade 24/7, so confirm the latest price on your exchange before acting.</p></details>
+            </div>
+            <h3>Related tools</h3>
+            <ul class="related-links">
+                <li><a href="../blog/005-how-to-read-crypto-price-charts.html">How to Read Crypto Price Charts</a></li>
+                <li><a href="price-tracker.html">Live Price Tracker</a></li>
+                <li><a href="signal-scoreboard.html">Signal Scoreboard</a></li>
+            </ul>
+        </section>
+
     </main>
 
     <footer style="text-align: center; padding: 40px 5%; color: var(--text-muted); font-size: 0.8125rem; margin-top: 60px; border-top: 1px solid rgba(255,255,255,0.06);">
@@ -165,7 +275,7 @@
                     <img src="${coinData.image || 'https://via.placeholder.com/80'}" alt="${coinData.name}">
                     <div class="coin-info">
                         <div class="coin-header-info">
-                            <h1>${coinData.name}</h1>
+                            <h2>${coinData.name}</h2>
                             <span class="symbol">${coinData.symbol.toUpperCase()}</span>
                         </div>
                         <div class="current-price" id="current-price">$${coinData.current_price?.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 8}) || 'N/A'}</div>

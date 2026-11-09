@@ -27,6 +27,9 @@ jobs:
       - name: Refresh coin pages
         run: python scripts/generate_coins.py
 
+      - name: Apply SEO enhancements
+        run: python scripts/seo_enhance.py
+
       - name: Configure git
         run: |
           git config user.name "github-actions[bot]"
@@ -34,7 +37,7 @@ jobs:
 
       - name: Commit coin data
         run: |
-          git add coins data css/coins.css
+          git add -A
           if git diff --staged --quiet; then
             echo "No coin changes"
           else

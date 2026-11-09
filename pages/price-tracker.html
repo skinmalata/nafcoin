@@ -18,7 +18,7 @@
     <meta name="description" content="Track live cryptocurrency prices from CoinGecko & Binance APIs. Real-time price updates, market cap, volume, and change data.">
     <meta name="keywords" content="crypto price tracker, live crypto prices, bitcoin price, ethereum price, coingecko api, binance api">
     <meta property="og:title" content="Crypto Price Tracker - Live Prices | Nafcoin">
-    <meta property="og:description" content="Track live cryptocurrency prices from CoinGecko & Binance APIs with real-time updates.">
+    <meta property="og:description" content="Track live cryptocurrency prices from CoinGecko &amp; Binance APIs. Real-time price updates, market cap, volume, and change data.">
     <meta property="og:type" content="website">
     <link rel="canonical" href="https://nafcoin.com/pages/price-tracker.html">
 
@@ -30,18 +30,100 @@
     <meta name="robots" content="index,follow,max-image-preview:large">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap"></noscript>
     <script src="../js/nav.js" defer></script>
     <link rel="icon" href="../favicon-32.png" type="image/png">
     <link rel="manifest" href="/manifest.webmanifest">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <meta name="theme-color" content="#7c3aed">
     <link rel="alternate" type="application/rss+xml" title="Nafcoin Blog" href="/rss.xml">
+    <meta property="og:url" content="https://nafcoin.com/pages/price-tracker.html">
+    <meta name="twitter:title" content="Crypto Price Tracker - Live Prices | Nafcoin">
+    <meta name="twitter:description" content="Track live cryptocurrency prices from CoinGecko &amp; Binance APIs. Real-time price updates, market cap, volume, and change data.">
+    <!-- SEO tool schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Live Crypto Price Tracker",
+      "url": "https://nafcoin.com/pages/price-tracker.html",
+      "description": "Follow live cryptocurrency prices, market cap, 24-hour volume, and price changes for the top coins.",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Nafcoin",
+        "url": "https://nafcoin.com"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How often do prices update?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Prices refresh automatically while the page is open, typically around every 60 seconds. Market data can still lag the latest trade on an exchange."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which coins are tracked?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The tracker covers the top cryptocurrencies by market cap, including Bitcoin, Ethereum, Solana, XRP, and other major assets."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are these prices real-time?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "They are live market references from public data sources. They are close to real time but may differ from the exact price on your exchange."
+          }
+        }
+      ]
+    }
+  ]
+}
+    </script>
+    <!-- SEO breadcrumb -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://nafcoin.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Crypto Price Tracker",
+      "item": "https://nafcoin.com/pages/price-tracker.html"
+    }
+  ]
+}
+    </script>
 </head>
 
 <body>
     <nav class="navbar">
-        <div class="nav-brand"><a href="../index.html" style="color: inherit; text-decoration: none;"><img src="../logo-64.png" alt="Nafcoin Logo" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 4px;"> Nafcoin</a></div>
+        <div class="nav-brand"><a href="../index.html" style="color: inherit; text-decoration: none;"><img src="../logo-64.png" alt="Nafcoin Logo" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 4px;" width="24" height="24" decoding="async"> Nafcoin</a></div>
         <button class="mobile-menu-btn" onclick="toggleMenu()">
             <span></span>
             <span></span>
@@ -127,6 +209,27 @@
         </div>
 
         <div id="price-grid" class="crypto-grid"></div>
+        <!-- SEO content -->
+        <section class="seo-content" aria-labelledby="seo-about">
+            <h2 id="seo-about">Live Crypto Price Tracker</h2>
+            <p>A crypto price tracker gives you a fast view of the market without opening multiple exchange tabs. Prices, market cap, and volume update automatically so you can compare assets and spot unusual moves.</p>
+            <p>The Nafcoin price tracker covers the major cryptocurrencies and refreshes while the page is open. Use it to monitor the market, check a coin before buying, or confirm a price before using another tool.</p>
+            <p>Displayed prices are market references. Your exchange may quote a slightly different price because of spreads, fees, and liquidity. Always confirm the final order details before trading.</p>
+            <p>Create a short watchlist instead of tracking every coin at once. Compare market cap, volume, and recent performance to understand why an asset is moving. If a price looks unusual, check the exchange and project announcements before assuming the data is wrong.</p>
+            <h3>Frequently asked questions</h3>
+            <div class="faq">
+                <details class="faq-item"><summary>How often do prices update?</summary><p>Prices refresh automatically while the page is open, typically around every 60 seconds. Market data can still lag the latest trade on an exchange.</p></details>
+                <details class="faq-item"><summary>Which coins are tracked?</summary><p>The tracker covers the top cryptocurrencies by market cap, including Bitcoin, Ethereum, Solana, XRP, and other major assets.</p></details>
+                <details class="faq-item"><summary>Are these prices real-time?</summary><p>They are live market references from public data sources. They are close to real time but may differ from the exact price on your exchange.</p></details>
+            </div>
+            <h3>Related tools</h3>
+            <ul class="related-links">
+                <li><a href="global-stats.html">Global Market Stats</a></li>
+                <li><a href="trending.html">Trending Coins</a></li>
+                <li><a href="../coins/index.html">Crypto Directory</a></li>
+            </ul>
+        </section>
+
     </main>
 
     <script src="../js/api.js"></script>

@@ -17,7 +17,7 @@
     <title>Crypto Converter - Instant Conversion | Nafcoin</title>
     <meta name="description" content="Convert between cryptocurrencies and fiat currencies instantly. Real-time rates for BTC, ETH, SOL, USD, EUR, NGN and more.">
     <meta property="og:title" content="Crypto Converter - Instant Conversion | Nafcoin">
-    <meta property="og:description" content="Convert between cryptocurrencies and fiat currencies instantly.">
+    <meta property="og:description" content="Convert between cryptocurrencies and fiat currencies instantly. Real-time rates for BTC, ETH, SOL, USD, EUR, NGN and more.">
     <link rel="canonical" href="https://nafcoin.com/pages/converter.html">
 
     <link rel="stylesheet" href="../css/style.css">
@@ -28,18 +28,101 @@
     <meta name="robots" content="index,follow,max-image-preview:large">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap"></noscript>
     <script src="../js/nav.js" defer></script>
     <link rel="icon" href="../favicon-32.png" type="image/png">
     <link rel="manifest" href="/manifest.webmanifest">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <meta name="theme-color" content="#7c3aed">
     <link rel="alternate" type="application/rss+xml" title="Nafcoin Blog" href="/rss.xml">
+    <meta property="og:url" content="https://nafcoin.com/pages/converter.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:title" content="Crypto Converter - Instant Conversion | Nafcoin">
+    <meta name="twitter:description" content="Convert between cryptocurrencies and fiat currencies instantly. Real-time rates for BTC, ETH, SOL, USD, EUR, NGN and more.">
+    <!-- SEO tool schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Crypto Converter",
+      "url": "https://nafcoin.com/pages/converter.html",
+      "description": "Convert between cryptocurrencies and fiat currencies using live market rates, with support for popular coins.",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Nafcoin",
+        "url": "https://nafcoin.com"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Are the conversion rates live?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Rates are based on live market data and update while the page is open. They are for reference and may differ from your exchange's quote."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does the converter include fees?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. The tool shows a market conversion rate. Exchange fees, spreads, and network fees are added by the platform you use to trade."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which coins are supported?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The converter supports the major cryptocurrencies tracked across Nafcoin. If a coin is missing, use the price tracker or check back after the next data update."
+          }
+        }
+      ]
+    }
+  ]
+}
+    </script>
+    <!-- SEO breadcrumb -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://nafcoin.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Crypto Converter",
+      "item": "https://nafcoin.com/pages/converter.html"
+    }
+  ]
+}
+    </script>
 </head>
 
 <body>
     <nav class="navbar">
-        <div class="nav-brand"><a href="../index.html" style="color: inherit; text-decoration: none;"><img src="../logo-64.png" alt="Nafcoin Logo" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 4px;"> Nafcoin</a></div>
+        <div class="nav-brand"><a href="../index.html" style="color: inherit; text-decoration: none;"><img src="../logo-64.png" alt="Nafcoin Logo" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 4px;" width="24" height="24" decoding="async"> Nafcoin</a></div>
         <button class="mobile-menu-btn" onclick="toggleMenu()">
             <span></span>
             <span></span>
@@ -124,6 +207,27 @@
                 <div id="history" class="history-card"></div>
             </div>
         </div>
+        <!-- SEO content -->
+        <section class="seo-content" aria-labelledby="seo-about">
+            <h2 id="seo-about">Crypto Converter</h2>
+            <p>A crypto converter helps you estimate what a coin is worth in another currency. The Nafcoin converter uses live market prices so you can compare values quickly without opening an exchange.</p>
+            <p>The rate shown is a market reference, not a guaranteed execution price. Exchanges add spreads and fees, and large orders can move the price through slippage. Always check the final quote before you trade.</p>
+            <p>Use the converter alongside the price tracker and portfolio tools to plan purchases, calculate position sizes, and compare values across assets.</p>
+            <p>When comparing currencies, remember that the displayed rate is a mid-market reference. Your exchange may apply a spread, and card or bank payments can add separate fees. For large conversions, compare the final amount you will receive, not just the quoted price. Also check the network you are using, because the same asset can trade at different prices on different chains.</p>
+            <h3>Frequently asked questions</h3>
+            <div class="faq">
+                <details class="faq-item"><summary>Are the conversion rates live?</summary><p>Yes. Rates are based on live market data and update while the page is open. They are for reference and may differ from your exchange&#x27;s quote.</p></details>
+                <details class="faq-item"><summary>Does the converter include fees?</summary><p>No. The tool shows a market conversion rate. Exchange fees, spreads, and network fees are added by the platform you use to trade.</p></details>
+                <details class="faq-item"><summary>Which coins are supported?</summary><p>The converter supports the major cryptocurrencies tracked across Nafcoin. If a coin is missing, use the price tracker or check back after the next data update.</p></details>
+            </div>
+            <h3>Related tools</h3>
+            <ul class="related-links">
+                <li><a href="price-tracker.html">Live Price Tracker</a></li>
+                <li><a href="portfolio.html">Portfolio Tracker</a></li>
+                <li><a href="profit-calculator.html">Profit Calculator</a></li>
+            </ul>
+        </section>
+
     </main>
 
     <script src="../js/api.js"></script>

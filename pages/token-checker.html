@@ -17,7 +17,7 @@
     <title>Token Checker - Security Audit | Nafcoin</title>
     <meta name="description" content="Check token security & rug pull risks via GoPlus API. Verify contract safety, ownership, liquidity locks, and more.">
     <meta property="og:title" content="Token Checker - Security Audit | Nafcoin">
-    <meta property="og:description" content="Check token security & rug pull risks via GoPlus API.">
+    <meta property="og:description" content="Check token security &amp; rug pull risks via GoPlus API. Verify contract safety, ownership, liquidity locks, and more.">
     <link rel="canonical" href="https://nafcoin.com/pages/token-checker.html">
 
     <link rel="stylesheet" href="../css/style.css">
@@ -232,18 +232,82 @@
     <meta name="robots" content="index,follow,max-image-preview:large">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap"></noscript>
     <script src="../js/nav.js" defer></script>
     <link rel="icon" href="../favicon-32.png" type="image/png">
     <link rel="manifest" href="/manifest.webmanifest">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <meta name="theme-color" content="#7c3aed">
     <link rel="alternate" type="application/rss+xml" title="Nafcoin Blog" href="/rss.xml">
+    <meta property="og:url" content="https://nafcoin.com/pages/token-checker.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:title" content="Token Checker - Security Audit | Nafcoin">
+    <meta name="twitter:description" content="Check token security &amp; rug pull risks via GoPlus API. Verify contract safety, ownership, liquidity locks, and more.">
+    <!-- SEO tool schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What does the token checker scan?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It reviews contract-level signals such as trading restrictions, fees, mint authority, ownership, and other patterns commonly associated with scams."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can it guarantee a token is safe?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. A clean scan only means the checked risks were not detected. It cannot prove the team is honest or that liquidity will remain."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a honeypot?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A honeypot is a token that can be bought but not sold, or that applies punitive sell taxes. It is designed to trap buyers."
+          }
+        }
+      ]
+    }
+  ]
+}
+    </script>
+    <!-- SEO breadcrumb -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://nafcoin.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Token Checker",
+      "item": "https://nafcoin.com/pages/token-checker.html"
+    }
+  ]
+}
+    </script>
 </head>
 
 <body>
     <nav class="navbar">
-        <div class="nav-brand"><a href="../index.html" style="color: inherit; text-decoration: none;"><img src="../logo-64.png" alt="Nafcoin Logo" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 4px;"> Nafcoin</a></div>
+        <div class="nav-brand"><a href="../index.html" style="color: inherit; text-decoration: none;"><img src="../logo-64.png" alt="Nafcoin Logo" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 4px;" width="24" height="24" decoding="async"> Nafcoin</a></div>
         <button class="mobile-menu-btn" onclick="toggleMenu()">
             <span></span>
             <span></span>
@@ -320,6 +384,27 @@
                 <button class="quick-token-btn" onclick="quickCheck('0x4d224452801aced8b2f0aebe155379bb5d594381', '1')">APE</button>
             </div>
         </div>
+        <!-- SEO content -->
+        <section class="seo-content" aria-labelledby="seo-about">
+            <h2 id="seo-about">Token Security Checker</h2>
+            <p>A token security checker scans on-chain contract data for common red flags. It can help you spot honeypots, excessive buy or sell taxes, minting permissions, and other risks before you trade a new token.</p>
+            <p>The Nafcoin Token Checker is a research aid, not a guarantee. A contract can look safe and still be risky if the team controls liquidity, the project is unaudited, or the market is too thin to exit.</p>
+            <p>Always verify the contract address from an official source, check liquidity and holder distribution, and use a separate wallet for risky trades. Never share your seed phrase or sign transactions you do not understand.</p>
+            <p>Save the contract address and re-check it before every trade, because ownership and permissions can change. If a token has high taxes, hidden mint functions, or liquidity that can be removed, treat it as high risk even if the chart looks attractive. Research the team and community as well as the code.</p>
+            <h3>Frequently asked questions</h3>
+            <div class="faq">
+                <details class="faq-item"><summary>What does the token checker scan?</summary><p>It reviews contract-level signals such as trading restrictions, fees, mint authority, ownership, and other patterns commonly associated with scams.</p></details>
+                <details class="faq-item"><summary>Can it guarantee a token is safe?</summary><p>No. A clean scan only means the checked risks were not detected. It cannot prove the team is honest or that liquidity will remain.</p></details>
+                <details class="faq-item"><summary>What is a honeypot?</summary><p>A honeypot is a token that can be bought but not sold, or that applies punitive sell taxes. It is designed to trap buyers.</p></details>
+            </div>
+            <h3>Related tools</h3>
+            <ul class="related-links">
+                <li><a href="dex-scanner.html">DEX Scanner</a></li>
+                <li><a href="airdrops.html">Crypto Airdrop Finder</a></li>
+                <li><a href="../blog/031-how-to-research-cryptocurrency.html">How to Research a Cryptocurrency</a></li>
+            </ul>
+        </section>
+
     </main>
 
     <script src="../js/api.js"></script>

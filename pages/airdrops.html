@@ -17,7 +17,7 @@
     <title>Airdrop Finder - Discover Airdrops | Nafcoin</title>
     <meta name="description" content="Discover potential crypto airdrops. Track tokenless protocols, check eligibility, and find the best airdrop opportunities.">
     <meta property="og:title" content="Airdrop Finder - Discover Airdrops | Nafcoin">
-    <meta property="og:description" content="Discover potential crypto airdrops.">
+    <meta property="og:description" content="Discover potential crypto airdrops. Track tokenless protocols, check eligibility, and find the best airdrop opportunities.">
     <link rel="canonical" href="https://nafcoin.com/pages/airdrops.html">
 
     <link rel="stylesheet" href="../css/style.css">
@@ -28,18 +28,101 @@
     <meta name="robots" content="index,follow,max-image-preview:large">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap"></noscript>
     <script src="../js/nav.js" defer></script>
     <link rel="icon" href="../favicon-32.png" type="image/png">
     <link rel="manifest" href="/manifest.webmanifest">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <meta name="theme-color" content="#7c3aed">
     <link rel="alternate" type="application/rss+xml" title="Nafcoin Blog" href="/rss.xml">
+    <meta property="og:url" content="https://nafcoin.com/pages/airdrops.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:title" content="Airdrop Finder - Discover Airdrops | Nafcoin">
+    <meta name="twitter:description" content="Discover potential crypto airdrops. Track tokenless protocols, check eligibility, and find the best airdrop opportunities.">
+    <!-- SEO tool schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Crypto Airdrop Finder",
+      "url": "https://nafcoin.com/pages/airdrops.html",
+      "description": "Discover tokenless protocols and early-stage crypto projects with airdrop potential, then learn how to claim safely.",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Nafcoin",
+        "url": "https://nafcoin.com"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Are crypto airdrops free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most airdrops are free to claim, but you may need to pay network gas fees. If a project asks for an upfront payment or your seed phrase, it is almost certainly a scam."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I qualify for an airdrop?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Eligibility rules vary. Common criteria include using a protocol before a snapshot date, holding a specific token, completing testnet tasks, or joining a community. Always check the project's official documentation."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is it safe to connect my wallet?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Use a separate wallet with minimal funds. Review every transaction request, revoke unnecessary approvals, and never sign a message or transaction you do not understand."
+          }
+        }
+      ]
+    }
+  ]
+}
+    </script>
+    <!-- SEO breadcrumb -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://nafcoin.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Airdrop Finder",
+      "item": "https://nafcoin.com/pages/airdrops.html"
+    }
+  ]
+}
+    </script>
 </head>
 
 <body>
     <nav class="navbar">
-        <div class="nav-brand"><a href="../index.html" style="color: inherit; text-decoration: none;"><img src="../logo-64.png" alt="Nafcoin Logo" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 4px;"> Nafcoin</a></div>
+        <div class="nav-brand"><a href="../index.html" style="color: inherit; text-decoration: none;"><img src="../logo-64.png" alt="Nafcoin Logo" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 4px;" width="24" height="24" decoding="async"> Nafcoin</a></div>
         <button class="mobile-menu-btn" onclick="toggleMenu()">
             <span></span>
             <span></span>
@@ -148,6 +231,26 @@
             </div>
             <div id="tracked-list"></div>
         </div>
+        <!-- SEO content -->
+        <section class="seo-content" aria-labelledby="seo-about">
+            <h2 id="seo-about">Crypto Airdrop Finder</h2>
+            <p>A crypto airdrop is a free distribution of tokens to wallet addresses, usually to reward early users, testers, or community members. Some airdrops are worth hundreds or thousands of dollars, but many are low value, and others are outright scams.</p>
+            <p>The Nafcoin Airdrop Finder tracks tokenless protocols and early-stage projects that may reward users in the future. Use it to build a shortlist, then verify every project through its official website, documentation, and social channels before you connect a wallet.</p>
+            <p>Never pay an upfront fee, share your seed phrase, or sign a blind transaction to claim an airdrop. Use a separate wallet with limited funds, review every approval, and treat unsolicited claim links as untrusted.</p>
+            <h3>Frequently asked questions</h3>
+            <div class="faq">
+                <details class="faq-item"><summary>Are crypto airdrops free?</summary><p>Most airdrops are free to claim, but you may need to pay network gas fees. If a project asks for an upfront payment or your seed phrase, it is almost certainly a scam.</p></details>
+                <details class="faq-item"><summary>How do I qualify for an airdrop?</summary><p>Eligibility rules vary. Common criteria include using a protocol before a snapshot date, holding a specific token, completing testnet tasks, or joining a community. Always check the project&#x27;s official documentation.</p></details>
+                <details class="faq-item"><summary>Is it safe to connect my wallet?</summary><p>Use a separate wallet with minimal funds. Review every transaction request, revoke unnecessary approvals, and never sign a message or transaction you do not understand.</p></details>
+            </div>
+            <h3>Related tools</h3>
+            <ul class="related-links">
+                <li><a href="token-checker.html">Token Security Checker</a></li>
+                <li><a href="dex-scanner.html">DEX Scanner</a></li>
+                <li><a href="../blog/031-how-to-research-cryptocurrency.html">How to Research a Cryptocurrency</a></li>
+            </ul>
+        </section>
+
     </main>
 
     <script src="../js/api.js"></script>
