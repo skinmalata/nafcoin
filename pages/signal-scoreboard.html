@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TWS5MC223Y"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-TWS5MC223Y');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signal Scoreboard - Track Trade Signals | Nafcoin</title>
+    <meta name="description" content="Track and analyze all crypto trade signal performance. View win rates, historical signals, and scoreboard statistics.">
+    <meta name="keywords" content="signal scoreboard, trade signals, crypto signals, signal history, win rate, trading performance">
+    <meta property="og:title" content="Signal Scoreboard - Track Trade Signals | Nafcoin">
+    <meta property="og:description" content="Track and analyze all crypto trade signal performance with detailed statistics and history.">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://nafcoin.com/pages/signal-scoreboard.html">
+
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .stats-grid-score {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .stat-card-score {
+            background: var(--bg-card);
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 1.125rem;
+            text-align: center;
+        }
+        .stat-card-score .stat-number {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1.2;
+        }
+        .stat-card-score .stat-number.green { color: #10b981; }
+        .stat-card-score .stat-number.red { color: #ef4444; }
+        .stat-card-score .stat-number.accent { color: var(--accent); }
+        .stat-card-score .stat-label-score {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-top: 0.375rem;
+            font-weight: 600;
+        }
+
+        .scoreboard-controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .scoreboard-controls select {
+            padding: 0.625rem 1rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        .scoreboard-controls select:focus {
+            outline: none;
+            border-color: #7c3aed;
+            box-shadow: 0 0 0 3px rgba(124,58,237,0.2);
+        }
+
+        .signal-table-wrap {
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.08);
+            overflow: hidden;
+        }
+        .signal-table-wrap table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .signal-table-wrap th {
+            padding: 0.875rem 1rem;
+            text-align: left;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+            background: rgba(255,255,255,0.03);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .signal-table-wrap td {
+            padding: 0.875rem 1rem;
+            font-size: 0.875rem;
+            color: var(--text-primary);
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+        .signal-table-wrap tr:last-child td {
+            border-bottom: none;
+        }
+        .signal-table-wrap tr:hover td {
+            background: rgba(255,255,255,0.02);
+        }
+
+        .signal-label {
+            padding: 0.25rem 0.625rem;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            letter-spacing: 0.3px;
+        }
+        .signal-label.strong-buy { background: rgba(16,185,129,0.25); color: #34d399; border: 1px solid rgba(16,185,129,0.3); }
+        .signal-label.buy-badge { background: rgba(16,185,129,0.15); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.2); }
+        .signal-label.sell-badge { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+        .signal-label.strong-sell { background: rgba(239,68,68,0.25); color: #f87171; border: 1px solid rgba(239,68,68,0.3); }
+        .signal-label.watch-badge { background: rgba(245,158,11,0.2); color: #fbbf24; border: 1px solid rgba(245,158,11,0.25); }
+
+        .rr-badge {
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: rgba(124,58,237,0.15);
+            color: var(--accent);
+        }
+
+        .clear-btn {
+            background: rgba(239,68,68,0.15);
+            color: #f87171;
+            border: 1px solid rgba(239,68,68,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        .clear-btn:hover {
+            background: rgba(239,68,68,0.25);
+        }
+
+        @media (max-width: 768px) {
+            .stats-grid-score {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .signal-table-wrap table,
+            .signal-table-wrap thead,
+            .signal-table-wrap tbody,
+            .signal-table-wrap th,
+            .signal-table-wrap td,
+            .signal-table-wrap tr {
+                display: block;
+            }
+            .signal-table-wrap thead { display: none; }
+            .signal-table-wrap tr {
+                padding: 1rem;
+                border-bottom: 1px solid rgba(255,255,255,0.06);
+            }
+            .signal-table-wrap td {
+                padding: 0.375rem 0;
+                border: none;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .signal-table-wrap td::before {
+                content: attr(data-label);
+                font-size: 0.75rem;
+                color: var(--text-muted);
+                text-transform: uppercase;
+                font-weight: 600;
+            }
+        }
+    </style>
+
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Signal Scoreboard - Track Trade Signals | Nafcoin",
+      "description": "Track and analyze all crypto trade signal performance. View win rates, historical signals, and scoreboard statistics.",
+      "url": "https://nafcoin.com/pages/signal-scoreboard.html",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "Nafcoin",
+        "url": "https://nafcoin.com"
+      }
+    }
+    </script>
+    <meta property="og:image" content="https://nafcoin.com/og-image.png">
+    <meta name="twitter:image" content="https://nafcoin.com/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:site_name" content="Nafcoin">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
+    <script src="../js/nav.js" defer></script>
+    <link rel="icon" href="../favicon-32.png" type="image/png">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <meta name="theme-color" content="#7c3aed">
+    <link rel="alternate" type="application/rss+xml" title="Nafcoin Blog" href="/rss.xml">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-brand"><a href="../index.html" style="color: inherit; text-decoration: none;"><img src="../logo-64.png" alt="Nafcoin Logo" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 4px;"> Nafcoin</a></div>
+        <button class="mobile-menu-btn" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav-links" id="navLinks">
+            <a href="../index.html" class="nav-link">Home</a>
+            <a href="../about.html" class="nav-link">About</a>
+            <div class="dropdown">
+                <a href="#" class="nav-link active">Tools</a>
+                <div class="dropdown-content">
+                    <a href="price-tracker.html">Price Tracker</a>
+                    <a href="trending.html">Trending</a>
+                    <a href="global-stats.html">Global Stats</a>
+                    <a href="dex-scanner.html">DEX Scanner</a>
+                    <a href="token-checker.html">Token Checker</a>
+                    <a href="arbitrage.html">Arbitrage Scanner</a>
+                    <a href="airdrops.html">Airdrop Finder</a>
+                    <a href="portfolio.html">Portfolio</a>
+                    <a href="profit-calculator.html">Calculator</a>
+                    <a href="converter.html">Converter</a>
+                    <a href="whale-wallet.html">Whale Tracker</a>
+                    <a href="signal-scoreboard.html" style="background: rgba(103,80,164,0.2);">?? Signal Scoreboard</a>
+                    <a href="pump-scanner.html">Pump Scanner</a>
+</div>
+            </div>
+            <a href="../coins/index.html" class="nav-link">Coins</a>
+            <a href="../blog.html" class="nav-link">Blog</a>
+            <a href="../contact.html" class="nav-link">Contact</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="hero-section">
+            <h1>Signal Scoreboard</h1>
+            <p class="hero-subtitle">Track and analyze all trade signal performance � win rates, history, and statistics</p>
+        </div>
+
+        <div class="refresh-bar">
+            <div class="refresh-bar-left">
+                <span class="live-dot" style="width: 8px; height: 8px; background: #10b981; border-radius: 50%; animation: pulse 2s infinite;"></span>
+                <span id="scoreboard-timestamp" style="color: var(--text-secondary); font-size: 0.875rem;">Loading signal history...</span>
+            </div>
+            <div style="display: flex; gap: 1rem; align-items: center;">
+                <button class="clear-btn" onclick="clearSignalHistory()">??? Clear History</button>
+                <button id="refresh-scoreboard" class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.8125rem;" onclick="loadScoreboard()">? Refresh</button>
+            </div>
+        </div>
+
+        <div class="stats-grid-score">
+            <div class="stat-card-score">
+                <div class="stat-number accent" id="stat-total">�</div>
+                <div class="stat-label-score">Total Signals</div>
+            </div>
+            <div class="stat-card-score">
+                <div class="stat-number green" id="stat-win-rate">�</div>
+                <div class="stat-label-score">Win Rate</div>
+            </div>
+            <div class="stat-card-score">
+                <div class="stat-number green" id="stat-wins">�</div>
+                <div class="stat-label-score">Wins</div>
+            </div>
+            <div class="stat-card-score">
+                <div class="stat-number red" id="stat-losses">�</div>
+                <div class="stat-label-score">Losses</div>
+            </div>
+            <div class="stat-card-score">
+                <div class="stat-number" id="stat-active">�</div>
+                <div class="stat-label-score">Active</div>
+            </div>
+            <div class="stat-card-score">
+                <div class="stat-number" id="stat-buy">�</div>
+                <div class="stat-label-score">Buy Signals</div>
+            </div>
+            <div class="stat-card-score">
+                <div class="stat-number" id="stat-sell">�</div>
+                <div class="stat-label-score">Sell Signals</div>
+            </div>
+            <div class="stat-card-score">
+                <div class="stat-number" id="stat-watch">�</div>
+                <div class="stat-label-score">Watch Alerts</div>
+            </div>
+        </div>
+
+        <div class="scoreboard-controls">
+            <select id="filter-signal">
+                <option value="all">All Signals</option>
+                <option value="buy">Buy</option>
+                <option value="sell">Sell</option>
+                <option value="watch">Watch</option>
+            </select>
+            <select id="filter-outcome">
+                <option value="all">All Outcomes</option>
+                <option value="active">Active</option>
+                <option value="win">Wins ?</option>
+                <option value="loss">Losses ?</option>
+                <option value="expired">Expired ?</option>
+            </select>
+        </div>
+
+        <div class="signal-table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Coin</th>
+                        <th>Signal</th>
+                        <th>Entry</th>
+                        <th>Target</th>
+                        <th>Stop</th>
+                        <th>Outcome</th>
+                        <th>R:R</th>
+                    </tr>
+                </thead>
+                <tbody id="signal-table-body">
+                    <tr><td colspan="8" style="text-align:center;padding:2rem;color:var(--text-secondary);">Loading signal history...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/signal-tracker.js"></script>
+    <script src="../js/signal-scoreboard.js"></script>
+</body>
+</html>

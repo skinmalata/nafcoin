@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TWS5MC223Y"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-TWS5MC223Y');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Nafcoin Crypto Insights</title>
+    <meta name="description" content="Latest cryptocurrency insights, trading tips, airdrop guides, and DeFi analysis from Nafcoin.">
+    <meta property="og:title" content="Nafcoin Blog - Crypto Insights">
+    <meta property="og:description" content="Latest crypto insights, trading tips & airdrop guides.">
+    <link rel="canonical" href="https://nafcoin.com/blog.html">
+    <link rel="alternate" type="application/rss+xml" title="Nafcoin Blog RSS" href="https://nafcoin.com/rss.xml">
+
+    <link rel="stylesheet" href="css/style.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Blog - Nafcoin Crypto Insights",
+      "description": "Latest cryptocurrency insights, trading tips, airdrop guides, and DeFi analysis from Nafcoin.",
+      "url": "https://nafcoin.com/blog.html",
+      "author": {
+        "@type": "Organization",
+        "name": "Nafcoin",
+        "url": "https://nafcoin.com"
+      }
+    }
+    </script>
+    <meta property="og:image" content="https://nafcoin.com/og-image.png">
+    <meta name="twitter:image" content="https://nafcoin.com/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:site_name" content="Nafcoin">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
+    <script src="js/nav.js" defer></script>
+    <link rel="icon" href="favicon-32.png" type="image/png">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <meta name="theme-color" content="#7c3aed">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-brand"><a href="index.html" style="color: inherit; text-decoration: none;"><img src="logo-64.png" alt="Nafcoin Logo" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 4px;"> Nafcoin</a></div>
+        <button class="mobile-menu-btn" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="about.html" class="nav-link">About</a>
+            <div class="dropdown">
+                <a href="#" class="nav-link">Tools</a>
+                <div class="dropdown-content">
+                    <a href="pages/price-tracker.html">Price Tracker</a>
+                    <a href="pages/trending.html">Trending</a>
+                    <a href="pages/dex-scanner.html">DEX Scanner</a>
+                    <a href="pages/token-checker.html">Token Checker</a>
+                    <a href="pages/arbitrage.html">Arbitrage Scanner</a>
+                    <a href="pages/airdrops.html">Airdrop Finder</a>
+                    <a href="pages/portfolio.html">Portfolio</a>
+                    <a href="pages/profit-calculator.html">Profit Calculator</a>
+                    <a href="pages/converter.html">Converter</a>
+                    <a href="pages/global-stats.html">Global Stats</a>
+                    <a href="pages/whale-wallet.html">Whale Tracker</a>
+                    <a href="pages/signal-scoreboard.html">Signal Scoreboard</a>
+                    <a href="pages/pump-scanner.html">Pump Scanner</a>
+</div>
+            </div>
+            <a href="coins/index.html" class="nav-link">Coins</a>
+            <a href="blog.html" class="nav-link active">Blog</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+    </nav>
+
+<main class="container">
+        <div class="hero-section">
+            <h1>Nafcoin Blog</h1>
+            <p class="hero-subtitle">Learn crypto with 131+ expert guides, tutorials, and analysis</p>
+        </div>
+
+        <!-- Search -->
+        <div id="search-container" style="max-width: 600px; margin: -1rem auto 2rem; position: relative;">
+            <input type="text" id="blog-search" placeholder="Search articles by title or keyword..." oninput="searchBlog()" style="width: 100%; padding: 0.875rem 1.25rem 0.875rem 3rem; background: var(--bg-card); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-full); color: var(--text-primary); font-size: 1rem; outline: none; transition: border-color 0.3s; box-sizing: border-box;">
+            <svg style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); width: 1.25rem; height: 1.25rem; color: var(--text-muted);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+
+        <!-- Category Filter -->
+        <div id="category-tabs" style="display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 3rem;">
+            <button onclick="filterBlog('all', this)" class="cat-btn active" style="padding: 0.625rem 1.75rem; background: var(--primary); color: white; border: none; border-radius: var(--radius-full); cursor: pointer; font-weight: 600; font-size: 0.9375rem; transition: all 0.3s;">All Posts</button>
+            <button onclick="filterBlog('beginner', this)" class="cat-btn" style="padding: 0.625rem 1.75rem; background: var(--bg-card); color: var(--text-secondary); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-full); cursor: pointer; font-weight: 500; font-size: 0.9375rem; transition: all 0.3s;">Beginner</button>
+            <button onclick="filterBlog('trading', this)" class="cat-btn" style="padding: 0.625rem 1.75rem; background: var(--bg-card); color: var(--text-secondary); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-full); cursor: pointer; font-weight: 500; font-size: 0.9375rem; transition: all 0.3s;">Trading</button>
+            <button onclick="filterBlog('security', this)" class="cat-btn" style="padding: 0.625rem 1.75rem; background: var(--bg-card); color: var(--text-secondary); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-full); cursor: pointer; font-weight: 500; font-size: 0.9375rem; transition: all 0.3s;">Security</button>
+            <button onclick="filterBlog('defi', this)" class="cat-btn" style="padding: 0.625rem 1.75rem; background: var(--bg-card); color: var(--text-secondary); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-full); cursor: pointer; font-weight: 500; font-size: 0.9375rem; transition: all 0.3s;">DeFi</button>
+        </div>
+
+        <!-- Blog Posts Grid -->
+        <div id="all-blog-posts" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;"></div>
+
+        <div id="pagination-container" style="margin-bottom: 2rem;"></div>
+
+        <div id="post-count" style="text-align: center; color: var(--text-muted); font-size: 0.9375rem; margin-bottom: 2rem;"></div>
+    </main>
+
+    <!-- Footer -->
+    <footer style="background: var(--bg-secondary); padding: 4rem 5% 2rem; margin-top: 2rem; border-top: 1px solid rgba(255,255,255,0.05);">
+        <div style="max-width: 1400px; margin: 0 auto;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2.5rem; margin-bottom: 3rem;">
+                <div><h4 style="color: var(--text-primary); margin-bottom: 1.25rem; font-size: 1rem; font-weight: 600;">Price Tools</h4><div style="display: flex; flex-direction: column; gap: 0.75rem;"><a href="pages/price-tracker.html" style="color: var(--text-secondary); text-decoration: none; font-size: 0.875rem;">Price Tracker</a><a href="pages/trending.html" style="color: var(--text-secondary); text-decoration: none; font-size: 0.875rem;">Trending Coins</a><a href="pages/global-stats.html" style="color: var(--text-secondary); text-decoration: none; font-size: 0.875rem;">Global Stats</a></div></div>
+                <div><h4 style="color: var(--text-primary); margin-bottom: 1.25rem; font-size: 1rem; font-weight: 600;">DEX Tools</h4><div style="display: flex; flex-direction: column; gap: 0.75rem;"><a href="pages/dex-scanner.html" style="color: var(--text-secondary); text-decoration: none; font-size: 0.875rem;">DEX Scanner</a><a href="pages/token-checker.html" style="color: var(--text-secondary); text-decoration: none; font-size: 0.875rem;">Token Checker</a><a href="pages/airdrops.html" style="color: var(--text-secondary); text-decoration: none; font-size: 0.875rem;">Airdrop Finder</a><a href="pages/arbitrage.html" style="color: var(--text-secondary); text-decoration: none; font-size: 0.875rem;">Arbitrage Scanner</a></div></div>
+                <div><h4 style="color: var(--text-primary); margin-bottom: 1.25rem; font-size: 1rem; font-weight: 600;">Portfolio</h4><div style="display: flex; flex-direction: column; gap: 0.75rem;"><a href="pages/portfolio.html" style="color: var(--text-secondary); text-decoration: none; font-size: 0.875rem;">Portfolio Tracker</a><a href="pages/profit-calculator.html" style="color: var(--text-secondary); text-decoration: none; font-size: 0.875rem;">Profit Calculator</a></div></div>
+                <div><h4 style="color: var(--text-primary); margin-bottom: 1.25rem; font-size: 1rem; font-weight: 600;">Resources</h4><div style="display: flex; flex-direction: column; gap: 0.75rem;"><a href="blog.html" style="color: var(--text-secondary); text-decoration: none; font-size: 0.875rem;">Blog</a><a href="about.html" style="color: var(--text-secondary); text-decoration: none; font-size: 0.875rem;">About Us</a><a href="contact.html" style="color: var(--text-secondary); text-decoration: none; font-size: 0.875rem;">Contact</a></div></div>
+            </div>
+            <div style="border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1.5rem; text-align: center;">
+                <p style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem;">© 2026 Nafcoin - Professional Crypto Tools</p>
+                <p style="color: var(--text-muted); font-size: 0.75rem; margin-bottom: 1rem;">Powered by CoinGecko, Binance, DeFiLlama, GoPlus & RapidAPI</p>
+                <div><a href="privacy.html" style="color: var(--text-muted); margin: 0 1rem; font-size: 0.8125rem;">Privacy Policy</a><a href="terms.html" style="color: var(--text-muted); margin: 0 1rem; font-size: 0.8125rem;">Terms of Service</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    const blogPosts = [{ title: 'Binance Futures vs Bybit Futures', url: 'blog/075-binance-futures-vs-bybit-futures.html', desc: 'Compare Binance and Bybit futures trading features, fees, liquidity, and tools.', cat: 'trading' },
+        { title: 'What is Dollar-Cost Averaging (DCA)?', url: 'blog/028-what-is-dollar-cost-averaging.html', desc: 'Learn how DCA works and why it\'s the best strategy for most crypto investors. Reduce risk and build wealth over time.', cat: 'trading' },
+        { title: 'How to Buy Bitcoin for the First Time', url: 'blog/002-how-to-buy-bitcoin-first-time.html', desc: 'Step-by-step guide to buying your first Bitcoin safely in 2026. Compare exchanges, set up your account, make your first purchase, and secure your investment.', cat: 'beginner' },
+        { title: 'What is Altcoin Season?', url: 'blog/011-what-is-altcoin-season.html', desc: 'Learn what altcoin season is, how to identify it, and strategies to profit. Understand the Bitcoin dominance cycle.', cat: 'trading' },
+        { title: 'How to Read Crypto Price Charts', url: 'blog/005-how-to-read-crypto-price-charts.html', desc: 'Learn how to read crypto price charts like a pro. Understand candlesticks, support/resistance, volume, and technical indicators.', cat: 'trading' },
+        { title: 'How to Track Your Crypto Portfolio', url: 'blog/029-how-to-track-crypto-portfolio.html', desc: 'Learn how to track your cryptocurrency portfolio across multiple wallets and exchanges with the best tools.', cat: 'trading' },
+        { title: 'Best Hardware Wallets Under $100', url: 'blog/120-best-hardware-wallets-under-100.html', desc: 'Complete guide to the best affordable hardware wallets under $100 in 2026.', cat: 'security' },
+        { title: 'How to Recover Ledger Wallet', url: 'blog/111-how-to-recover-ledger-wallet.html', desc: 'Step-by-step guide to recovering your Ledger wallet with seed phrase.', cat: 'security' },
+        { title: 'How to Verify KYC on Coinbase', url: 'blog/077-how-to-verify-kyc-on-coinbase.html', desc: 'Learn how to complete KYC verification on Coinbase. Step-by-step guide with tips for faster approval.', cat: 'beginner' },
+        { title: 'How to Research a Cryptocurrency', url: 'blog/031-how-to-research-cryptocurrency.html', desc: 'Learn how to research before investing. Evaluate whitepapers, teams, tokenomics, and red flags to make informed decisions.', cat: 'trading' }];
+
+    const categoryLabels = {
+        beginner: 'Beginner',
+        trading: 'Trading',
+        security: 'Security',
+        defi: 'DeFi'
+    };
+
+    const categoryColors = {
+        beginner: { bg: 'rgba(124,58,237,0.15)', border: 'rgba(124,58,237,0.4)', color: '#A78BFA' },
+        trading: { bg: 'rgba(16,185,129,0.15)', border: 'rgba(16,185,129,0.4)', color: '#34D399' },
+        security: { bg: 'rgba(239,68,68,0.15)', border: 'rgba(239,68,68,0.4)', color: '#F87171' },
+        defi: { bg: 'rgba(6,182,212,0.15)', border: 'rgba(6,182,212,0.4)', color: '#22D3EE' }
+    };
+
+    const POSTS_PER_PAGE = 12;
+    let currentCategory = 'all';
+    let currentPage = 1;
+    let currentSearch = '';
+
+    function getFilteredPosts() {
+        let posts = currentCategory === 'all' ? blogPosts : blogPosts.filter(p => p.cat === currentCategory);
+        if (currentSearch) {
+            const q = currentSearch.toLowerCase();
+            posts = posts.filter(p => p.title.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q));
+        }
+        return posts;
+    }
+
+    function renderBlogPosts(posts) {
+        const container = document.getElementById('all-blog-posts');
+        const countEl = document.getElementById('post-count');
+        if (!container) return;
+
+        const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE);
+        if (currentPage > totalPages) currentPage = totalPages || 1;
+
+        const start = (currentPage - 1) * POSTS_PER_PAGE;
+        const end = start + POSTS_PER_PAGE;
+        const pagePosts = posts.slice(start, end);
+
+        container.innerHTML = pagePosts.map(post => {
+            const c = categoryColors[post.cat] || categoryColors.beginner;
+            return `<a href="${post.url}" style="text-decoration: none;">
+                <div class="blog-post-card" style="background: var(--bg-card); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius-lg); padding: 1.75rem; height: 100%; display: flex; flex-direction: column; transition: all 0.3s; position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: ${c.color};"></div>
+                    <div style="flex: 1;">
+                        <span style="display: inline-block; padding: 0.3125rem 0.875rem; background: ${c.bg}; color: white; border-radius: var(--radius-full); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; margin-bottom: 1rem;">${categoryLabels[post.cat] || post.cat}</span>
+                        <h3 style="font-size: 1.1875rem; color: var(--text-primary); line-height: 1.35; margin: 0 0 0.75rem 0; font-family: 'Space Grotesk', sans-serif; font-weight: 600;">${post.title}</h3>
+                        <p style="color: var(--text-secondary); font-size: 0.9375rem; line-height: 1.6; margin: 0;">${post.desc}</p>
+                    </div>
+                    <div style="margin-top: 1.25rem; display: flex; align-items: center; color: var(--primary-light); font-size: 0.875rem; font-weight: 600; gap: 0.375rem;">
+                        Read Article
+                        <span style="transition: transform 0.2s;">-&gt;</span>
+                    </div>
+                </div>
+            </a>`;
+        }).join('');
+
+        if (countEl) {
+            const showStart = start + 1;
+            const showEnd = Math.min(end, posts.length);
+            countEl.textContent = `Showing ${showStart}-${showEnd} of ${posts.length} articles`;
+        }
+
+        container.querySelectorAll('.blog-post-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-4px)';
+                card.style.borderColor = 'rgba(124, 58, 237, 0.3)';
+                card.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.3)';
+                const arrow = card.querySelector('span:last-child');
+                if (arrow) arrow.style.transform = 'translateX(4px)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+                card.style.borderColor = 'rgba(255, 255, 255, 0.05)';
+                card.style.boxShadow = 'none';
+                const arrow = card.querySelector('span:last-child');
+                if (arrow) arrow.style.transform = 'translateX(0)';
+            });
+        });
+
+        renderPagination(posts.length, totalPages);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderPagination(totalItems, totalPages) {
+        const container = document.getElementById('pagination-container');
+        if (!container) return;
+        if (totalPages <= 1) { container.innerHTML = ''; return; }
+
+        let html = '<div style="display: flex; justify-content: center; align-items: center; gap: 0.5rem; flex-wrap: wrap;">';
+
+        html += `<button onclick="goToPage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''} style="padding: 0.625rem 1rem; background: ${currentPage === 1 ? 'var(--bg-card)' : 'var(--bg-card)'}; color: ${currentPage === 1 ? 'var(--text-muted)' : 'var(--text-primary)'}; border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-md); cursor: ${currentPage === 1 ? 'default' : 'pointer'}; font-size: 0.875rem; font-weight: 500; transition: all 0.2s;" ${currentPage === 1 ? 'aria-disabled="true"' : ''}>Previous</button>`;
+
+        const maxVisible = 7;
+        let pages = [];
+        if (totalPages <= maxVisible) {
+            for (let i = 1; i <= totalPages; i++) pages.push(i);
+        } else {
+            pages.push(1);
+            if (currentPage > 3) pages.push('...');
+            let rangeStart = Math.max(2, currentPage - 1);
+            let rangeEnd = Math.min(totalPages - 1, currentPage + 1);
+            if (currentPage <= 3) { rangeStart = 2; rangeEnd = 4; }
+            if (currentPage >= totalPages - 2) { rangeStart = totalPages - 3; rangeEnd = totalPages - 1; }
+            for (let i = rangeStart; i <= rangeEnd; i++) pages.push(i);
+            if (currentPage < totalPages - 2) pages.push('...');
+            pages.push(totalPages);
+        }
+
+        pages.forEach(p => {
+            if (p === '...') {
+                html += `<span style="padding: 0.625rem 0.5rem; color: var(--text-muted); font-size: 0.875rem;">...</span>`;
+            } else {
+                const isActive = p === currentPage;
+                html += `<button onclick="goToPage(${p})" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: ${isActive ? 'var(--primary)' : 'var(--bg-card)'}; color: ${isActive ? 'white' : 'var(--text-secondary)'}; border: ${isActive ? 'none' : '1px solid rgba(255,255,255,0.1)'}; border-radius: var(--radius-md); cursor: pointer; font-size: 0.875rem; font-weight: ${isActive ? '600' : '500'}; transition: all 0.2s;">${p}</button>`;
+            }
+        });
+
+        html += `<button onclick="goToPage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''} style="padding: 0.625rem 1rem; background: var(--bg-card); color: ${currentPage === totalPages ? 'var(--text-muted)' : 'var(--text-primary)'}; border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-md); cursor: ${currentPage === totalPages ? 'default' : 'pointer'}; font-size: 0.875rem; font-weight: 500; transition: all 0.2s;" ${currentPage === totalPages ? 'aria-disabled="true"' : ''}>Next</button>`;
+
+        html += '</div>';
+        container.innerHTML = html;
+    }
+
+    function goToPage(page) {
+        const posts = getFilteredPosts();
+        const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE);
+        if (page < 1 || page > totalPages) return;
+        currentPage = page;
+        renderBlogPosts(posts);
+    }
+
+    function filterBlog(category, btn) {
+        currentCategory = category;
+        currentPage = 1;
+        document.querySelectorAll('.cat-btn').forEach(b => {
+            b.style.background = 'var(--bg-card)';
+            b.style.color = 'var(--text-secondary)';
+            b.style.border = '1px solid rgba(255,255,255,0.1)';
+        });
+        if (btn) {
+            btn.style.background = 'var(--primary)';
+            btn.style.color = 'white';
+            btn.style.border = 'none';
+        }
+
+        renderBlogPosts(getFilteredPosts());
+    }
+
+    function searchBlog() {
+        const input = document.getElementById('blog-search');
+        currentSearch = input ? input.value : '';
+        currentPage = 1;
+        renderBlogPosts(getFilteredPosts());
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        renderBlogPosts(blogPosts);
+    });
+    </script>
+</body>
+</html>

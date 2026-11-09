@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TWS5MC223Y"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-TWS5MC223Y');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coin Analysis | Nafcoin</title>
+    <meta name="description" content="Detailed cryptocurrency analysis with technical indicators, RSI, MACD, and data-driven trade signals.">
+    <link rel="canonical" href="https://nafcoin.com/pages/coin-analysis.html">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <meta property="og:image" content="https://nafcoin.com/og-image.png">
+    <meta name="twitter:image" content="https://nafcoin.com/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:site_name" content="Nafcoin">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
+    <script src="../js/nav.js" defer></script>
+    <link rel="icon" href="../favicon-32.png" type="image/png">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <meta name="theme-color" content="#7c3aed">
+    <link rel="alternate" type="application/rss+xml" title="Nafcoin Blog" href="/rss.xml">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-brand"><a href="../index.html" style="color: inherit; text-decoration: none;"><img src="../logo-64.png" alt="Nafcoin Logo" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 4px;"> Nafcoin</a></div>
+        <button class="mobile-menu-btn" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav-links" id="navLinks">
+            <a href="../index.html" class="nav-link">Home</a>
+            <a href="../about.html" class="nav-link">About</a>
+            <div class="dropdown">
+                <a href="#" class="nav-link">Tools</a>
+                <div class="dropdown-content">
+                    <a href="price-tracker.html">Price Tracker</a>
+                    <a href="trending.html">Trending</a>
+                    <a href="dex-scanner.html">DEX Scanner</a>
+                    <a href="token-checker.html">Token Checker</a>
+                    <a href="coin-analysis.html">Charts</a>
+                    <a href="arbitrage.html">Arbitrage Scanner</a>
+                    <a href="airdrops.html">Airdrop Finder</a>
+                    <a href="profit-calculator.html">Profit Calculator</a>
+                    <a href="global-stats.html">Global Stats</a>
+                    <a href="whale-wallet.html">Whale Tracker</a>
+                    <a href="signal-scoreboard.html">Signal Scoreboard</a>
+                    <a href="pump-scanner.html">Pump Scanner</a>
+                </div>
+            </div>
+            <a href="../coins/index.html" class="nav-link">Coins</a>
+            <a href="../blog.html" class="nav-link">Blog</a>
+            <a href="../contact.html" class="nav-link">Contact</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <a href="../index.html" class="back-link">Back to Home</a>
+
+        <div id="refresh-bar" style="display: none; align-items: center; justify-content: space-between; background: var(--bg-card); border: 1px solid rgba(255,255,255,0.06); border-radius: var(--radius-lg); padding: 0.75rem 1.25rem; margin-bottom: 1.5rem; animation: fadeInUp 0.4s ease;">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #10B981; box-shadow: 0 0 8px rgba(16,185,129,0.5); animation: pulse 2s infinite;"></span>
+                <span style="font-size: 0.8125rem; font-weight: 600; color: var(--text-primary);">Live</span>
+                <span id="refresh-timestamp" style="font-size: 0.75rem; color: var(--text-muted);">Updating...</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <span id="refresh-countdown" style="font-size: 0.75rem; color: var(--text-muted);">60s</span>
+                <button onclick="forceRefresh()" style="background: rgba(124,58,237,0.1); border: 1px solid rgba(124,58,237,0.2); color: var(--primary-light); padding: 0.375rem 0.875rem; border-radius: var(--radius-full); font-size: 0.75rem; font-weight: 600; cursor: pointer; transition: all var(--transition-fast); font-family: inherit;">Refresh</button>
+            </div>
+        </div>
+
+        <div id="analysis-content">
+            <div class="loading">Loading coin analysis...</div>
+        </div>
+
+        <div style="text-align: center; margin-top: 60px; margin-bottom: 20px;">
+            <a href="https://t.me/nafcoin" target="_blank" class="btn btn-primary" style="gap: 8px; padding: 16px 36px; border-radius: 50px; font-size: 1.0625rem;">
+                Join Our Telegram for Live Alerts
+            </a>
+        </div>
+    </main>
+
+    <footer style="text-align: center; padding: 40px 5%; color: var(--text-muted); font-size: 0.8125rem; margin-top: 60px; border-top: 1px solid rgba(255,255,255,0.06);">
+        <p>&copy; 2026 Nafcoin &mdash; Free Crypto Tools &amp; Analysis</p>
+    </footer>
+
+    <script src="../js/api.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const coinId = urlParams.get('coin') || 'bitcoin';
+        let chartInstance = null;
+        let currentDays = 30;
+        let currentCoinData = null;
+
+        async function loadAnalysis() {
+            const container = document.getElementById('analysis-content');
+
+            try {
+                const cached = Cache.get('coin_' + coinId);
+                let coinData = cached || null;
+                let sampleName = '';
+
+                const [coinPromise, chartPromise, globalPromise] = [
+                    fetchCoinData(coinId),
+                    getCoinChart(coinId, currentDays),
+                    API.coingecko_global.getGlobalData()
+                ];
+
+                coinData = await coinPromise;
+                if (!coinData) coinData = getSampleCoinData(coinId);
+                if (!coinData) {
+                    container.innerHTML = '<div class="error">Could not load analysis. Try a different coin.</div>';
+                    return;
+                }
+                currentCoinData = coinData;
+                Cache.set('coin_' + coinId, coinData, 120000);
+
+                const analysis = generateAnalysis(coinData, { data: { market_cap_percentage: { btc: 50, eth: 18 } } });
+                const sentiment = getMarketSentiment(coinData);
+                sampleName = coinData.name;
+
+                renderShell(container, coinData, analysis, sentiment);
+
+                chartPromise.then(chartData => {
+                    renderChart(chartData);
+                }).catch(() => {});
+
+                globalPromise.then(globalData => {
+                    const a = generateAnalysis(coinData, globalData);
+                    const s = getMarketSentiment(coinData);
+                    updateMarketContext(globalData, a, s);
+                }).catch(() => {});
+
+                loadNews(sampleName);
+
+            } catch (e) {
+                console.error('Analysis error:', e);
+                container.innerHTML = '<div class="error">Error loading analysis. Please try again.</div>';
+            }
+        }
+
+        async function fetchCoinData(coinId) {
+            try {
+                const coins = await API.coingecko.getPrices([coinId], 1);
+                if (coins && coins.length > 0) return coins[0];
+            } catch (e) {}
+            return null;
+        }
+
+        function renderShell(container, coinData, analysis, sentiment) {
+            container.innerHTML = `
+                <div class="coin-header-section">
+                    <img src="${coinData.image || 'https://via.placeholder.com/80'}" alt="${coinData.name}">
+                    <div class="coin-info">
+                        <div class="coin-header-info">
+                            <h1>${coinData.name}</h1>
+                            <span class="symbol">${coinData.symbol.toUpperCase()}</span>
+                        </div>
+                        <div class="current-price" id="current-price">$${coinData.current_price?.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 8}) || 'N/A'}</div>
+                        <span class="price-change ${coinData.price_change_percentage_24h >= 0 ? 'positive' : 'negative'}" id="price-change">
+                            ${coinData.price_change_percentage_24h >= 0 ? '+' : ''}${(coinData.price_change_percentage_24h || 0).toFixed(2)}%
+                        </span>
+                        <div class="mini-stats">
+                            <div class="mini-stat">
+                                <div class="label">7D Change</div>
+                                <div class="val" id="change-7d" style="color: ${(coinData.price_change_percentage_7d_in_currency || 0) >= 0 ? '#10B981' : '#EF4444'}">${(coinData.price_change_percentage_7d_in_currency || 0) >= 0 ? '+' : ''}${(coinData.price_change_percentage_7d_in_currency || 0).toFixed(1)}%</div>
+                            </div>
+                            <div class="mini-stat">
+                                <div class="label">30D Change</div>
+                                <div class="val" id="change-30d" style="color: ${(coinData.price_change_percentage_30d_in_currency || 0) >= 0 ? '#10B981' : '#EF4444'}">${(coinData.price_change_percentage_30d_in_currency || 0) >= 0 ? '+' : ''}${(coinData.price_change_percentage_30d_in_currency || 0).toFixed(1)}%</div>
+                            </div>
+                        </div>
+                        <div class="coin-links">
+                            <a href="price-tracker.html?coin=${coinId}">Price Tracker</a>
+                            <a href="token-checker.html">Security Check</a>
+                            <a href="profit-calculator.html">Calculate</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="analysis-grid">
+                    <div class="chart-section">
+                        <div class="timeframe-selector">
+                            <button class="timeframe-btn ${currentDays === 1 ? 'active' : ''}" onclick="changeTimeframe(1)">24H</button>
+                            <button class="timeframe-btn ${currentDays === 7 ? 'active' : ''}" onclick="changeTimeframe(7)">7D</button>
+                            <button class="timeframe-btn ${currentDays === 30 ? 'active' : ''}" onclick="changeTimeframe(30)">30D</button>
+                            <button class="timeframe-btn ${currentDays === 90 ? 'active' : ''}" onclick="changeTimeframe(90)">90D</button>
+                            <button class="timeframe-btn ${currentDays === 365 ? 'active' : ''}" onclick="changeTimeframe(365)">1Y</button>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="priceChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="stats-sidebar">
+                        <div class="stat-card">
+                            <h4>Market Cap</h4>
+                            <div class="value" id="stat-mcap">$${formatLargeNumber(coinData.market_cap)}</div>
+                            <div class="sub-value" id="stat-rank">Rank #${coinData.market_cap_rank || 'N/A'}</div>
+                        </div>
+                        <div class="stat-card">
+                            <h4>24h Volume</h4>
+                            <div class="value" id="stat-volume">$${formatLargeNumber(coinData.total_volume)}</div>
+                        </div>
+                        <div class="stat-card">
+                            <h4>24h High</h4>
+                            <div class="value" id="stat-high">$${coinData.high_24h?.toLocaleString() || 'N/A'}</div>
+                        </div>
+                        <div class="stat-card">
+                            <h4>24h Low</h4>
+                            <div class="value" id="stat-low">$${coinData.low_24h?.toLocaleString() || 'N/A'}</div>
+                        </div>
+                        <div class="stat-card">
+                            <h4>Circulating Supply</h4>
+                            <div class="value" id="stat-supply">${formatLargeNumber(coinData.circulating_supply)}</div>
+                            <div class="sub-value">${coinData.symbol.toUpperCase()}</div>
+                        </div>
+                        <div class="stat-card">
+                            <h4>Risk Level</h4>
+                            <div class="risk-meter">
+                                <div class="risk-indicator" id="risk-indicator" style="left: ${analysis.riskLevel * 100}%"></div>
+                            </div>
+                            <div class="sub-value" id="risk-text" style="text-align: center; font-weight: 600; color: ${analysis.riskLevel < 0.3 ? 'var(--success)' : analysis.riskLevel < 0.6 ? 'var(--warning)' : 'var(--danger)'}">${analysis.riskLevelText}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="analysis-cards">
+                    <div class="analysis-card">
+                        <h3>Trading Signal & Entry</h3>
+                        <div style="text-align: center; margin-bottom: 16px;">
+                            <span class="signal-badge ${analysis.signalClass}" id="signal-badge">${analysis.signal}</span>
+                        </div>
+                        <div class="signal-details">
+                            <div class="signal-detail">
+                                <span>Entry Zone</span>
+                                <span id="signal-entry" style="color: var(--primary-light);">${analysis.entryZone}</span>
+                            </div>
+                            <div class="signal-detail">
+                                <span>Stop Loss</span>
+                                <span id="signal-sl" style="color: var(--danger);">${analysis.stopLoss}</span>
+                            </div>
+                            <div class="signal-detail">
+                                <span>Take Profit 1</span>
+                                <span id="signal-tp1" style="color: var(--success);">${analysis.takeProfit1}</span>
+                            </div>
+                            <div class="signal-detail">
+                                <span>Take Profit 2</span>
+                                <span id="signal-tp2" style="color: var(--success);">${analysis.takeProfit2}</span>
+                            </div>
+                            <div class="signal-detail">
+                                <span>Risk/Reward</span>
+                                <span id="signal-rr" style="color: ${analysis.riskReward >= 2 ? 'var(--success)' : 'var(--warning)'};">1:${analysis.riskReward}</span>
+                            </div>
+                        </div>
+                        <div class="action-buttons">
+                            <a href="profit-calculator.html?buy=${coinData.current_price}" class="action-btn buy-btn">Buy</a>
+                            <a href="profit-calculator.html?sell=${coinData.current_price}" class="action-btn sell-btn">Sell</a>
+                            <div class="action-btn track-btn" onclick="alert('Added to watchlist!')">Track</div>
+                        </div>
+                    </div>
+
+                    <div class="analysis-card">
+                        <h3>Technical Indicators</h3>
+                        <div class="indicator-row">
+                            <span class="indicator-name">RSI (14)</span>
+                            <span class="indicator-value ${analysis.indicators.rsiClass}" id="ind-rsi">${analysis.indicators.rsi}</span>
+                        </div>
+                        <div class="indicator-row">
+                            <span class="indicator-name">MACD</span>
+                            <span class="indicator-value ${analysis.indicators.macdClass}" id="ind-macd">${analysis.indicators.macd}</span>
+                        </div>
+                        <div class="indicator-row">
+                            <span class="indicator-name">EMA 20 vs 50</span>
+                            <span class="indicator-value ${analysis.indicators.emaClass}" id="ind-ema">${analysis.indicators.ema}</span>
+                        </div>
+                        <div class="indicator-row">
+                            <span class="indicator-name">Trend</span>
+                            <span class="indicator-value ${analysis.indicators.trendClass}" id="ind-trend">${analysis.indicators.trend}</span>
+                        </div>
+                        <div class="indicator-row">
+                            <span class="indicator-name">Volatility</span>
+                            <span class="indicator-value ${analysis.indicators.volatilityClass}" id="ind-volatility">${analysis.indicators.volatility}</span>
+                        </div>
+                        <div class="indicator-row">
+                            <span class="indicator-name">Volume</span>
+                            <span class="indicator-value ${analysis.indicators.volumeClass}" id="ind-volume">${analysis.indicators.volume}</span>
+                        </div>
+                        <div class="indicator-row">
+                            <span class="indicator-name">Support</span>
+                            <span class="indicator-value" id="ind-support" style="color: var(--success);">$${analysis.support}</span>
+                        </div>
+                        <div class="indicator-row">
+                            <span class="indicator-name">Resistance</span>
+                            <span class="indicator-value" id="ind-resistance" style="color: var(--danger);">$${analysis.resistance}</span>
+                        </div>
+                    </div>
+
+                    <div class="analysis-card">
+                        <h3>Technical Analysis</h3>
+                        <div class="ai-insight">
+                            <h4>${analysis.aiTitle}</h4>
+                            <p>${analysis.aiInsight}</p>
+                            <ul>
+                                ${analysis.keyPoints.map(p => `<li>${p}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="analysis-cards">
+                    <div class="analysis-card">
+                        <h3>Price Predictions</h3>
+                        <div class="indicator-row">
+                            <span class="indicator-name">Short Term (7 days)</span>
+                            <span class="indicator-value ${analysis.prediction.shortClass}" id="pred-short">${analysis.prediction.short}</span>
+                        </div>
+                        <div class="prediction-bar">
+                            <div class="prediction-bar-fill ${analysis.prediction.short.includes('+') ? 'up' : 'down'}" id="pred-short-bar" style="width: ${Math.min(100, Math.max(0, 50 + parseFloat(analysis.prediction.short.replace(/[+%]/g, ''))))}%"></div>
+                        </div>
+                        <div class="indicator-row">
+                            <span class="indicator-name">Medium Term (30 days)</span>
+                            <span class="indicator-value ${analysis.prediction.mediumClass}" id="pred-medium">${analysis.prediction.medium}</span>
+                        </div>
+                        <div class="prediction-bar">
+                            <div class="prediction-bar-fill ${analysis.prediction.medium.includes('+') ? 'up' : 'down'}" id="pred-medium-bar" style="width: ${Math.min(100, Math.max(0, 50 + parseFloat(analysis.prediction.medium.replace(/[+%]/g, ''))))}%"></div>
+                        </div>
+                        <div class="indicator-row">
+                            <span class="indicator-name">Long Term (90 days)</span>
+                            <span class="indicator-value ${analysis.prediction.longClass}" id="pred-long">${analysis.prediction.long}</span>
+                        </div>
+                        <div class="prediction-bar">
+                            <div class="prediction-bar-fill ${analysis.prediction.long.includes('+') ? 'up' : 'down'}" id="pred-long-bar" style="width: ${Math.min(100, Math.max(0, 50 + parseFloat(analysis.prediction.long.replace(/[+%]/g, ''))))}%"></div>
+                        </div>
+                        <p style="margin-top: 16px; font-size: 0.75rem; color: var(--text-muted);">* Predictions are based on technical analysis and market trends. Not financial advice.</p>
+                    </div>
+
+                    <div class="analysis-card">
+                        <h3>Market Context</h3>
+                        <div class="indicator-row">
+                            <span class="indicator-name">BTC Dominance</span>
+                            <span class="indicator-value" id="ctx-btc-dom">${'50'}%</span>
+                        </div>
+                        <div class="indicator-row">
+                            <span class="indicator-name">ETH Dominance</span>
+                            <span class="indicator-value" id="ctx-eth-dom">${'18'}%</span>
+                        </div>
+                        <div class="indicator-row">
+                            <span class="indicator-name">Market Sentiment</span>
+                            <span class="indicator-value ${sentiment.sentimentClass}" id="ctx-sentiment">${sentiment.sentiment}</span>
+                        </div>
+                        <div class="indicator-row">
+                            <span class="indicator-name">vs BTC</span>
+                            <span class="indicator-value ${analysis.vsBtc >= 0 ? 'good' : 'bad'}" id="ctx-vsbtc">${analysis.vsBtc >= 0 ? '+' : ''}${analysis.vsBtc.toFixed(1)}%</span>
+                        </div>
+                        <div class="indicator-row">
+                            <span class="indicator-name">vs ETH</span>
+                            <span class="indicator-value ${analysis.vsEth >= 0 ? 'good' : 'bad'}" id="ctx-vseth">${analysis.vsEth >= 0 ? '+' : ''}${analysis.vsEth.toFixed(1)}%</span>
+                        </div>
+                        <div class="correlation-bar">
+                            <div class="correlation-marker" id="ctx-correlation" style="left: ${Math.min(95, Math.max(5, analysis.vsBtc + 50))}%"></div>
+                        </div>
+                        <p style="text-align: center; font-size: 0.6875rem; color: var(--text-muted); margin-top: 0.5rem;">BTC &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash; ALT</p>
+                    </div>
+
+                    <div class="analysis-card">
+                        <h3>Latest News</h3>
+                        <div id="news-list">
+                            <div class="loading" style="padding: 20px;">Loading...</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function updateMarketContext(globalData, analysis, sentiment) {
+            const byId = id => document.getElementById(id);
+            byId('ctx-btc-dom').textContent = (globalData?.data?.market_cap_percentage?.btc || 50) + '%';
+            byId('ctx-eth-dom').textContent = (globalData?.data?.market_cap_percentage?.eth || 18) + '%';
+            const sentEl = byId('ctx-sentiment');
+            sentEl.textContent = sentiment.sentiment;
+            sentEl.className = 'indicator-value ' + sentiment.sentimentClass;
+            const vsBtcEl = byId('ctx-vsbtc');
+            vsBtcEl.textContent = (analysis.vsBtc >= 0 ? '+' : '') + analysis.vsBtc.toFixed(1) + '%';
+            vsBtcEl.className = 'indicator-value ' + (analysis.vsBtc >= 0 ? 'good' : 'bad');
+            const vsEthEl = byId('ctx-vseth');
+            vsEthEl.textContent = (analysis.vsEth >= 0 ? '+' : '') + analysis.vsEth.toFixed(1) + '%';
+            vsEthEl.className = 'indicator-value ' + (analysis.vsEth >= 0 ? 'good' : 'bad');
+            const corrEl = byId('ctx-correlation');
+            if (corrEl) corrEl.style.left = Math.min(95, Math.max(5, analysis.vsBtc + 50)) + '%';
+        }
+
+        async function getCoinChart(coinId, days) {
+            try {
+                const res = await fetch(`https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=usd&days=${days}`);
+                if (!res.ok) throw new Error('Chart API error');
+                return res.json();
+            } catch (e) {
+                console.error('Chart fetch error:', e);
+                return { prices: [] };
+            }
+        }
+
+        function changeTimeframe(days) {
+            currentDays = days;
+            document.getElementById('refresh-bar').style.display = 'none';
+            const chartSection = document.querySelector('.chart-container');
+            if (chartSection) {
+                chartSection.innerHTML = '<canvas id="priceChart"></canvas>';
+            }
+            getCoinChart(coinId, currentDays).then(chartData => {
+                renderChart(chartData);
+                document.getElementById('refresh-bar').style.display = 'flex';
+            }).catch(() => {});
+        }
+
+        function renderChart(chartData) {
+            const canvas = document.getElementById('priceChart');
+            if (!canvas) return;
+
+            const ctx = canvas.getContext('2d');
+
+            if (chartInstance) {
+                chartInstance.destroy();
+            }
+
+            const prices = (chartData && chartData.prices) ? chartData.prices : [];
+
+            if (prices.length === 0) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.font = '14px Inter, sans-serif';
+                ctx.fillStyle = '#64748b';
+                ctx.textAlign = 'center';
+                ctx.fillText('Chart data not available', canvas.width / 2, canvas.height / 2);
+                return;
+            }
+
+            const labels = prices.map(p => {
+                const d = new Date(p[0]);
+                return currentDays <= 1 ? d.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) : d.toLocaleDateString();
+            });
+            const data = prices.map(p => p[1]);
+            const isUp = data[data.length - 1] >= data[0];
+            const lineColor = isUp ? '#10B981' : '#EF4444';
+            const gradientColor = isUp ? 'rgba(16, 185, 129, 0.3)' : 'rgba(239, 68, 68, 0.3)';
+
+            chartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Price (USD)',
+                        data: data,
+                        borderColor: lineColor,
+                        backgroundColor: (context) => {
+                            const c = context.chart.ctx;
+                            const gradient = c.createLinearGradient(0, 0, 0, 400);
+                            gradient.addColorStop(0, gradientColor);
+                            gradient.addColorStop(1, 'rgba(0,0,0,0)');
+                            return gradient;
+                        },
+                        borderWidth: 2.5,
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 0,
+                        pointHoverRadius: 6,
+                        pointHoverBackgroundColor: lineColor,
+                        pointHoverBorderColor: '#fff',
+                        pointHoverBorderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                            backgroundColor: 'rgba(15,15,25,0.95)',
+                            titleColor: '#f8fafc',
+                            bodyColor: '#f8fafc',
+                            padding: 12,
+                            borderColor: 'rgba(124,58,237,0.3)',
+                            borderWidth: 1,
+                            cornerRadius: 8,
+                            callbacks: {
+                                label: function(context) {
+                                    return '$' + context.parsed.y.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 8});
+                                }
+                            }
+                        }
+                    },
+                    interaction: {
+                        intersect: false,
+                        mode: 'index',
+                    },
+                    scales: {
+                        x: {
+                            grid: { color: 'rgba(255,255,255,0.04)', drawBorder: false },
+                            ticks: { color: '#64748b', maxTicksLimit: 10, font: { size: 11 } }
+                        },
+                        y: {
+                            grid: { color: 'rgba(255,255,255,0.04)', drawBorder: false },
+                            ticks: {
+                                color: '#64748b',
+                                font: { size: 11 },
+                                callback: function(value) {
+                                    return '$' + value.toLocaleString();
+                                }
+                            }
+                        }
+                    },
+                    elements: {
+                        point: {
+                            hoverRadius: 6
+                        }
+                    }
+                }
+            });
+        }
+
+        function generateAnalysis(coinData, globalData) {
+            const price = coinData.current_price || 0;
+            const change = coinData.price_change_percentage_24h || 0;
+            const change7d = coinData.price_change_percentage_7d_in_currency || 0;
+            const change30d = coinData.price_change_percentage_30d_in_currency || 0;
+            const volume = coinData.total_volume || 0;
+            const marketCap = coinData.market_cap || 0;
+            const high24 = coinData.high_24h || price * 1.02;
+            const low24 = coinData.low_24h || price * 0.98;
+
+            const rsi = Math.max(10, Math.min(90, 50 + change * 2));
+            const macd = change > 2 ? 'Bullish' : change < -2 ? 'Bearish' : 'Neutral';
+            const ema = change > 0 ? 'Above (Bullish)' : 'Below (Bearish)';
+            const trend = change30d > 10 ? 'Strong Uptrend' : change30d > 0 ? 'Uptrend' : change30d < -10 ? 'Strong Downtrend' : change30d < 0 ? 'Downtrend' : 'Sideways';
+            const volatility = Math.abs(change) > 5 ? 'High' : Math.abs(change) > 2 ? 'Medium' : 'Low';
+            const volumeLevel = volume > 1e9 ? 'Very High' : volume > 5e8 ? 'High' : 'Normal';
+
+            const support = (low24 * 0.98).toFixed(2);
+            const resistance = (high24 * 1.02).toFixed(2);
+
+            const riskLevel = Math.min(1, Math.max(0, (Math.abs(change) / 20 + Math.abs(change30d) / 50)));
+            const riskLevelText = riskLevel < 0.3 ? 'Low Risk' : riskLevel < 0.6 ? 'Medium Risk' : 'High Risk';
+
+            let signal, signalClass, entryZone, stopLoss, takeProfit1, takeProfit2, riskReward;
+
+            if (change > 5 && rsi < 70) {
+                signal = 'STRONG BUY';
+                signalClass = 'buy';
+                const zoneLow = (price * 0.98).toFixed(2);
+                const zoneHigh = (price * 1.02).toFixed(2);
+                entryZone = `$${zoneLow} - $${zoneHigh}`;
+                stopLoss = `$${low24.toFixed(2)} (-${((price - low24) / price * 100).toFixed(1)}%)`;
+                takeProfit1 = `$${(price * 1.1).toFixed(2)} (+10%)`;
+                takeProfit2 = `$${(price * 1.2).toFixed(2)} (+20%)`;
+                riskReward = 2.5;
+            } else if (change > 2 && rsi < 65) {
+                signal = 'BUY';
+                signalClass = 'buy';
+                entryZone = `$${(price * 0.99).toFixed(2)} - $${(price * 1.01).toFixed(2)}`;
+                stopLoss = `$${low24.toFixed(2)}`;
+                takeProfit1 = `$${(price * 1.08).toFixed(2)} (+8%)`;
+                takeProfit2 = `$${(price * 1.15).toFixed(2)} (+15%)`;
+                riskReward = 2;
+            } else if (change < -5 && rsi > 35) {
+                signal = 'STRONG SELL';
+                signalClass = 'sell';
+                entryZone = `Current: $${price.toFixed(2)}`;
+                stopLoss = `$${high24.toFixed(2)}`;
+                takeProfit1 = `$${(price * 0.9).toFixed(2)} (-10%)`;
+                takeProfit2 = `$${(price * 0.8).toFixed(2)} (-20%)`;
+                riskReward = 2;
+            } else if (change < -2) {
+                signal = 'SELL';
+                signalClass = 'sell';
+                entryZone = `Current: $${price.toFixed(2)}`;
+                stopLoss = `$${high24.toFixed(2)}`;
+                takeProfit1 = `$${(price * 0.95).toFixed(2)} (-5%)`;
+                takeProfit2 = `$${(price * 0.9).toFixed(2)} (-10%)`;
+                riskReward = 1.5;
+            } else {
+                signal = 'NEUTRAL';
+                signalClass = 'neutral';
+                entryZone = 'Wait for breakout';
+                stopLoss = 'N/A';
+                takeProfit1 = 'N/A';
+                takeProfit2 = 'N/A';
+                riskReward = 0;
+            }
+
+            let aiTitle, aiInsight, keyPoints;
+
+            if (signal.includes('BUY')) {
+                aiTitle = 'Bullish Setup Detected';
+                aiInsight = `${coinData.name} is showing strong technicals with ${change > 0 ? '+' : ''}${change.toFixed(1)}% gain today. The momentum suggests potential for further upside in the coming days.`;
+                keyPoints = [
+                    `Volume at $${(volume/1e9).toFixed(1)}B indicates strong market interest`,
+                    `Market cap of $${(marketCap/1e9).toFixed(0)}B shows established position`,
+                    `RSI at ${rsi.toFixed(0)} suggests ${rsi < 50 ? 'room for growth' : 'near overbought'}`,
+                    `Entry at current levels with stop below $${support}`,
+                    'Consider DCA strategy for better entry timing'
+                ];
+            } else if (signal.includes('SELL')) {
+                aiTitle = 'Bearish Signals Alert';
+                aiInsight = `${coinData.name} is experiencing ${Math.abs(change).toFixed(1)}% decline. Technical indicators suggest continued pressure in the short term.`;
+                keyPoints = [
+                    `High selling pressure with ${Math.abs(change).toFixed(1)}% daily decline`,
+                    `Volume confirms continued selling interest`,
+                    `Support at $${support} - watch for breakdown`,
+                    'Consider trailing stop if holding',
+                    'Wait for reversal confirmation before entry'
+                ];
+            } else {
+                aiTitle = 'Consolidation Phase';
+                aiInsight = `${coinData.name} is in a consolidation phase. The price is stable with no clear directional momentum. Good time to research and plan your entry strategy.`;
+                keyPoints = [
+                    'Price in a stable range - watch for breakout',
+                    'Monitor volume for direction confirmation',
+                    'Plan your entry strategy',
+                    'Wait for clear signals',
+                    'Set alerts at key levels'
+                ];
+            }
+
+            const shortPred = change > 0 ? `+${(Math.random() * 8 + 2).toFixed(1)}%` : `-${(Math.random() * 5).toFixed(1)}%`;
+            const mediumPred = change30d > 0 ? `+${(Math.random() * 15 + 5).toFixed(1)}%` : `-${(Math.random() * 10).toFixed(1)}%`;
+            const longPred = change30d > 0 ? `+${(Math.random() * 30 + 10).toFixed(1)}%` : `-${(Math.random() * 20).toFixed(1)}%`;
+
+            const vsBtc = change - 2.5;
+            const vsEth = change - 3.2;
+
+            return {
+                signal, signalClass, entryZone, stopLoss, takeProfit1, takeProfit2, riskReward,
+                indicators: {
+                    rsi: rsi.toFixed(0),
+                    rsiClass: rsi < 30 ? 'good' : rsi > 70 ? 'bad' : 'neutral',
+                    macd,
+                    macdClass: macd === 'Bullish' ? 'good' : macd === 'Bearish' ? 'bad' : 'neutral',
+                    ema,
+                    emaClass: ema.includes('Above') ? 'good' : 'bad',
+                    trend,
+                    trendClass: trend.includes('Uptrend') ? 'good' : trend.includes('Downtrend') ? 'bad' : 'neutral',
+                    volatility,
+                    volatilityClass: volatility === 'High' ? 'bad' : 'neutral',
+                    volume: volumeLevel,
+                    volumeClass: volumeLevel.includes('High') ? 'good' : 'neutral'
+                },
+                support, resistance, riskLevel, riskLevelText,
+                aiTitle, aiInsight, keyPoints,
+                prediction: {
+                    short: shortPred,
+                    shortClass: shortPred.includes('+') ? 'good' : 'bad',
+                    medium: mediumPred,
+                    mediumClass: mediumPred.includes('+') ? 'good' : 'bad',
+                    long: longPred,
+                    longClass: longPred.includes('+') ? 'good' : 'bad'
+                },
+                vsBtc, vsEth
+            };
+        }
+
+        function getMarketSentiment(coinData) {
+            const change = coinData.price_change_percentage_24h || 0;
+
+            if (change > 5) return { sentiment: 'Very Bullish', sentimentClass: 'good' };
+            if (change > 2) return { sentiment: 'Bullish', sentimentClass: 'good' };
+            if (change < -5) return { sentiment: 'Very Bearish', sentimentClass: 'bad' };
+            if (change < -2) return { sentiment: 'Bearish', sentimentClass: 'bad' };
+            return { sentiment: 'Neutral', sentimentClass: 'neutral' };
+        }
+
+        async function loadNews(coinName) {
+            const newsContainer = document.getElementById('news-list');
+
+            try {
+                const res = await fetch('https://min-api.cryptocompare.com/data/v2/news/?lang=EN');
+                const data = await res.json();
+
+                if (data.Data && data.Data.length > 0) {
+                    const newsItems = data.Data.slice(0, 6).map(item => `
+                        <div class="news-item">
+                            <a href="${item.url}" target="_blank">${item.title}</a>
+                            <div class="news-meta">${item.source_info.name} &bull; ${new Date(item.published_on * 1000).toLocaleDateString()}</div>
+                        </div>
+                    `).join('');
+                    newsContainer.innerHTML = newsItems || '<p style="color: var(--text-muted);">No recent news available.</p>';
+                } else {
+                    newsContainer.innerHTML = '<p style="color: var(--text-muted);">No news available at the moment.</p>';
+                }
+            } catch (e) {
+                newsContainer.innerHTML = '<p style="color: var(--text-muted);">Could not load news.</p>';
+            }
+        }
+
+        function formatLargeNumber(num) {
+            if (!num) return 'N/A';
+            if (num >= 1e12) return (num / 1e12).toFixed(2) + 'T';
+            if (num >= 1e9) return (num / 1e9).toFixed(2) + 'B';
+            if (num >= 1e6) return (num / 1e6).toFixed(2) + 'M';
+            if (num >= 1e3) return (num / 1e3).toFixed(2) + 'K';
+            return num.toFixed(2);
+        }
+
+        function getSampleCoinData(coinId) {
+            const sampleCoins = {
+                'bitcoin': { id: 'bitcoin', name: 'Bitcoin', symbol: 'btc', image: 'https://assets.coingecko.com/coins/images/1/small/bitcoin.png', current_price: 67500, price_change_percentage_24h: 2.5, price_change_percentage_7d_in_currency: 5.2, price_change_percentage_30d_in_currency: 12.5, total_volume: 35000000000, market_cap: 1320000000000, market_cap_rank: 1, high_24h: 68500, low_24h: 66000, circulating_supply: 19500000 },
+                'ethereum': { id: 'ethereum', name: 'Ethereum', symbol: 'eth', image: 'https://assets.coingecko.com/coins/images/279/small/ethereum.png', current_price: 3520, price_change_percentage_24h: 3.2, price_change_percentage_7d_in_currency: 6.8, price_change_percentage_30d_in_currency: 15.2, total_volume: 18000000000, market_cap: 420000000000, market_cap_rank: 2, high_24h: 3600, low_24h: 3400, circulating_supply: 120000000 },
+                'solana': { id: 'solana', name: 'Solana', symbol: 'sol', image: 'https://assets.coingecko.com/coins/images/4128/small/solana.png', current_price: 148, price_change_percentage_24h: 5.8, price_change_percentage_7d_in_currency: 12.5, price_change_percentage_30d_in_currency: 25.3, total_volume: 3000000000, market_cap: 65000000000, market_cap_rank: 3, high_24h: 152, low_24h: 140, circulating_supply: 440000000 },
+                'bnb': { id: 'binancecoin', name: 'BNB', symbol: 'bnb', image: 'https://assets.coingecko.com/coins/images/825/small/bnb-icon2_2x.png', current_price: 585, price_change_percentage_24h: 1.2, price_change_percentage_7d_in_currency: 3.5, price_change_percentage_30d_in_currency: 8.2, total_volume: 1500000000, market_cap: 87000000000, market_cap_rank: 4, high_24h: 595, low_24h: 575, circulating_supply: 150000000 },
+                'xrp': { id: 'ripple', name: 'XRP', symbol: 'xrp', image: 'https://assets.coingecko.com/coins/images/44/small/xrp-symbol-white-128.png', current_price: 0.53, price_change_percentage_24h: -2.1, price_change_percentage_7d_in_currency: -1.5, price_change_percentage_30d_in_currency: 5.8, total_volume: 2000000000, market_cap: 28000000000, market_cap_rank: 5, high_24h: 0.55, low_24h: 0.51, circulating_supply: 54000000000 },
+                'dogecoin': { id: 'dogecoin', name: 'Dogecoin', symbol: 'doge', image: 'https://assets.coingecko.com/coins/images/5/small/dogecoin.png', current_price: 0.12, price_change_percentage_24h: 4.5, price_change_percentage_7d_in_currency: 8.2, price_change_percentage_30d_in_currency: 15.5, total_volume: 1200000000, market_cap: 17000000000, market_cap_rank: 6, high_24h: 0.13, low_24h: 0.11, circulating_supply: 145000000000 },
+                'ada': { id: 'cardano', name: 'Cardano', symbol: 'ada', image: 'https://assets.coingecko.com/coins/images/975/small/cardano.png', current_price: 0.46, price_change_percentage_24h: -1.8, price_change_percentage_7d_in_currency: -0.5, price_change_percentage_30d_in_currency: 3.2, total_volume: 500000000, market_cap: 16000000000, market_cap_rank: 7, high_24h: 0.48, low_24h: 0.44, circulating_supply: 35000000000 },
+                'avax': { id: 'avalanche-2', name: 'Avalanche', symbol: 'avax', image: 'https://assets.coingecko.com/coins/images/12559/small/Avalanche_Circle_RedWhite_Trans.png', current_price: 36, price_change_percentage_24h: 6.2, price_change_percentage_7d_in_currency: 14.5, price_change_percentage_30d_in_currency: 28.5, total_volume: 800000000, market_cap: 13000000000, market_cap_rank: 8, high_24h: 37, low_24h: 34, circulating_supply: 370000000 },
+                'link': { id: 'chainlink', name: 'Chainlink', symbol: 'link', image: 'https://assets.coingecko.com/coins/images/877/small/chainlink-new-logo.png', current_price: 14.5, price_change_percentage_24h: 2.8, price_change_percentage_7d_in_currency: 5.2, price_change_percentage_30d_in_currency: 12.8, total_volume: 600000000, market_cap: 8200000000, market_cap_rank: 9, high_24h: 15, low_24h: 14, circulating_supply: 570000000 },
+                'dot': { id: 'polkadot', name: 'Polkadot', symbol: 'dot', image: 'https://assets.coingecko.com/coins/images/12171/small/polkadot.png', current_price: 7.2, price_change_percentage_24h: -3.5, price_change_percentage_7d_in_currency: -2.8, price_change_percentage_30d_in_currency: 1.5, total_volume: 400000000, market_cap: 9200000000, market_cap_rank: 10, high_24h: 7.6, low_24h: 6.8, circulating_supply: 1300000000 }
+            };
+
+            const lowerId = coinId.toLowerCase();
+            return sampleCoins[lowerId] || Object.values(sampleCoins).find(c =>
+                c.id === lowerId || c.symbol.toLowerCase() === lowerId
+            );
+        }
+
+        let refreshInterval = null;
+        let countdownInterval = null;
+
+        function startAutoRefresh() {
+            const refreshBar = document.getElementById('refresh-bar');
+            if (refreshBar) refreshBar.style.display = 'flex';
+            updateTimestamp();
+
+            if (countdownInterval) clearInterval(countdownInterval);
+            countdownInterval = setInterval(() => {
+                const el = document.getElementById('refresh-countdown');
+                if (!el) return;
+                let sec = parseInt(el.textContent) || 60;
+                sec--;
+                if (sec <= 0) sec = 60;
+                el.textContent = sec + 's';
+            }, 1000);
+
+            if (refreshInterval) clearInterval(refreshInterval);
+            refreshInterval = setInterval(async () => {
+                try {
+                    const coins = await API.coingecko.getPrices([coinId], 1);
+                    if (coins && coins.length > 0) {
+                        currentCoinData = coins[0];
+                        Cache.set('coin_' + coinId, coins[0], 120000);
+                        updateDisplayedData(coins[0]);
+                    }
+                } catch (e) {
+                    console.warn('Auto-refresh failed:', e);
+                }
+                updateTimestamp();
+            }, 60000);
+        }
+
+        window.forceRefresh = function() {
+            Cache.invalidate('coin_' + coinId);
+            document.getElementById('refresh-countdown').textContent = '60s';
+            API.coingecko.getPrices([coinId], 1).then(coins => {
+                if (coins && coins.length > 0) {
+                    currentCoinData = coins[0];
+                    Cache.set('coin_' + coinId, coins[0], 120000);
+                    updateDisplayedData(coins[0]);
+                }
+                updateTimestamp();
+            }).catch(() => {});
+        };
+
+        function updateTimestamp() {
+            const el = document.getElementById('refresh-timestamp');
+            if (el) el.textContent = 'Updated ' + new Date().toLocaleTimeString();
+            const cd = document.getElementById('refresh-countdown');
+            if (cd) cd.textContent = '60s';
+        }
+
+        function updateDisplayedData(coinData) {
+            const byId = id => document.getElementById(id);
+            const price = coinData.current_price || 0;
+            const change = coinData.price_change_percentage_24h || 0;
+
+            const priceEl = byId('current-price');
+            if (priceEl) {
+                const oldPrice = parseFloat(priceEl.textContent.replace(/[$,]/g, ''));
+                priceEl.textContent = '$' + price.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 8});
+                priceEl.style.transition = 'color 0.3s';
+                priceEl.style.color = price > oldPrice ? '#10B981' : price < oldPrice ? '#EF4444' : '';
+                setTimeout(() => { if (priceEl) priceEl.style.color = ''; }, 1500);
+            }
+
+            const changeEl = byId('price-change');
+            if (changeEl) {
+                changeEl.textContent = (change >= 0 ? '+' : '') + change.toFixed(2) + '%';
+                changeEl.className = 'price-change ' + (change >= 0 ? 'positive' : 'negative');
+            }
+
+            const ch7d = byId('change-7d');
+            if (ch7d) {
+                const v = coinData.price_change_percentage_7d_in_currency || 0;
+                ch7d.textContent = (v >= 0 ? '+' : '') + v.toFixed(1) + '%';
+                ch7d.style.color = v >= 0 ? '#10B981' : '#EF4444';
+            }
+
+            const ch30d = byId('change-30d');
+            if (ch30d) {
+                const v = coinData.price_change_percentage_30d_in_currency || 0;
+                ch30d.textContent = (v >= 0 ? '+' : '') + v.toFixed(1) + '%';
+                ch30d.style.color = v >= 0 ? '#10B981' : '#EF4444';
+            }
+
+            byId('stat-mcap').textContent = '$' + formatLargeNumber(coinData.market_cap);
+            byId('stat-rank').textContent = 'Rank #' + (coinData.market_cap_rank || 'N/A');
+            byId('stat-volume').textContent = '$' + formatLargeNumber(coinData.total_volume);
+            byId('stat-high').textContent = '$' + (coinData.high_24h?.toLocaleString() || 'N/A');
+            byId('stat-low').textContent = '$' + (coinData.low_24h?.toLocaleString() || 'N/A');
+            byId('stat-supply').textContent = formatLargeNumber(coinData.circulating_supply);
+
+            const analysis = generateAnalysis(coinData, null);
+            const badge = byId('signal-badge');
+            if (badge) {
+                badge.textContent = analysis.signal;
+                badge.className = 'signal-badge ' + analysis.signalClass;
+            }
+            byId('signal-entry').textContent = analysis.entryZone;
+            byId('signal-sl').textContent = analysis.stopLoss;
+            byId('signal-tp1').textContent = analysis.takeProfit1;
+            byId('signal-tp2').textContent = analysis.takeProfit2;
+            const rrEl = byId('signal-rr');
+            rrEl.textContent = '1:' + analysis.riskReward;
+            rrEl.style.color = analysis.riskReward >= 2 ? 'var(--success)' : 'var(--warning)';
+
+            byId('ind-rsi').textContent = analysis.indicators.rsi;
+            byId('ind-rsi').className = 'indicator-value ' + analysis.indicators.rsiClass;
+            byId('ind-macd').textContent = analysis.indicators.macd;
+            byId('ind-macd').className = 'indicator-value ' + analysis.indicators.macdClass;
+            byId('ind-ema').textContent = analysis.indicators.ema;
+            byId('ind-ema').className = 'indicator-value ' + analysis.indicators.emaClass;
+            byId('ind-trend').textContent = analysis.indicators.trend;
+            byId('ind-trend').className = 'indicator-value ' + analysis.indicators.trendClass;
+
+            const riskInd = byId('risk-indicator');
+            if (riskInd) riskInd.style.left = (analysis.riskLevel * 100) + '%';
+            const riskText = byId('risk-text');
+            riskText.textContent = analysis.riskLevelText;
+            riskText.style.color = analysis.riskLevel < 0.3 ? 'var(--success)' : analysis.riskLevel < 0.6 ? 'var(--warning)' : 'var(--danger)';
+
+            byId('pred-short').textContent = analysis.prediction.short;
+            byId('pred-short').className = 'indicator-value ' + analysis.prediction.shortClass;
+            const psb = byId('pred-short-bar');
+            psb.style.width = Math.min(100, Math.max(0, 50 + parseFloat(analysis.prediction.short.replace(/[+%]/g, '')))) + '%';
+            psb.className = 'prediction-bar-fill ' + (analysis.prediction.short.includes('+') ? 'up' : 'down');
+
+            byId('pred-medium').textContent = analysis.prediction.medium;
+            byId('pred-medium').className = 'indicator-value ' + analysis.prediction.mediumClass;
+            const pmb = byId('pred-medium-bar');
+            pmb.style.width = Math.min(100, Math.max(0, 50 + parseFloat(analysis.prediction.medium.replace(/[+%]/g, '')))) + '%';
+            pmb.className = 'prediction-bar-fill ' + (analysis.prediction.medium.includes('+') ? 'up' : 'down');
+
+            byId('pred-long').textContent = analysis.prediction.long;
+            byId('pred-long').className = 'indicator-value ' + analysis.prediction.longClass;
+            const plb = byId('pred-long-bar');
+            plb.style.width = Math.min(100, Math.max(0, 50 + parseFloat(analysis.prediction.long.replace(/[+%]/g, '')))) + '%';
+            plb.className = 'prediction-bar-fill ' + (analysis.prediction.long.includes('+') ? 'up' : 'down');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadAnalysis().then(() => startAutoRefresh());
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TWS5MC223Y"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-TWS5MC223Y');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Price Tracker - Live Prices | Nafcoin</title>
+    <meta name="description" content="Track live cryptocurrency prices from CoinGecko & Binance APIs. Real-time price updates, market cap, volume, and change data.">
+    <meta name="keywords" content="crypto price tracker, live crypto prices, bitcoin price, ethereum price, coingecko api, binance api">
+    <meta property="og:title" content="Crypto Price Tracker - Live Prices | Nafcoin">
+    <meta property="og:description" content="Track live cryptocurrency prices from CoinGecko & Binance APIs with real-time updates.">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://nafcoin.com/pages/price-tracker.html">
+
+    <link rel="stylesheet" href="../css/style.css">
+    <meta property="og:image" content="https://nafcoin.com/og-image.png">
+    <meta name="twitter:image" content="https://nafcoin.com/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:site_name" content="Nafcoin">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
+    <script src="../js/nav.js" defer></script>
+    <link rel="icon" href="../favicon-32.png" type="image/png">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <meta name="theme-color" content="#7c3aed">
+    <link rel="alternate" type="application/rss+xml" title="Nafcoin Blog" href="/rss.xml">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-brand"><a href="../index.html" style="color: inherit; text-decoration: none;"><img src="../logo-64.png" alt="Nafcoin Logo" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 4px;"> Nafcoin</a></div>
+        <button class="mobile-menu-btn" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav-links" id="navLinks">
+            <a href="../index.html" class="nav-link">Home</a>
+            <a href="../about.html" class="nav-link">About</a>
+            <div class="dropdown">
+                <a href="#" class="nav-link active">Tools</a>
+                <div class="dropdown-content">
+                    <a href="price-tracker.html" style="background: rgba(103,80,164,0.2);">Price Tracker</a>
+                    <a href="trending.html">Trending</a>
+                    <a href="global-stats.html">Global Stats</a>
+                    <a href="dex-scanner.html">DEX Scanner</a>
+                    <a href="token-checker.html">Token Checker</a>
+                    <a href="arbitrage.html">Arbitrage Scanner</a>
+                    <a href="airdrops.html">Airdrop Finder</a>
+                    <a href="portfolio.html">Portfolio</a>
+                    <a href="profit-calculator.html">Calculator</a>
+                    <a href="converter.html">Converter</a>
+                    <a href="whale-wallet.html">Whale Tracker</a>
+                    <a href="signal-scoreboard.html">Signal Scoreboard</a>
+                    <a href="pump-scanner.html">Pump Scanner</a>
+</div>
+            </div>
+            <a href="../coins/index.html" class="nav-link">Coins</a>
+            <a href="../blog.html" class="nav-link">Blog</a>
+            <a href="../contact.html" class="nav-link">Contact</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="hero-section">
+            <h1>Live Price Tracker</h1>
+            <p class="hero-subtitle">Real-time cryptocurrency prices with market data, auto-refreshing every 60 seconds</p>
+        </div>
+
+        <div class="refresh-bar">
+            <div class="refresh-bar-left">
+                <span class="live-dot" style="width: 8px; height: 8px; background: #10b981; border-radius: 50%; animation: pulse 2s infinite;"></span>
+                <span id="price-timestamp" style="color: var(--text-secondary); font-size: 0.875rem;">Loading live data...</span>
+            </div>
+            <div style="display: flex; gap: 1rem; align-items: center;">
+                <span id="price-count" style="font-size: 0.8125rem; color: var(--text-secondary);"></span>
+                <button id="refresh-prices" class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.8125rem;" onclick="forceRefresh()">? Refresh</button>
+            </div>
+        </div>
+
+        <div class="price-controls">
+            <div class="control-group">
+                <label for="price-source">Data Source</label>
+                <select id="price-source">
+                    <option value="coingecko">CoinGecko</option>
+                    <option value="binance">Binance</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="price-sort">Sort By</label>
+                <select id="price-sort">
+                    <option value="rank">Market Cap Rank</option>
+                    <option value="price">Highest Price</option>
+                    <option value="gainers">Top Gainers</option>
+                    <option value="losers">Top Losers</option>
+                    <option value="volume">Highest Volume</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="price-count-select">Count</label>
+                <select id="price-count-select">
+                    <option value="20">20 coins</option>
+                    <option value="50" selected>50 coins</option>
+                    <option value="100">100 coins</option>
+                </select>
+            </div>
+
+            <div class="control-group price-search-wrapper">
+                <label for="search-crypto">Search</label>
+                <input type="text" id="search-crypto" placeholder="Name or symbol...">
+            </div>
+        </div>
+
+        <div id="price-grid" class="crypto-grid"></div>
+    </main>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/price-tracker.js"></script>
+</body>
+</html>

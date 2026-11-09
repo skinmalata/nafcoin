@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TWS5MC223Y"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-TWS5MC223Y');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arbitrage Scanner - Find Profit | Nafcoin</title>
+    <meta name="description" content="Find crypto arbitrage opportunities across exchanges. Scan price gaps, calculate profit after fees.">
+    <meta property="og:title" content="Arbitrage Scanner - Find Profit | Nafcoin">
+    <meta property="og:description" content="Find crypto arbitrage opportunities across exchanges.">
+    <link rel="canonical" href="https://nafcoin.com/pages/arbitrage.html">
+
+    <link rel="stylesheet" href="../css/style.css">
+    <meta property="og:image" content="https://nafcoin.com/og-image.png">
+    <meta name="twitter:image" content="https://nafcoin.com/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:site_name" content="Nafcoin">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
+    <script src="../js/nav.js" defer></script>
+    <link rel="icon" href="../favicon-32.png" type="image/png">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <meta name="theme-color" content="#7c3aed">
+    <link rel="alternate" type="application/rss+xml" title="Nafcoin Blog" href="/rss.xml">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-brand"><a href="../index.html" style="color: inherit; text-decoration: none;"><img src="../logo-64.png" alt="Nafcoin Logo" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 4px;"> Nafcoin</a></div>
+        <button class="mobile-menu-btn" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav-links" id="navLinks">
+            <a href="../index.html" class="nav-link">Home</a>
+            <a href="../about.html" class="nav-link">About</a>
+            <div class="dropdown">
+                <a href="#" class="nav-link active">Tools</a>
+                <div class="dropdown-content">
+                    <a href="price-tracker.html">Price Tracker</a>
+                    <a href="trending.html">Trending</a>
+                     <a href="global-stats.html">Global Stats</a>
+                     <a href="dex-scanner.html">DEX Scanner</a>
+                    <a href="token-checker.html">Token Checker</a>
+                    <a href="airdrops.html">Airdrop Finder</a>
+                    <a href="arbitrage.html" style="background: rgba(103,80,164,0.2);">Arbitrage Scanner</a>
+                    <a href="portfolio.html">Portfolio</a>
+                    <a href="profit-calculator.html">Calculator</a>
+                    <a href="converter.html">Converter</a>
+                    <a href="whale-wallet.html">Whale Tracker</a>
+                    <a href="signal-scoreboard.html">Signal Scoreboard</a>
+                    <a href="pump-scanner.html">Pump Scanner</a>
+</div>
+            </div>
+            <a href="../coins/index.html" class="nav-link">Coins</a>
+            <a href="../blog.html" class="nav-link">Blog</a>
+            <a href="../contact.html" class="nav-link">Contact</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="hero-section">
+            <h1>Arbitrage Scanner</h1>
+            <p class="hero-subtitle">Find price discrepancies across exchanges and calculate real profit after fees</p>
+        </div>
+
+        <div class="arbitrage-controls">
+            <div class="control-group">
+                <label for="arbitrage-coin">Coin</label>
+                <select id="arbitrage-coin">
+                    <option value="all">All Coins</option>
+                    <option value="btc">Bitcoin (BTC)</option>
+                    <option value="eth">Ethereum (ETH)</option>
+                    <option value="sol">Solana (SOL)</option>
+                    <option value="bnb">BNB</option>
+                    <option value="xrp">XRP</option>
+                    <option value="doge">Dogecoin (DOGE)</option>
+                    <option value="ada">Cardano (ADA)</option>
+                    <option value="avax">Avalanche (AVAX)</option>
+                    <option value="link">Chainlink (LINK)</option>
+                    <option value="dot">Polkadot (DOT)</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="arbitrage-fee">Fee Rate (%)</label>
+                <input type="number" id="arbitrage-fee" value="0.1" min="0" max="2" step="0.05" aria-label="Trading fee percentage">
+            </div>
+
+            <div class="control-group">
+                <label for="arbitrage-min-profit">Min Net Profit (%)</label>
+                <select id="arbitrage-min-profit">
+                    <option value="0">Any</option>
+                    <option value="0.1">0.1%</option>
+                    <option value="0.5">0.5%</option>
+                    <option value="1">1%</option>
+                    <option value="2">2%</option>
+                    <option value="5">5%</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="arbitrage-amount">Trade Amount ($)</label>
+                <input type="number" id="arbitrage-amount" value="1000" min="100" step="100" aria-label="Trade amount in USD">
+            </div>
+
+            <div class="control-group">
+                <label for="arbitrage-sort">Sort By</label>
+                <select id="arbitrage-sort">
+                    <option value="profit">Highest Net Profit</option>
+                    <option value="spread">Highest Spread ($)</option>
+                    <option value="volume">Highest Volume</option>
+                </select>
+            </div>
+
+            <div class="control-group" style="flex: 1; min-width: 200px;">
+                <label for="arbitrage-search">Search</label>
+                <input type="text" id="arbitrage-search" placeholder="Coin, symbol, or exchange...">
+            </div>
+
+            <div class="control-group">
+                <label>&nbsp;</label>
+                <button id="scan-arbitrage" class="btn btn-primary">Scan Now</button>
+            </div>
+        </div>
+
+        <div class="arb-status-bar">
+            <span class="arb-timestamp" id="arb-timestamp">Ready to scan</span>
+            <span>|</span>
+            <span>Auto-refresh in <span class="arb-countdown" id="arb-countdown">--</span></span>
+            <label class="arb-auto-refresh">
+                <input type="checkbox" id="arb-auto-refresh" checked> Auto-refresh
+            </label>
+        </div>
+
+        <div id="tool-content" class="crypto-grid"></div>
+    </main>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/arbitrage.js"></script>
+</body>
+</html>

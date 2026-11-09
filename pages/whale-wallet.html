@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TWS5MC223Y"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-TWS5MC223Y');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whale Wallet Tracker - Large Crypto Transactions | Nafcoin</title>
+    <meta name="description" content="Track large cryptocurrency whale transactions in real-time. Monitor BTC and ETH whale movements, high-volume coins, and market-moving transfers.">
+    <meta name="keywords" content="whale wallet tracker, crypto whale, large transactions, bitcoin whale, ethereum whale, blockchain monitor">
+    <meta property="og:title" content="Whale Wallet Tracker - Large Crypto Transactions | Nafcoin">
+    <meta property="og:description" content="Track large cryptocurrency whale transactions in real-time across Bitcoin and Ethereum networks.">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://nafcoin.com/pages/whale-wallet.html">
+
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .whale-section {
+            margin-bottom: 2.5rem;
+        }
+        .whale-section h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+        .whale-section .section-desc {
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1.25rem;
+        }
+        .whale-feed {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .whale-tx {
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 1rem 1.25rem;
+            transition: background 0.2s;
+        }
+        .whale-tx:hover {
+            background: rgba(255,255,255,0.03);
+        }
+        .whale-tx-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        .whale-asset {
+            font-weight: 700;
+            font-size: 0.8125rem;
+            padding: 0.25rem 0.625rem;
+            border-radius: 6px;
+            letter-spacing: 0.3px;
+        }
+        .whale-asset.btc {
+            background: rgba(247,147,26,0.2);
+            color: #f7931a;
+        }
+        .whale-asset.eth {
+            background: rgba(98,126,234,0.2);
+            color: #627eea;
+        }
+        .whale-amount {
+            font-weight: 700;
+            font-size: 1.0625rem;
+            color: var(--text-primary);
+        }
+        .whale-usd {
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        .whale-tx-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0.5rem;
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+        }
+        .whale-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.8125rem;
+        }
+        .whale-link:hover {
+            text-decoration: underline;
+        }
+        .whale-address {
+            font-family: monospace;
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+        }
+        .market-whale-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1rem;
+        }
+        .whale-coin-card {
+            background: var(--bg-card);
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 1.125rem 1.25rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .whale-coin-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        }
+        .whale-coin-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+        .whale-coin-info img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+        }
+        .whale-coin-info strong {
+            font-size: 1rem;
+            color: var(--text-primary);
+        }
+        .whale-coin-symbol {
+            font-size: 0.8125rem;
+            color: var(--text-secondary);
+            display: block;
+        }
+        .whale-coin-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.625rem;
+        }
+        .whale-stat {
+            display: flex;
+            flex-direction: column;
+        }
+        .whale-stat-label {
+            font-size: 0.6875rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            font-weight: 600;
+        }
+        .whale-stat-value {
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .whale-stat-value.positive {
+            color: #10b981;
+        }
+        .whale-stat-value.negative {
+            color: #ef4444;
+        }
+        #btc-price-val, #eth-price-val {
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        @media (max-width: 768px) {
+            .market-whale-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Whale Wallet Tracker - Large Crypto Transactions | Nafcoin",
+      "description": "Track large cryptocurrency whale transactions in real-time. Monitor BTC and ETH whale movements, high-volume coins, and market-moving transfers.",
+      "url": "https://nafcoin.com/pages/whale-wallet.html",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "Nafcoin",
+        "url": "https://nafcoin.com"
+      }
+    }
+    </script>
+    <meta property="og:image" content="https://nafcoin.com/og-image.png">
+    <meta name="twitter:image" content="https://nafcoin.com/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:site_name" content="Nafcoin">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
+    <script src="../js/nav.js" defer></script>
+    <link rel="icon" href="../favicon-32.png" type="image/png">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <meta name="theme-color" content="#7c3aed">
+    <link rel="alternate" type="application/rss+xml" title="Nafcoin Blog" href="/rss.xml">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-brand"><a href="../index.html" style="color: inherit; text-decoration: none;"><img src="../logo-64.png" alt="Nafcoin Logo" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 4px;"> Nafcoin</a></div>
+        <button class="mobile-menu-btn" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav-links" id="navLinks">
+            <a href="../index.html" class="nav-link">Home</a>
+            <a href="../about.html" class="nav-link">About</a>
+            <div class="dropdown">
+                <a href="#" class="nav-link active">Tools</a>
+                <div class="dropdown-content">
+                    <a href="price-tracker.html">Price Tracker</a>
+                    <a href="trending.html">Trending</a>
+                    <a href="global-stats.html">Global Stats</a>
+                    <a href="dex-scanner.html">DEX Scanner</a>
+                    <a href="token-checker.html">Token Checker</a>
+                    <a href="arbitrage.html">Arbitrage Scanner</a>
+                    <a href="airdrops.html">Airdrop Finder</a>
+                    <a href="portfolio.html">Portfolio</a>
+                    <a href="profit-calculator.html">Calculator</a>
+                    <a href="converter.html">Converter</a>
+                    <a href="whale-wallet.html" style="background: rgba(103,80,164,0.2);">Whale Tracker</a>
+                    <a href="signal-scoreboard.html">Signal Scoreboard</a>
+                    <a href="pump-scanner.html">Pump Scanner</a>
+</div>
+            </div>
+            <a href="../coins/index.html" class="nav-link">Coins</a>
+            <a href="../blog.html" class="nav-link">Blog</a>
+            <a href="../contact.html" class="nav-link">Contact</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="hero-section">
+            <h1>Whale Wallet Tracker</h1>
+            <p class="hero-subtitle">Monitor large cryptocurrency transactions across Bitcoin and Ethereum networks in real-time</p>
+        </div>
+
+        <div class="refresh-bar">
+            <div class="refresh-bar-left">
+                <span class="live-dot" style="width: 8px; height: 8px; background: #10b981; border-radius: 50%; animation: pulse 2s infinite;"></span>
+                <span style="color: var(--text-secondary); font-size: 0.875rem;">
+                    BTC: <span id="btc-price-val" data-price="65000">$65,000</span>
+                    &middot; ETH: <span id="eth-price-val" data-price="3500">$3,500</span>
+                </span>
+            </div>
+            <div style="display: flex; gap: 1rem; align-items: center;">
+                <span id="last-updated" style="font-size: 0.8125rem; color: var(--text-secondary);"></span>
+                <button id="refresh-whales" class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.8125rem;" onclick="loadWhaleData()">Refresh</button>
+            </div>
+        </div>
+
+        <!-- BTC Whales -->
+        <section class="whale-section">
+            <h2>Bitcoin Whale Transactions</h2>
+            <p class="section-desc">Recent large BTC transactions = $100,000 from the mempool</p>
+            <div id="btc-whale-feed" class="whale-feed">
+                <div class="loading" style="padding: 2rem;">Loading BTC whale transactions...</div>
+            </div>
+        </section>
+
+        <!-- ETH Whales -->
+        <section class="whale-section">
+            <h2>Ethereum Whale Transactions</h2>
+            <p class="section-desc">Recent large ETH transactions from the blockchain</p>
+            <div id="eth-whale-feed" class="whale-feed">
+                <div class="loading" style="padding: 2rem;">Loading ETH whale transactions...</div>
+            </div>
+        </section>
+
+        <!-- Market Whales -->
+        <section class="whale-section">
+            <h2>High-Volume Market Movers</h2>
+            <p class="section-desc">Coins with the highest trading volume � where the whales are trading</p>
+            <div id="market-whales" class="market-whale-grid">
+                <div class="loading" style="padding: 2rem;">Loading market data...</div>
+            </div>
+        </section>
+    </main>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/whale-wallet.js"></script>
+</body>
+</html>

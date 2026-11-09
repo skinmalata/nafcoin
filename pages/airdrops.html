@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TWS5MC223Y"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-TWS5MC223Y');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airdrop Finder - Discover Airdrops | Nafcoin</title>
+    <meta name="description" content="Discover potential crypto airdrops. Track tokenless protocols, check eligibility, and find the best airdrop opportunities.">
+    <meta property="og:title" content="Airdrop Finder - Discover Airdrops | Nafcoin">
+    <meta property="og:description" content="Discover potential crypto airdrops.">
+    <link rel="canonical" href="https://nafcoin.com/pages/airdrops.html">
+
+    <link rel="stylesheet" href="../css/style.css">
+    <meta property="og:image" content="https://nafcoin.com/og-image.png">
+    <meta name="twitter:image" content="https://nafcoin.com/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:site_name" content="Nafcoin">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
+    <script src="../js/nav.js" defer></script>
+    <link rel="icon" href="../favicon-32.png" type="image/png">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <meta name="theme-color" content="#7c3aed">
+    <link rel="alternate" type="application/rss+xml" title="Nafcoin Blog" href="/rss.xml">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-brand"><a href="../index.html" style="color: inherit; text-decoration: none;"><img src="../logo-64.png" alt="Nafcoin Logo" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 4px;"> Nafcoin</a></div>
+        <button class="mobile-menu-btn" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav-links" id="navLinks">
+            <a href="../index.html" class="nav-link">Home</a>
+            <a href="../about.html" class="nav-link">About</a>
+            <div class="dropdown">
+                <a href="#" class="nav-link active">Tools</a>
+                <div class="dropdown-content">
+                    <a href="price-tracker.html">Price Tracker</a>
+                    <a href="trending.html">Trending</a>
+                    <a href="global-stats.html">Global Stats</a>
+                    <a href="dex-scanner.html">DEX Scanner</a>
+                    <a href="token-checker.html">Token Checker</a>
+                    <a href="arbitrage.html">Arbitrage Scanner</a>
+                    <a href="airdrops.html" style="background: rgba(103,80,164,0.2);">Airdrop Finder</a>
+                    <a href="portfolio.html">Portfolio</a>
+                    <a href="profit-calculator.html">Calculator</a>
+                    <a href="converter.html">Converter</a>
+                    <a href="whale-wallet.html">Whale Tracker</a>
+                    <a href="signal-scoreboard.html">Signal Scoreboard</a>
+                    <a href="pump-scanner.html">Pump Scanner</a>
+</div>
+            </div>
+            <a href="../coins/index.html" class="nav-link">Coins</a>
+            <a href="../blog.html" class="nav-link">Blog</a>
+            <a href="../contact.html" class="nav-link">Contact</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="hero-section">
+            <h1>Airdrop Finder</h1>
+            <p class="hero-subtitle">Find tokenless protocols with high airdrop potential. Track, interact, and stay ahead.</p>
+        </div>
+
+        <div id="airdrop-stats-bar" class="airdrop-stats-bar" style="display: flex; gap: 1rem; padding: 1rem; margin-bottom: 2rem; background: rgba(124,58,237,0.08); border-radius: 12px; border: 1px solid rgba(124,58,237,0.15); flex-wrap: wrap;">
+            <div class="stat-item" style="flex: 1; min-width: 120px; text-align: center;">
+                <div class="stat-label" style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase;">Scanning...</div>
+                <div class="stat-value" style="font-size: 1.25rem; font-weight: 700; color: var(--text-primary);">---</div>
+            </div>
+            <div class="stat-item" style="flex: 1; min-width: 120px; text-align: center;">
+                <div class="stat-label" style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase;">---</div>
+                <div class="stat-value" style="font-size: 1.25rem; font-weight: 700; color: var(--text-primary);">---</div>
+            </div>
+            <div class="stat-item" style="flex: 1; min-width: 120px; text-align: center;">
+                <div class="stat-label" style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase;">---</div>
+                <div class="stat-value" style="font-size: 1.25rem; font-weight: 700; color: var(--text-primary);">---</div>
+            </div>
+            <div class="stat-item" style="flex: 1; min-width: 120px; text-align: center;">
+                <div class="stat-label" style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase;">Tracked</div>
+                <div class="stat-value" style="font-size: 1.25rem; font-weight: 700; color: var(--text-primary);">---</div>
+            </div>
+        </div>
+
+        <div class="airdrop-controls">
+            <div class="control-group">
+                <label for="airdrop-category">Category</label>
+                <select id="airdrop-category">
+                    <option value="">All Categories</option>
+                    <option value="Lending">Lending</option>
+                    <option value="Dexes">DEX</option>
+                    <option value="Bridge">Bridges</option>
+                    <option value="Liquid Staking">Liquid Staking</option>
+                    <option value="Chain">L2 / Chain</option>
+                    <option value="Yield">Yield</option>
+                    <option value="Derivatives">Derivatives</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="airdrop-sort">Sort By</label>
+                <select id="airdrop-sort">
+                    <option value="score">Highest Score</option>
+                    <option value="tvl">Highest TVL</option>
+                    <option value="chains">Most Chains</option>
+                    <option value="name">Name A-Z</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="min-airdrop-tvl">Min TVL</label>
+                <select id="min-airdrop-tvl">
+                    <option value="1000000">$1M+</option>
+                    <option value="5000000" selected>$5M+</option>
+                    <option value="10000000">$10M+</option>
+                    <option value="50000000">$50M+</option>
+                    <option value="100000000">$100M+</option>
+                </select>
+            </div>
+
+            <div class="control-group airdrop-search-wrapper">
+                <label for="airdrop-search">Search</label>
+                <input type="text" id="airdrop-search" placeholder="Protocol name...">
+            </div>
+        </div>
+
+        <div id="tool-content" class="crypto-grid"></div>
+
+        <div id="tracked-section" style="margin-top: 3rem;">
+            <div class="section-header">
+                <h2>?? My Tracked Airdrops</h2>
+                <p>Protocols you're watching for potential airdrops</p>
+            </div>
+            <div id="tracked-list"></div>
+        </div>
+    </main>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/airdrops.js"></script>
+</body>
+</html>

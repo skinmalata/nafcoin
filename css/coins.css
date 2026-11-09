@@ -1,0 +1,46 @@
+.breadcrumb { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; font-size: .875rem; color: var(--text-secondary); margin: 1.5rem 0; }
+.breadcrumb a { color: var(--accent); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+.coin-hero { display: flex; justify-content: space-between; gap: 2rem; align-items: flex-start; flex-wrap: wrap; background: var(--gradient-card); border: 1px solid rgba(124,58,237,.25); border-radius: var(--radius-xl); padding: 2rem; margin-bottom: 1.5rem; }
+.coin-hero h1 { margin: .25rem 0 .5rem; font-size: 2rem; }
+.coin-price-row { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.coin-price { font-size: 2.75rem; font-weight: 800; letter-spacing: -.02em; }
+.coin-change { font-size: 1rem; font-weight: 700; padding: .35rem .75rem; border-radius: var(--radius-full); }
+.positive { color: var(--success); background: rgba(16,185,129,.12); }
+.negative { color: var(--danger); background: rgba(239,68,68,.12); }
+.flat { color: var(--text-secondary); }
+.coin-sub { color: var(--text-secondary); margin-top: .75rem; max-width: 640px; line-height: 1.7; }
+.coin-hero-actions { display: flex; gap: .75rem; flex-wrap: wrap; }
+.coin-chart-card { background: var(--bg-card); border: 1px solid var(--bg-tertiary); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin-bottom: 1.5rem; }
+.coin-chart-head { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.coin-chart-head h2 { font-size: 1.125rem; margin: 0; }
+.coin-chart-head span { font-size: .8125rem; color: var(--text-muted); }
+.spark-wrap { width: 100%; height: 220px; }
+.spark-wrap canvas { width: 100%; height: 100%; display: block; }
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+.stat-card { background: var(--bg-card); border: 1px solid var(--bg-tertiary); border-radius: var(--radius-md); padding: 1rem 1.25rem; }
+.stat-card .label { font-size: .75rem; text-transform: uppercase; letter-spacing: .05em; color: var(--text-muted); margin-bottom: .35rem; }
+.stat-card .value { font-size: 1.125rem; font-weight: 700; }
+.coin-section { margin: 2.5rem 0; }
+.coin-section h2 { font-size: 1.5rem; margin-bottom: 1rem; }
+.coin-section p { color: var(--text-secondary); line-height: 1.75; margin-bottom: 1rem; max-width: 820px; }
+.step-list { padding-left: 1.25rem; color: var(--text-secondary); line-height: 1.8; }
+.step-list li { margin-bottom: .75rem; }
+.faq { display: grid; gap: .75rem; max-width: 820px; }
+.faq-item { background: var(--bg-card); border: 1px solid var(--bg-tertiary); border-radius: var(--radius-md); padding: 1rem 1.25rem; }
+.faq-item summary { cursor: pointer; font-weight: 600; color: var(--text-primary); }
+.faq-item p { margin: .75rem 0 0; color: var(--text-secondary); line-height: 1.7; }
+.related-links { list-style: none; padding: 0; display: grid; gap: .5rem; max-width: 820px; }
+.related-links a { color: var(--accent); text-decoration: none; }
+.related-links a:hover { text-decoration: underline; }
+.coin-table-wrap { overflow-x: auto; background: var(--bg-card); border: 1px solid var(--bg-tertiary); border-radius: var(--radius-lg); margin: 1.5rem 0; }
+.coin-table { width: 100%; border-collapse: collapse; min-width: 760px; font-size: .875rem; }
+.coin-table th, .coin-table td { padding: .85rem 1rem; text-align: right; border-bottom: 1px solid var(--bg-tertiary); white-space: nowrap; }
+.coin-table th:first-child, .coin-table td:first-child, .coin-table th:nth-child(2), .coin-table td:nth-child(2) { text-align: left; }
+.coin-table th { background: var(--bg-secondary); color: var(--text-muted); font-size: .75rem; text-transform: uppercase; letter-spacing: .05em; }
+.coin-table tr:last-child td { border-bottom: none; }
+.coin-table td a { color: var(--text-primary); text-decoration: none; font-weight: 600; }
+.coin-table td a:hover { color: var(--accent); }
+.coin-sym { color: var(--text-muted); font-weight: 400; margin-left: .35rem; font-size: .8rem; }
+.disclaimer { font-size: .8125rem; color: var(--text-muted); line-height: 1.6; margin: 2rem 0; max-width: 820px; }
+@media (max-width: 640px) { .coin-price { font-size: 2rem; } .coin-hero { padding: 1.25rem; } }

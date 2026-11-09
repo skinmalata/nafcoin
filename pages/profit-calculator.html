@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TWS5MC223Y"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profit Calculator - Crypto ROI | Nafcoin</title>
+    <meta name="description" content="Calculate cryptocurrency investment profits & ROI. Factor in trading fees & track calculation history.">
+    <meta property="og:title" content="Profit Calculator - Crypto ROI | Nafcoin">
+    <meta property="og:description" content="Calculate crypto investment profits & ROI.">
+    <link rel="canonical" href="https://nafcoin.com/pages/profit-calculator.html">
+    <link rel="stylesheet" href="../css/style.css">
+
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Profit Calculator - Crypto ROI | Nafcoin",
+      "description": "Calculate cryptocurrency investment profits & ROI. Factor in trading fees & track calculation history.",
+      "url": "https://nafcoin.com/pages/profit-calculator.html",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "Nafcoin",
+        "url": "https://nafcoin.com"
+      }
+    }
+    </script>
+    <meta property="og:image" content="https://nafcoin.com/og-image.png">
+    <meta name="twitter:image" content="https://nafcoin.com/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:site_name" content="Nafcoin">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
+    <script src="../js/nav.js" defer></script>
+    <link rel="icon" href="../favicon-32.png" type="image/png">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <meta name="theme-color" content="#7c3aed">
+    <link rel="alternate" type="application/rss+xml" title="Nafcoin Blog" href="/rss.xml">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-brand"><a href="../index.html" style="color: inherit; text-decoration: none;"><img src="../logo-64.png" alt="Nafcoin Logo" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 4px;"> Nafcoin</a></div>
+        <button class="mobile-menu-btn" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav-links" id="navLinks">
+            <a href="../index.html" class="nav-link">Home</a>
+            <a href="../about.html" class="nav-link">About</a>
+            <div class="dropdown">
+                <a href="#" class="nav-link active">Tools</a>
+                <div class="dropdown-content">
+                    <a href="price-tracker.html">Price Tracker</a>
+                    <a href="portfolio.html">Portfolio Tracker</a>
+                    <a href="trending.html">Trending</a>
+                    <a href="dex-scanner.html">DEX Scanner</a>
+                    <a href="token-checker.html">Token Checker</a>
+                    <a href="coin-analysis.html">Charts</a>
+                    <a href="arbitrage.html">Arbitrage Scanner</a>
+                    <a href="airdrops.html">Airdrop Finder</a>
+                    <a href="profit-calculator.html" style="background: rgba(103,80,164,0.2);">Profit Calculator</a>
+                    <a href="converter.html">Crypto Converter</a>
+                    <a href="global-stats.html">Global Stats</a>
+                    <a href="whale-wallet.html">Whale Tracker</a>
+                    <a href="signal-scoreboard.html">Signal Scoreboard</a>
+                    <a href="pump-scanner.html">Pump Scanner</a>
+</div>
+            </div>
+            <a href="../coins/index.html" class="nav-link">Coins</a>
+            <a href="../blog.html" class="nav-link">Blog</a>
+            <a href="../contact.html" class="nav-link">Contact</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="hero-section">
+            <h1>Profit Calculator</h1>
+            <p class="hero-subtitle">Calculate crypto investment profits & ROI</p>
+        </div>
+
+        <div class="calculator-container" style="max-width: 600px; margin: 0 auto;">
+            <div class="crypto-card">
+                <div class="calc-row">
+                    <label>Investment Amount ($)</label>
+                    <input type="number" id="invest-amount" placeholder="1000" value="1000">
+                </div>
+                <div class="calc-row">
+                    <label>Buy Price ($)</label>
+                    <input type="number" id="buy-price" placeholder="50000" value="50000">
+                </div>
+                <div class="calc-row">
+                    <label>Sell Price ($)</label>
+                    <input type="number" id="sell-price" placeholder="75000" value="75000">
+                </div>
+                <div class="calc-row">
+                    <label>Trading Fee (%)</label>
+                    <input type="number" id="fee-percent" placeholder="0.1" value="0.1" step="0.01">
+                </div>
+                <button class="btn" style="width: 100%; margin-top: 16px;" onclick="calculateProfit()">Calculate Profit</button>
+            </div>
+            <div id="profit-result" style="margin-top: 24px;"></div>
+            <div id="profit-history" style="margin-top: 32px;">
+                <h3>Calculation History</h3>
+                <div id="profit-history-list"></div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/profit-calculator.js"></script>
+</body>
+</html>
