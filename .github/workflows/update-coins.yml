@@ -1,0 +1,55 @@
+name: Update coin data
+
+on:
+  schedule:
+    - cron: "17 5 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-coin-data
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Refresh coin pages
+        run: python scripts/generate_coins.py
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Commit coin data
+        run: |
+          git add coins data css/coins.css
+          if git diff --staged --quiet; then
+            echo "No coin changes"
+          else
+            git commit -m "Update coin data"
+          fi
+
+      - name: Rebuild sitemap
+        run: python scripts/build_sitemap.py
+
+      - name: Commit sitemap and push
+        run: |
+          git add sitemap.xml
+          if git diff --staged --quiet; then
+            echo "No sitemap changes"
+          else
+            git commit -m "Update sitemap"
+          fi
+          git push

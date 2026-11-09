@@ -1,5 +1,6 @@
 """Rebuild sitemap.xml by scanning the generated HTML files."""
 import os
+import subprocess
 from datetime import datetime
 from xml.sax.saxutils import escape
 
@@ -12,6 +13,21 @@ def url_for(rel):
     if rel == "index.html":
         return SITE + "/"
     return SITE + "/" + rel
+
+
+def last_modified_for(rel, full):
+    try:
+        out = subprocess.check_output(
+            ["git", "log", "-1", "--format=%cs", "--", rel.replace(os.sep, "/")],
+            cwd=ROOT,
+            text=True,
+            stderr=subprocess.DEVNULL,
+        ).strip()
+        if out:
+            return out
+    except Exception:
+        pass
+    return datetime.fromtimestamp(os.path.getmtime(full)).strftime("%Y-%m-%d")
 
 
 def priority_for(rel):
@@ -44,7 +60,7 @@ def main():
                 continue
             full = os.path.join(dirpath, name)
             rel = os.path.relpath(full, ROOT)
-            lastmod = datetime.fromtimestamp(os.path.getmtime(full)).strftime("%Y-%m-%d")
+            lastmod = last_modified_for(rel, full)
             pri, freq = priority_for(rel)
             entries.append((url_for(rel), lastmod, freq, pri))
 
