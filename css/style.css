@@ -2024,3 +2024,29 @@ a:hover { color: var(--accent); }
         justify-content: center;
     }
 }
+
+/* Homepage hero banner */
+.hero-banner {
+    padding: 1.5rem 0 2.5rem;
+}
+
+.hero-banner-img {
+    display: block;
+    width: 100%;
+    max-width: 1200px;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 20px;
+    box-shadow: 0 30px 90px rgba(124, 58, 237, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.08);
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+@media (max-width: 768px) {
+    .hero-banner {
+        padding: 1rem 0 1.5rem;
+    }
+
+    .hero-banner-img {
+        border-radius: 14px;
+    }
+}

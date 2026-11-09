@@ -44,6 +44,38 @@ JS_FILES = [
 
 OG_IMAGE = SITE_URL + "/og-image.png"
 
+HERO_BANNER_HTML = """        <section class="hero-section hero-banner">
+            <img src="banner.png" alt="Nafcoin - professional crypto analysis platform" class="hero-banner-img" width="2172" height="724" fetchpriority="high">
+        </section>"""
+
+HERO_BANNER_CSS = """
+/* Homepage hero banner */
+.hero-banner {
+    padding: 1.5rem 0 2.5rem;
+}
+
+.hero-banner-img {
+    display: block;
+    width: 100%;
+    max-width: 1200px;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 20px;
+    box-shadow: 0 30px 90px rgba(124, 58, 237, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.08);
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+@media (max-width: 768px) {
+    .hero-banner {
+        padding: 1rem 0 1.5rem;
+    }
+
+    .hero-banner-img {
+        border-radius: 14px;
+    }
+}
+"""
+
 
 def read(path):
     with open(path, "r", encoding="utf-8", errors="replace") as f:
@@ -287,6 +319,8 @@ def main():
                 if name == "style.css":
                     t = re.sub(r"^\s*@import url\('https://fonts\.googleapis\.com[^']*'\);\s*$", "", t, flags=re.MULTILINE)
                     t = remove_assistant_css(t)
+                    if "/* Homepage hero banner */" not in t:
+                        t += HERO_BANNER_CSS
                 write(p, t)
 
     if os.path.exists(os.path.join(SRC, "ads.txt")):
@@ -295,6 +329,13 @@ def main():
     # index.html: swap removed blog cards and update copy
     idx_path = os.path.join(DST, "index.html")
     t = read(idx_path)
+    t = re.sub(
+        r'<section class="hero-section">.*?</section>',
+        HERO_BANNER_HTML,
+        t,
+        count=1,
+        flags=re.DOTALL,
+    )
     t = t.replace("blog/003-what-is-ethereum-how-it-works.html", "blog/011-what-is-altcoin-season.html")
     t = t.replace("What is Ethereum? Complete Guide", "What is Altcoin Season?")
     t = t.replace("Learn about ETH, smart contracts, and the DeFi ecosystem.", "Learn how altcoin season works and how to spot it.")
