@@ -12,13 +12,21 @@ const POPULAR_COINS = [
     { id: 'litecoin', symbol: 'ltc', name: 'Litecoin' },
     { id: 'avalanche-2', symbol: 'avax', name: 'Avalanche' },
     { id: 'chainlink', symbol: 'link', name: 'Chainlink' },
-    { id: 'matic-network', symbol: 'matic', name: 'Polygon' },
+    { id: 'polygon-ecosystem-token', symbol: 'pol', name: 'Polygon' },
     { id: 'shiba-inu', symbol: 'shib', name: 'Shiba Inu' },
     { id: 'uniswap', symbol: 'uni', name: 'Uniswap' },
     { id: 'near', symbol: 'near', name: 'NEAR Protocol' },
     { id: 'pepe', symbol: 'pepe', name: 'Pepe' },
     { id: 'fetch-ai', symbol: 'fet', name: 'Fetch.ai' },
-    { id: 'render-token', symbol: 'rndr', name: 'Render' }
+    { id: 'render-token', symbol: 'render', name: 'Render' },
+    { id: 'sui', symbol: 'sui', name: 'Sui' },
+    { id: 'aptos', symbol: 'apt', name: 'Aptos' },
+    { id: 'the-open-network', symbol: 'ton', name: 'Toncoin' },
+    { id: 'bittensor', symbol: 'tao', name: 'Bittensor' },
+    { id: 'arbitrum', symbol: 'arb', name: 'Arbitrum' },
+    { id: 'optimism', symbol: 'op', name: 'Optimism' },
+    { id: 'kaspa', symbol: 'kas', name: 'Kaspa' },
+    { id: 'monero', symbol: 'xmr', name: 'Monero' }
 ];
 
 let priceCache = {};
@@ -49,7 +57,8 @@ function populateCoinSelect() {
     const select = document.getElementById('coin-select');
     if (!select) return;
     select.innerHTML = '<option value="">Select a coin...</option>' +
-        POPULAR_COINS.map(c => `<option value="${c.id}">${c.name} (${c.symbol.toUpperCase()})</option>`).join('');
+        POPULAR_COINS.map(c => `<option value="${c.id}">${c.name} (${c.symbol.toUpperCase()})</option>`).join('') +
+        '<option value="__custom__">+ Custom Coin (Enter Name/ID)...</option>';
 }
 
 async function loadPrices() {
@@ -194,7 +203,7 @@ function renderPortfolio() {
 }
 
 function addHolding() {
-    const coinId = document.getElementById('coin-select').value;
+    let coinId = document.getElementById('coin-select').value;
     const amount = parseFloat(document.getElementById('coin-amount').value);
     const buyPrice = parseFloat(document.getElementById('coin-buy-price').value) || 0;
 
@@ -203,7 +212,21 @@ function addHolding() {
         return;
     }
 
-    const coin = POPULAR_COINS.find(c => c.id === coinId);
+    let coinName = '';
+    let coinSymbol = '';
+
+    if (coinId === '__custom__') {
+        const input = prompt('Enter CoinGecko ID or Token Symbol (e.g. sui, ftt, bittensor, bonk):');
+        if (!input || !input.trim()) return;
+        coinId = input.trim().toLowerCase();
+        coinName = input.trim().toUpperCase();
+        coinSymbol = input.trim().toUpperCase();
+    } else {
+        const coin = POPULAR_COINS.find(c => c.id === coinId);
+        coinName = coin ? coin.name : coinId;
+        coinSymbol = coin ? coin.symbol : coinId;
+    }
+
     const portfolio = getPortfolio();
     
     const existingIdx = portfolio.findIndex(p => p.coin === coinId);
@@ -217,8 +240,8 @@ function addHolding() {
     } else {
         portfolio.push({
             coin: coinId,
-            name: coin.name,
-            symbol: coin.symbol,
+            name: coinName,
+            symbol: coinSymbol,
             amount,
             buyPrice,
             date: new Date().toISOString()

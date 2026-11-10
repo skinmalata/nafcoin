@@ -31,25 +31,39 @@ async function loadAirdrops() {
     try {
         const protocols = await API.defillama.getProtocols();
         
+        // Filter genuine airdrop candidates: tokenless protocols on DeFiLlama with substantial TVL
         let filtered = protocols.filter(p => {
-            const hasToken = p.symbol && p.symbol !== '-' && p.symbol !== '';
+            const hasToken = p.symbol && p.symbol !== '-' && p.symbol !== '' && p.symbol !== 'null';
             const tvl = p.tvl || 0;
+            const change7d = parseFloat(p.change_7d || 0);
             
-            if (filter === 'potential') return !hasToken && tvl > 10000000;
-            if (filter === 'active') return hasToken;
-            if (filter === 'ended') return hasToken && tvl < 1000000;
-            return true;
-        }).slice(0, 20);
+            if (filter === 'potential') {
+                return !hasToken && tvl >= 5000000;
+            }
+            if (filter === 'active') {
+                // High growth / actively farmed tokenless protocols
+                return !hasToken && tvl >= 2000000 && change7d >= 0;
+            }
+            if (filter === 'ended') {
+                // Recently launched tokens with established protocols
+                return hasToken && tvl >= 10000000;
+            }
+            return !hasToken && tvl >= 1000000;
+        });
+
+        filtered.sort((a, b) => (b.tvl || 0) - (a.tvl || 0));
+        filtered = filtered.slice(0, 24);
         
         const tracked = getTrackedAirdrops();
         
         list.innerHTML = filtered.map(protocol => {
             const isTracked = tracked.some(t => t.name === protocol.name);
-            const hasToken = protocol.symbol && protocol.symbol !== '-';
-            const status = !hasToken ? 'potential' : 'active';
+            const hasToken = protocol.symbol && protocol.symbol !== '-' && protocol.symbol !== 'null';
+            const status = !hasToken ? 'Potential Airdrop' : 'Token Launched';
+            const statusBg = !hasToken ? '#7c3aed' : '#10b981';
             const tvl = ((protocol.tvl || 0) / 1e6).toFixed(1);
             const name = String(protocol.name || 'Unknown protocol');
-            const symbol = hasToken ? String(protocol.symbol) : 'NO TOKEN';
+            const symbol = hasToken ? String(protocol.symbol) : 'NO TOKEN (Farming)';
             const category = String(protocol.category || 'DeFi');
             const chains = (protocol.chains || []).slice(0, 3).join(', ');
             const url = safeExternalUrl(protocol.url);
@@ -59,9 +73,9 @@ async function loadAirdrops() {
                     <div class="coin-header">
                         <div>
                             <div class="coin-name">${escapeHtml(name)}</div>
-                            <div class="coin-symbol">${escapeHtml(symbol.toUpperCase())}</div>
+                            <div class="coin-symbol" style="color:${hasToken ? '#34d399' : '#fbbf24'};">${escapeHtml(symbol.toUpperCase())}</div>
                         </div>
-                        <span class="chain-badge" style="background: ${getStatusColor(status)};">${status}</span>
+                        <span class="chain-badge" style="background: ${statusBg}; color: #fff;">${status}</span>
                     </div>
                     <div class="pair-stats">
                         <div class="pair-stat">
@@ -74,11 +88,11 @@ async function loadAirdrops() {
                         </div>
                     </div>
                     <div style="margin-top: 12px; font-size: 13px; color: #CAC4D0;">
-                        <strong>Chains:</strong> ${escapeHtml(chains)}
+                        <strong>Chains:</strong> ${escapeHtml(chains || 'Multi-chain')}
                     </div>
                     <div style="margin-top: 16px; display: flex; gap: 8px;">
                         <button class="btn airdrop-visit" style="flex: 1; padding: 8px;" data-url="${escapeHtml(url)}" ${url ? '' : 'disabled'}>
-                            Visit
+                            Visit App &rarr;
                         </button>
                         <button class="btn airdrop-track" style="flex: 1; padding: 8px; background: ${isTracked ? 'var(--md-red)' : 'var(--md-green)'};" data-name="${escapeHtml(name)}" data-token="${escapeHtml(symbol)}" data-category="${escapeHtml(category)}">
                             ${isTracked ? 'Remove' : 'Track'}

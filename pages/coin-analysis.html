@@ -642,6 +642,51 @@
             });
         }
 
+        function calcWilderRSI(prices, period = 14) {
+            if (!prices || prices.length < period + 1) return 50;
+            let gains = 0, losses = 0;
+            for (let i = 1; i <= period; i++) {
+                const diff = prices[i] - prices[i - 1];
+                if (diff >= 0) gains += diff;
+                else losses -= diff;
+            }
+            let avgGain = gains / period;
+            let avgLoss = losses / period;
+
+            for (let i = period + 1; i < prices.length; i++) {
+                const diff = prices[i] - prices[i - 1];
+                if (diff >= 0) {
+                    avgGain = (avgGain * (period - 1) + diff) / period;
+                    avgLoss = (avgLoss * (period - 1)) / period;
+                } else {
+                    avgGain = (avgGain * (period - 1)) / period;
+                    avgLoss = (avgLoss * (period - 1) - diff) / period;
+                }
+            }
+            if (avgLoss === 0) return 100;
+            const rs = avgGain / avgLoss;
+            return Math.max(5, Math.min(95, Math.round(100 - (100 / (1 + rs)))));
+        }
+
+        function calcEMA(prices, period) {
+            if (!prices || prices.length === 0) return 0;
+            const k = 2 / (period + 1);
+            let ema = prices[0];
+            for (let i = 1; i < prices.length; i++) {
+                ema = prices[i] * k + ema * (1 - k);
+            }
+            return ema;
+        }
+
+        function formatCoinPrice(p) {
+            if (p === null || p === undefined || isNaN(p)) return '0.00';
+            if (p >= 1000) return p.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            if (p >= 1) return p.toFixed(2);
+            if (p >= 0.01) return p.toFixed(4);
+            if (p >= 0.0001) return p.toFixed(6);
+            return p.toFixed(8);
+        }
+
         function generateAnalysis(coinData, globalData) {
             const price = coinData.current_price || 0;
             const change = coinData.price_change_percentage_24h || 0;
@@ -651,112 +696,143 @@
             const marketCap = coinData.market_cap || 0;
             const high24 = coinData.high_24h || price * 1.02;
             const low24 = coinData.low_24h || price * 0.98;
+            const sparkline = coinData.sparkline_in_7d?.price || [];
 
-            const rsi = Math.max(10, Math.min(90, 50 + change * 2));
-            const macd = change > 2 ? 'Bullish' : change < -2 ? 'Bearish' : 'Neutral';
-            const ema = change > 0 ? 'Above (Bullish)' : 'Below (Bearish)';
+            // Real technical indicator computation
+            const rsiVal = sparkline.length >= 15 
+                ? calcWilderRSI(sparkline, 14) 
+                : Math.max(10, Math.min(90, Math.round(50 + change * 2)));
+            const rsi = rsiVal;
+
+            let macd = 'Neutral';
+            let emaVal = price;
+            if (sparkline.length >= 26) {
+                const ema12 = calcEMA(sparkline.slice(-26), 12);
+                const ema26 = calcEMA(sparkline.slice(-26), 26);
+                const diff = ema12 - ema26;
+                macd = diff > 0.00001 ? 'Bullish' : diff < -0.00001 ? 'Bearish' : 'Neutral';
+                emaVal = calcEMA(sparkline.slice(-24), 12);
+            } else {
+                macd = change > 2 ? 'Bullish' : change < -2 ? 'Bearish' : 'Neutral';
+            }
+
+            const ema = price >= emaVal ? 'Above (Bullish)' : 'Below (Bearish)';
             const trend = change30d > 10 ? 'Strong Uptrend' : change30d > 0 ? 'Uptrend' : change30d < -10 ? 'Strong Downtrend' : change30d < 0 ? 'Downtrend' : 'Sideways';
             const volatility = Math.abs(change) > 5 ? 'High' : Math.abs(change) > 2 ? 'Medium' : 'Low';
             const volumeLevel = volume > 1e9 ? 'Very High' : volume > 5e8 ? 'High' : 'Normal';
 
-            const support = (low24 * 0.98).toFixed(2);
-            const resistance = (high24 * 1.02).toFixed(2);
+            const support = formatCoinPrice(low24 * 0.98);
+            const resistance = formatCoinPrice(high24 * 1.02);
 
             const riskLevel = Math.min(1, Math.max(0, (Math.abs(change) / 20 + Math.abs(change30d) / 50)));
             const riskLevelText = riskLevel < 0.3 ? 'Low Risk' : riskLevel < 0.6 ? 'Medium Risk' : 'High Risk';
 
             let signal, signalClass, entryZone, stopLoss, takeProfit1, takeProfit2, riskReward;
 
-            if (change > 5 && rsi < 70) {
+            if (change > 3 && rsi < 65 && macd === 'Bullish') {
                 signal = 'STRONG BUY';
                 signalClass = 'buy';
-                const zoneLow = (price * 0.98).toFixed(2);
-                const zoneHigh = (price * 1.02).toFixed(2);
-                entryZone = `$${zoneLow} - $${zoneHigh}`;
-                stopLoss = `$${low24.toFixed(2)} (-${((price - low24) / price * 100).toFixed(1)}%)`;
-                takeProfit1 = `$${(price * 1.1).toFixed(2)} (+10%)`;
-                takeProfit2 = `$${(price * 1.2).toFixed(2)} (+20%)`;
-                riskReward = 2.5;
-            } else if (change > 2 && rsi < 65) {
+                entryZone = `$${formatCoinPrice(price * 0.995)} - $${formatCoinPrice(price * 1.005)}`;
+                const stopNum = Math.min(low24 * 0.98, price * 0.95);
+                const tp1Num = price + (price - stopNum) * 2.0;
+                const tp2Num = price + (price - stopNum) * 3.0;
+                stopLoss = `$${formatCoinPrice(stopNum)}`;
+                takeProfit1 = `$${formatCoinPrice(tp1Num)}`;
+                takeProfit2 = `$${formatCoinPrice(tp2Num)}`;
+                riskReward = 2.0;
+            } else if (change > 1.0 && rsi < 70) {
                 signal = 'BUY';
                 signalClass = 'buy';
-                entryZone = `$${(price * 0.99).toFixed(2)} - $${(price * 1.01).toFixed(2)}`;
-                stopLoss = `$${low24.toFixed(2)}`;
-                takeProfit1 = `$${(price * 1.08).toFixed(2)} (+8%)`;
-                takeProfit2 = `$${(price * 1.15).toFixed(2)} (+15%)`;
-                riskReward = 2;
-            } else if (change < -5 && rsi > 35) {
+                entryZone = `$${formatCoinPrice(price * 0.99)} - $${formatCoinPrice(price * 1.01)}`;
+                const stopNum = Math.min(low24 * 0.98, price * 0.95);
+                const tp1Num = price + (price - stopNum) * 1.8;
+                const tp2Num = price + (price - stopNum) * 2.5;
+                stopLoss = `$${formatCoinPrice(stopNum)}`;
+                takeProfit1 = `$${formatCoinPrice(tp1Num)}`;
+                takeProfit2 = `$${formatCoinPrice(tp2Num)}`;
+                riskReward = 1.8;
+            } else if (change < -4 && rsi < 40) {
                 signal = 'STRONG SELL';
                 signalClass = 'sell';
-                entryZone = `Current: $${price.toFixed(2)}`;
-                stopLoss = `$${high24.toFixed(2)}`;
-                takeProfit1 = `$${(price * 0.9).toFixed(2)} (-10%)`;
-                takeProfit2 = `$${(price * 0.8).toFixed(2)} (-20%)`;
-                riskReward = 2;
+                entryZone = `Current: $${formatCoinPrice(price)}`;
+                const stopNum = Math.max(high24 * 1.02, price * 1.05);
+                const tp1Num = price - (stopNum - price) * 1.8;
+                const tp2Num = price - (stopNum - price) * 2.8;
+                stopLoss = `$${formatCoinPrice(stopNum)}`;
+                takeProfit1 = `$${formatCoinPrice(Math.max(0.000001, tp1Num))}`;
+                takeProfit2 = `$${formatCoinPrice(Math.max(0.000001, tp2Num))}`;
+                riskReward = 1.8;
             } else if (change < -2) {
                 signal = 'SELL';
                 signalClass = 'sell';
-                entryZone = `Current: $${price.toFixed(2)}`;
-                stopLoss = `$${high24.toFixed(2)}`;
-                takeProfit1 = `$${(price * 0.95).toFixed(2)} (-5%)`;
-                takeProfit2 = `$${(price * 0.9).toFixed(2)} (-10%)`;
+                entryZone = `Current: $${formatCoinPrice(price)}`;
+                const stopNum = Math.max(high24 * 1.02, price * 1.04);
+                const tp1Num = price - (stopNum - price) * 1.5;
+                const tp2Num = price - (stopNum - price) * 2.2;
+                stopLoss = `$${formatCoinPrice(stopNum)}`;
+                takeProfit1 = `$${formatCoinPrice(Math.max(0.000001, tp1Num))}`;
+                takeProfit2 = `$${formatCoinPrice(Math.max(0.000001, tp2Num))}`;
                 riskReward = 1.5;
             } else {
                 signal = 'NEUTRAL';
                 signalClass = 'neutral';
-                entryZone = 'Wait for breakout';
-                stopLoss = 'N/A';
-                takeProfit1 = 'N/A';
-                takeProfit2 = 'N/A';
-                riskReward = 0;
+                entryZone = 'Consolidation - Wait for breakout';
+                stopLoss = `$${formatCoinPrice(low24 * 0.97)}`;
+                takeProfit1 = `$${formatCoinPrice(high24 * 1.03)}`;
+                takeProfit2 = `$${formatCoinPrice(high24 * 1.06)}`;
+                riskReward = 1.2;
             }
 
             let aiTitle, aiInsight, keyPoints;
 
             if (signal.includes('BUY')) {
                 aiTitle = 'Bullish Setup Detected';
-                aiInsight = `${coinData.name} is showing strong technicals with ${change > 0 ? '+' : ''}${change.toFixed(1)}% gain today. The momentum suggests potential for further upside in the coming days.`;
+                aiInsight = `${coinData.name} is demonstrating positive technical momentum with a ${change >= 0 ? '+' : ''}${change.toFixed(1)}% move over 24h and ${macd} MACD alignment.`;
                 keyPoints = [
-                    `Volume at $${(volume/1e9).toFixed(1)}B indicates strong market interest`,
-                    `Market cap of $${(marketCap/1e9).toFixed(0)}B shows established position`,
-                    `RSI at ${rsi.toFixed(0)} suggests ${rsi < 50 ? 'room for growth' : 'near overbought'}`,
-                    `Entry at current levels with stop below $${support}`,
-                    'Consider DCA strategy for better entry timing'
+                    `24h Trading Volume of $${formatLargeNumber(volume)} reflects healthy liquidity`,
+                    `Wilder RSI(14) is at ${rsi}, showing ${rsi < 55 ? 'bullish continuation capacity' : 'moderating momentum'}`,
+                    `Price is currently trading ${ema.toLowerCase()}`,
+                    `Dynamic support identified near $${support} and resistance at $${resistance}`,
+                    'Maintain discipline with the designated stop-loss level'
                 ];
             } else if (signal.includes('SELL')) {
-                aiTitle = 'Bearish Signals Alert';
-                aiInsight = `${coinData.name} is experiencing ${Math.abs(change).toFixed(1)}% decline. Technical indicators suggest continued pressure in the short term.`;
+                aiTitle = 'Bearish Pressure Alert';
+                aiInsight = `${coinData.name} is experiencing downside continuation (${change.toFixed(1)}% 24h) with technical indicators leaning bearish.`;
                 keyPoints = [
-                    `High selling pressure with ${Math.abs(change).toFixed(1)}% daily decline`,
-                    `Volume confirms continued selling interest`,
-                    `Support at $${support} - watch for breakdown`,
-                    'Consider trailing stop if holding',
-                    'Wait for reversal confirmation before entry'
+                    `Recent 24h downward impulse of ${change.toFixed(1)}%`,
+                    `MACD reading is ${macd} with selling pressure dominating`,
+                    `Critical support zone at $${support} - monitor for breakdown`,
+                    `Trading volume of $${formatLargeNumber(volume)} confirms market activity`,
+                    'Consider hedging or defensive risk controls'
                 ];
             } else {
                 aiTitle = 'Consolidation Phase';
-                aiInsight = `${coinData.name} is in a consolidation phase. The price is stable with no clear directional momentum. Good time to research and plan your entry strategy.`;
+                aiInsight = `${coinData.name} is trading within a defined range between $${support} and $${resistance}. Directional breakout required before initiating momentum positions.`;
                 keyPoints = [
-                    'Price in a stable range - watch for breakout',
-                    'Monitor volume for direction confirmation',
-                    'Plan your entry strategy',
-                    'Wait for clear signals',
-                    'Set alerts at key levels'
+                    `Range-bound between key levels $${support} & $${resistance}`,
+                    `RSI(14) sits neutral at ${rsi}`,
+                    'Wait for confirmed daily close outside range boundaries',
+                    'Favorable environment for range-trading or DCA accumulation',
+                    'Set price alerts at support and resistance thresholds'
                 ];
             }
 
-            const shortPred = change > 0 ? `+${(Math.random() * 8 + 2).toFixed(1)}%` : `-${(Math.random() * 5).toFixed(1)}%`;
-            const mediumPred = change30d > 0 ? `+${(Math.random() * 15 + 5).toFixed(1)}%` : `-${(Math.random() * 10).toFixed(1)}%`;
-            const longPred = change30d > 0 ? `+${(Math.random() * 30 + 10).toFixed(1)}%` : `-${(Math.random() * 20).toFixed(1)}%`;
+            // Trend-based technical projections (deterministic, no Math.random)
+            const momentumFactor = (change * 0.4 + change7d * 0.2);
+            const shortPred = `${momentumFactor >= 0 ? '+' : ''}${momentumFactor.toFixed(1)}%`;
+            const medFactor = (change7d * 0.5 + change30d * 0.3);
+            const mediumPred = `${medFactor >= 0 ? '+' : ''}${medFactor.toFixed(1)}%`;
+            const longFactor = (change30d * 0.7);
+            const longPred = `${longFactor >= 0 ? '+' : ''}${longFactor.toFixed(1)}%`;
 
-            const vsBtc = change - 2.5;
-            const vsEth = change - 3.2;
+            const vsBtc = change - (globalData?.data?.market_cap_change_percentage_24h_usd || 0);
+            const vsEth = change - (change7d / 7);
 
             return {
                 signal, signalClass, entryZone, stopLoss, takeProfit1, takeProfit2, riskReward,
                 indicators: {
-                    rsi: rsi.toFixed(0),
-                    rsiClass: rsi < 30 ? 'good' : rsi > 70 ? 'bad' : 'neutral',
+                    rsi: String(rsi),
+                    rsiClass: rsi < 35 ? 'good' : rsi > 68 ? 'bad' : 'neutral',
                     macd,
                     macdClass: macd === 'Bullish' ? 'good' : macd === 'Bearish' ? 'bad' : 'neutral',
                     ema,

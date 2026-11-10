@@ -12,13 +12,15 @@ const currencies = [
     { id: 'litecoin', symbol: 'LTC', name: 'Litecoin', type: 'crypto', icon: 'Ł' },
     { id: 'avalanche-2', symbol: 'AVAX', name: 'Avalanche', type: 'crypto', icon: '▲' },
     { id: 'chainlink', symbol: 'LINK', name: 'Chainlink', type: 'crypto', icon: '⬡' },
-    { id: 'matic-network', symbol: 'MATIC', name: 'Polygon', type: 'crypto', icon: '⬢' },
+    { id: 'polygon-ecosystem-token', symbol: 'POL', name: 'Polygon', type: 'crypto', icon: '⬢' },
     { id: 'shiba-inu', symbol: 'SHIB', name: 'Shiba Inu', type: 'crypto', icon: '🐕' },
     { id: 'uniswap', symbol: 'UNI', name: 'Uniswap', type: 'crypto', icon: '🦄' },
     { id: 'near', symbol: 'NEAR', name: 'NEAR Protocol', type: 'crypto', icon: 'Ⓝ' },
     { id: 'pepe', symbol: 'PEPE', name: 'Pepe', type: 'crypto', icon: '🐸' },
     { id: 'fetch-ai', symbol: 'FET', name: 'Fetch.ai', type: 'crypto', icon: '🤖' },
-    { id: 'render-token', symbol: 'RNDR', name: 'Render', type: 'crypto', icon: '🎨' },
+    { id: 'render-token', symbol: 'RENDER', name: 'Render', type: 'crypto', icon: '🎨' },
+    { id: 'sui', symbol: 'SUI', name: 'Sui', type: 'crypto', icon: '💧' },
+    { id: 'the-open-network', symbol: 'TON', name: 'Toncoin', type: 'crypto', icon: '💎' },
     { id: 'usd', symbol: 'USD', name: 'US Dollar', type: 'fiat', icon: '$' },
     { id: 'eur', symbol: 'EUR', name: 'Euro', type: 'fiat', icon: '€' },
     { id: 'gbp', symbol: 'GBP', name: 'British Pound', type: 'fiat', icon: '£' },
@@ -30,7 +32,18 @@ const currencies = [
     { id: 'brl', symbol: 'BRL', name: 'Brazilian Real', type: 'fiat', icon: 'R$' }
 ];
 
-let prices = {};
+let cryptoPrices = {};
+let fiatRates = {
+    usd: 1,
+    eur: 0.92,
+    gbp: 0.79,
+    jpy: 154.0,
+    ngn: 1650.0,
+    cad: 1.39,
+    aud: 1.52,
+    inr: 84.4,
+    brl: 5.75
+};
 let priceChanges24h = {};
 let isLoading = false;
 let autoConvertTimer = null;
@@ -39,48 +52,51 @@ async function loadPrices() {
     isLoading = true;
     updateStatus('Loading live rates...');
     
+    // 1. Fetch live Forex/fiat rates
+    try {
+        const fxRes = await fetch('https://open.er-api.com/v6/latest/USD');
+        if (fxRes.ok) {
+            const fxData = await fxRes.json();
+            if (fxData && fxData.rates) {
+                fiatRates.usd = 1;
+                fiatRates.eur = fxData.rates.EUR || fiatRates.eur;
+                fiatRates.gbp = fxData.rates.GBP || fiatRates.gbp;
+                fiatRates.jpy = fxData.rates.JPY || fiatRates.jpy;
+                fiatRates.ngn = fxData.rates.NGN || fiatRates.ngn;
+                fiatRates.cad = fxData.rates.CAD || fiatRates.cad;
+                fiatRates.aud = fxData.rates.AUD || fiatRates.aud;
+                fiatRates.inr = fxData.rates.INR || fiatRates.inr;
+                fiatRates.brl = fxData.rates.BRL || fiatRates.brl;
+            }
+        }
+    } catch (e) {
+        console.warn('Using fallback fiat rates:', e);
+    }
+
+    // 2. Fetch live crypto prices
     try {
         const cryptoIds = currencies.filter(c => c.type === 'crypto').map(c => c.id).join(',');
+        const marketRes = await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${cryptoIds}&sparkline=false&price_change_percentage=24h`);
         
-        const [priceRes, marketRes] = await Promise.all([
-            fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${cryptoIds}&vs_currencies=usd,eur,gbp,jpy`),
-            fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${cryptoIds}&vs_currencies=usd&include_24hr_change=true`)
-        ]);
-
-        if (priceRes.ok) {
-            const data = await priceRes.json();
-            for (const [id, vals] of Object.entries(data)) {
-                prices[id] = vals.usd || 1;
-                priceChanges24h[id] = null;
-            }
-        }
-
         if (marketRes.ok) {
-            const marketData = await marketRes.json();
-            for (const [id, vals] of Object.entries(marketData)) {
-                priceChanges24h[id] = vals.usd_24h_change || 0;
-            }
+            const data = await marketRes.json();
+            data.forEach(c => {
+                cryptoPrices[c.id] = c.current_price;
+                priceChanges24h[c.id] = c.price_change_percentage_24h || 0;
+            });
+            updateStatus('Live rates loaded');
+        } else {
+            throw new Error('CoinGecko error');
         }
-
-        prices.usd = 1;
-        prices.eur = 0.92;
-        prices.gbp = 0.79;
-        prices.jpy = 152.5;
-        prices.ngn = 1550;
-        prices.cad = 1.37;
-        prices.aud = 1.53;
-        prices.inr = 83.5;
-        prices.brl = 5.0;
-
-        updateStatus('Live rates loaded');
     } catch (e) {
-        prices = {
-            bitcoin: 105000, ethereum: 3200, tether: 1, binancecoin: 720,
-            solana: 210, ripple: 2.8, 'usd-coin': 1, cardano: 1.1,
-            dogecoin: 0.35, polkadot: 8.5, litecoin: 125, 'avalanche-2': 42,
-            chainlink: 18, 'matic-network': 0.65, 'shiba-inu': 0.000028,
-            uniswap: 12, near: 8, pepe: 0.000012, 'fetch-ai': 1.5, 'render-token': 11,
-            usd: 1, eur: 0.92, gbp: 0.79, jpy: 152, ngn: 1550, cad: 1.37, aud: 1.53, inr: 83.5, brl: 5.0
+        console.warn('CoinGecko failed, using fallback crypto prices');
+        cryptoPrices = {
+            bitcoin: 74200, ethereum: 2120, tether: 1.0, binancecoin: 580,
+            solana: 155, ripple: 0.54, 'usd-coin': 1.0, cardano: 0.46,
+            dogecoin: 0.14, polkadot: 7.2, litecoin: 85, 'avalanche-2': 36,
+            chainlink: 14.5, 'polygon-ecosystem-token': 0.52, 'shiba-inu': 0.000018,
+            uniswap: 9.2, near: 5.1, pepe: 0.000011, 'fetch-ai': 1.4, 'render-token': 6.8,
+            sui: 2.1, 'the-open-network': 5.2
         };
         updateStatus('Using cached rates');
     }
@@ -100,39 +116,54 @@ function populateDropdowns() {
     const toSelect = document.getElementById('to-currency');
     if (!fromSelect || !toSelect) return;
     
+    const prevFrom = fromSelect.value;
+    const prevTo = toSelect.value;
+
     const options = currencies.map(c => 
-        `<option value="${c.id}">${c.symbol} - ${c.name}</option>`
+        `<option value="${c.id}">${c.symbol} - ${c.name} (${c.type.toUpperCase()})</option>`
     ).join('');
     
     fromSelect.innerHTML = options;
     toSelect.innerHTML = options;
     
-    fromSelect.value = 'bitcoin';
-    toSelect.value = 'usd';
+    fromSelect.value = prevFrom || 'bitcoin';
+    toSelect.value = prevTo || 'usd';
 }
 
-function getFiatRate(currencyId) {
-    if (prices[currencyId] !== undefined) return prices[currencyId];
-    return 1;
+// Returns the value of 1 unit of currencyId in USD
+function getUSDValue(currencyId) {
+    const cur = currencies.find(c => c.id === currencyId);
+    if (!cur) return 1;
+
+    if (cur.type === 'crypto') {
+        return cryptoPrices[currencyId] || 0;
+    } else {
+        // For fiat, fiatRates is units of currency per 1 USD
+        const rate = fiatRates[currencyId];
+        return (rate && rate > 0) ? (1 / rate) : 1;
+    }
 }
 
 function convertAmount(amount, fromId, toId) {
     if (fromId === toId) return amount;
     
-    const fromPrice = getFiatRate(fromId);
-    const toPrice = getFiatRate(toId);
+    const fromUSD = getUSDValue(fromId);
+    const toUSD = getUSDValue(toId);
     
-    if (fromId === 'usd') return amount * toPrice;
-    if (toId === 'usd') return amount * fromPrice;
+    if (!fromUSD || !toUSD) return 0;
     
-    return (amount * fromPrice) / toPrice;
+    // Value in USD = amount * fromUSD
+    // Result in Target Currency = (amount * fromUSD) / toUSD
+    return (amount * fromUSD) / toUSD;
 }
 
 function formatNumber(num) {
+    if (num === null || num === undefined || isNaN(num)) return '0';
+    if (num === 0) return '0';
     if (num >= 1000000) return num.toLocaleString(undefined, { maximumFractionDigits: 2 });
     if (num >= 1000) return num.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-    if (num >= 1) return num.toFixed(4);
-    if (num >= 0.01) return num.toFixed(6);
+    if (num >= 1) return num.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 4 });
+    if (num >= 0.0001) return num.toFixed(6);
     return num.toFixed(8);
 }
 
@@ -146,28 +177,33 @@ function performConvert() {
     
     const from = document.getElementById('from-currency')?.value;
     const to = document.getElementById('to-currency')?.value;
-    const amount = parseFloat(document.getElementById('amount')?.value);
+    const amountInput = document.getElementById('amount')?.value;
+    const amount = parseFloat(amountInput);
     const resultEl = document.getElementById('result');
     
-    if (!from || !to || !amount || amount <= 0) {
-        if (resultEl) resultEl.innerHTML = '';
+    if (!from || !to || isNaN(amount) || amount <= 0) {
+        if (resultEl) resultEl.innerHTML = '<div style="color:var(--text-secondary);padding:1rem;">Enter an amount to see real-time converted value.</div>';
         return;
     }
     
+    const fromCurr = currencies.find(c => c.id === from);
+    const toCurr = currencies.find(c => c.id === to);
+    if (!fromCurr || !toCurr) return;
+
     const result = convertAmount(amount, from, to);
     const rate = convertAmount(1, from, to);
     const reverseRate = convertAmount(1, to, from);
     
-    const fromCurr = currencies.find(c => c.id === from);
-    const toCurr = currencies.find(c => c.id === to);
-    
     const priceChange = priceChanges24h[from];
-    const changeHtml = priceChange !== null ? `
+    const changeHtml = (priceChange !== undefined && priceChange !== null) ? `
         <div class="price-indicator">
             <div class="label">24h Change</div>
             <div class="value ${priceChange >= 0 ? 'positive' : 'negative'}">${priceChange >= 0 ? '+' : ''}${priceChange.toFixed(2)}%</div>
         </div>
     ` : '';
+
+    const fromUsdVal = getUSDValue(from);
+    const toUsdVal = getUSDValue(to);
 
     resultEl.innerHTML = `
         <div class="result-display">
@@ -184,13 +220,13 @@ function performConvert() {
 
             <div class="price-indicators">
                 <div class="price-indicator">
-                    <div class="label">${fromCurr.symbol} Price</div>
-                    <div class="value">$${formatNumber(prices[from] || 0)}</div>
+                    <div class="label">${fromCurr.symbol} (USD)</div>
+                    <div class="value">$${formatNumber(fromUsdVal)}</div>
                 </div>
                 ${changeHtml}
                 <div class="price-indicator">
-                    <div class="label">${toCurr.symbol} Price</div>
-                    <div class="value">$${toCurr.type === 'crypto' ? formatNumber(prices[to] || 0) : '1.00'}</div>
+                    <div class="label">${toCurr.symbol} (USD)</div>
+                    <div class="value">$${formatNumber(toUsdVal)}</div>
                 </div>
             </div>
         </div>
@@ -263,6 +299,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     await loadPrices();
     renderHistory();
     
+    const amountEl = document.getElementById('amount');
+    if (amountEl) amountEl.addEventListener('input', autoConvert);
+
+    const fromEl = document.getElementById('from-currency');
+    if (fromEl) fromEl.addEventListener('change', autoConvert);
+
+    const toEl = document.getElementById('to-currency');
+    if (toEl) toEl.addEventListener('change', autoConvert);
+
     setInterval(() => {
         if (!isLoading) loadPrices();
     }, 120000);

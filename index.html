@@ -3,14 +3,11 @@
 
 
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TWS5MC223Y"></script>
+    <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-N6TD5H8V"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
-      gtag('config', 'G-TWS5MC223Y');
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,7 +33,7 @@
       }
     }
     </script>
-    <meta property="og:image" content="https://nafcoin.com/og-image.png">
+    <meta property="og:image" content="loo1.png">
     <meta name="twitter:image" content="https://nafcoin.com/og-image.png">
     <meta name="twitter:card" content="summary_large_image">
     <meta property="og:site_name" content="Nafcoin">
@@ -47,7 +44,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap"></noscript>
     <script src="js/nav.js" defer></script>
-    <link rel="icon" href="favicon-32.png" type="image/png">
+    <link rel="icon" href="loo1.png" type="image/png">
     <link rel="manifest" href="/manifest.webmanifest">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <meta name="theme-color" content="#7c3aed">
@@ -94,7 +91,7 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-brand">
-            <img src="logo-64.png" alt="Nafcoin Logo" style="width: 24px; height: 24px; vertical-align: middle;" width="24" height="24" decoding="async"> Nafcoin
+            <img src="./logo1.png" alt="Nafcoin Logo" style="width: 24px; height: 24px; vertical-align: middle;" width="24" height="24" decoding="async"> Nafcoin
         </div>
         <button class="mobile-menu-btn" onclick="toggleMenu()">
             <span></span>
@@ -130,37 +127,22 @@
 
     <!-- Main Content -->
     <main class="container">
-        <!-- SEO home intro -->
-        <h1 class="home-title">Crypto Prices, Analysis Tools &amp; Beginner Guides</h1>
-        <p class="home-intro">Track live prices, research coins, and use free crypto tools built for smarter decisions.</p>
+        <!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <div class="hero-badge">Enterprise Crypto Platform</div>
+        <h1 class="hero-title">Live Trade Signals</h1>
+        <p class="hero-subtitle">Track live prices, research coins, and use free crypto tools built for smarter decisions.</p>
 
+    </div>
+</section>
 
-        <!-- Global Stats -->
-        <section>
-            <div id="home-global-stats" class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-value" id="home-total-mcap">---</div>
-                    <div class="stat-label">Total Market Cap</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value" id="home-btc-dominance">---</div>
-                    <div class="stat-label">BTC Dominance</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value" id="home-eth-dominance">---</div>
-                    <div class="stat-label">ETH Dominance</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value" id="home-24h-volume">---</div>
-                    <div class="stat-label">24h Volume</div>
-                </div>
-            </div>
-        </section>
 
         <!-- Trade Suggestions -->
-        <section style="margin-top: 3rem;">
+        <section style="margin-top: 2.5rem;">
             <div class="section-header">
-                <h2>Live Trade Signals</h2>
+
                 <p>Real-time trade signals with technical analysis</p>
             </div>
             <div class="live-status" style="display: flex; align-items: center; gap: 8px; margin-bottom: 1.5rem; padding: 0.75rem 1rem; background: rgba(16,185,129,0.1); border-radius: 8px; border: 1px solid rgba(16,185,129,0.2);">
@@ -470,6 +452,32 @@
                 </div>
             </div>
         </section>
+
+        <!-- Global Market Stats -->
+        <section style="margin-top: 4rem;">
+            <div class="section-header">
+                <h2>Global Market Overview</h2>
+                <p>Real-time market cap, dominance, and 24-hour global trading volume</p>
+            </div>
+            <div id="home-global-stats" class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="home-total-mcap">---</div>
+                    <div class="stat-label">Total Market Cap</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="home-btc-dominance">---</div>
+                    <div class="stat-label">BTC Dominance</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="home-eth-dominance">---</div>
+                    <div class="stat-label">ETH Dominance</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="home-24h-volume">---</div>
+                    <div class="stat-label">24h Volume</div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- Footer -->
@@ -711,11 +719,67 @@
         ];
     }
 
+    function calculateRealRSI(prices, period = 14) {
+        if (!prices || prices.length < period + 1) return 50;
+        let gains = 0, losses = 0;
+        for (let i = 1; i <= period; i++) {
+            const diff = prices[i] - prices[i - 1];
+            if (diff >= 0) gains += diff;
+            else losses -= diff;
+        }
+        let avgGain = gains / period;
+        let avgLoss = losses / period;
+
+        for (let i = period + 1; i < prices.length; i++) {
+            const diff = prices[i] - prices[i - 1];
+            if (diff >= 0) {
+                avgGain = (avgGain * (period - 1) + diff) / period;
+                avgLoss = (avgLoss * (period - 1)) / period;
+            } else {
+                avgGain = (avgGain * (period - 1)) / period;
+                avgLoss = (avgLoss * (period - 1) - diff) / period;
+            }
+        }
+        if (avgLoss === 0) return 100;
+        const rs = avgGain / avgLoss;
+        return Math.max(5, Math.min(95, Math.round(100 - (100 / (1 + rs)))));
+    }
+
+    function calculateEMAValue(prices, period) {
+        if (!prices || prices.length === 0) return 0;
+        const k = 2 / (period + 1);
+        let ema = prices[0];
+        for (let i = 1; i < prices.length; i++) {
+            ema = prices[i] * k + ema * (1 - k);
+        }
+        return ema;
+    }
+
+    function calculateRealMACD(prices) {
+        if (!prices || prices.length < 26) return { macd: 0, status: 'Neutral' };
+        const ema12 = calculateEMAValue(prices.slice(-26), 12);
+        const ema26 = calculateEMAValue(prices.slice(-26), 26);
+        const diff = ema12 - ema26;
+        return {
+            macd: diff,
+            status: diff > 0.000001 ? 'Bullish' : diff < -0.000001 ? 'Bearish' : 'Neutral'
+        };
+    }
+
+    function fmtSigPrice(p) {
+        if (p === null || p === undefined || isNaN(p)) return '0.00';
+        if (p >= 1000) return p.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        if (p >= 1) return p.toFixed(2);
+        if (p >= 0.01) return p.toFixed(4);
+        if (p >= 0.0001) return p.toFixed(6);
+        return p.toFixed(8);
+    }
+
     function generateEnhancedTradeSuggestions(coins) {
         const suggestions = [];
         
         const buyCandidates = coins
-            .filter(c => c.price_change_percentage_24h > 2 && c.total_volume > 5e7)
+            .filter(c => c.price_change_percentage_24h > 1.5 && c.total_volume > 3e7)
             .sort((a, b) => b.price_change_percentage_24h - a.price_change_percentage_24h)
             .slice(0, 5);
         
@@ -727,58 +791,62 @@
             const high24 = coin.high_24h || price * 1.02;
             const low24 = coin.low_24h || price * 0.98;
             const volume = coin.total_volume || 0;
-            const mcap = coin.market_cap || 0;
             const rank = coin.market_cap_rank || 999;
-            const ath = coin.ath || price * 1.5;
-            const athChange = coin.ath_change_percentage || -50;
-            
-            const rsi = Math.max(10, Math.min(90, 50 + change * 2.5));
-            const rsiClass = rsi < 30 ? 'good' : rsi > 70 ? 'bad' : 'neutral';
-            const rsiText = rsi.toFixed(0);
-            
+            const sparkline = coin.sparkline_in_7d?.price || [];
+
+            // Real Technical Indicators from price history
+            const rsiVal = sparkline.length >= 15 ? calculateRealRSI(sparkline, 14) : Math.max(10, Math.min(90, Math.round(50 + change * 2.5)));
+            const rsiClass = rsiVal < 35 ? 'good' : rsiVal > 68 ? 'bad' : 'neutral';
+            const rsiText = String(rsiVal);
+
+            const macdObj = sparkline.length >= 26 ? calculateRealMACD(sparkline) : { status: change > 2 ? 'Bullish' : change < -2 ? 'Bearish' : 'Neutral' };
+            const macd = macdObj.status;
+
+            const ema7 = sparkline.length >= 24 ? calculateEMAValue(sparkline.slice(-24), 12) : price * (1 - change / 100);
+            const isAboveEMA = price >= ema7;
+
             const trend = change30d > 10 ? 'Strong Up' : change30d > 0 ? 'Uptrend' : change30d < -10 ? 'Strong Down' : change30d < 0 ? 'Downtrend' : 'Sideways';
             const trendClass = trend.includes('Up') ? 'good' : trend.includes('Down') ? 'bad' : 'neutral';
-            
+
             const volumeLevel = volume > 1e9 ? 'Very High' : volume > 5e8 ? 'High' : volume > 1e8 ? 'Normal' : 'Low';
             const volumeClass = volumeLevel.includes('High') ? 'good' : volumeLevel === 'Low' ? 'bad' : 'neutral';
-            
-            const volatility = Math.abs(change) > 5 ? 'High' : Math.abs(change) > 2 ? 'Medium' : 'Low';
-            const volatilityClass = volatility === 'High' ? 'bad' : 'neutral';
-            
-            const macd = change > 2 ? 'Bullish' : change < -2 ? 'Bearish' : 'Neutral';
-            
+
+            const volatility = Math.abs(change) > 5 ? 'High Vol' : 'Stable';
+            const volatilityClass = volatility === 'High Vol' ? 'bearish' : 'bullish';
+
             let signal, signalStrength;
-            if (change > 5 && rsi < 70) { signal = 'STRONG BUY'; signalStrength = 'high'; }
-            else if (change > 2 && rsi < 65) { signal = 'BUY'; signalStrength = 'medium'; }
+            if (change > 4 && rsiVal < 65 && macd === 'Bullish') { signal = 'STRONG BUY'; signalStrength = 'high'; }
+            else if (change > 1.5 && rsiVal < 70) { signal = 'BUY'; signalStrength = 'medium'; }
             else { signal = 'BUY'; signalStrength = 'low'; }
-            
+
             const indicators = [
                 { label: `RSI ${rsiText}`, class: rsiClass },
                 { label: `MACD ${macd}`, class: macd === 'Bullish' ? 'bullish' : macd === 'Bearish' ? 'bearish' : 'neutral-tag' },
-                { label: trend, class: trendClass },
-                { label: volatility === 'High' ? 'High Vol' : 'Stable', class: volatility === 'High' ? 'bearish' : 'bullish' }
+                { label: isAboveEMA ? 'Above EMA' : 'Near EMA', class: isAboveEMA ? 'good' : 'neutral' },
+                { label: trend, class: trendClass }
             ];
-            
-            const entryLow = (price * 0.99).toFixed(2);
-            const entryHigh = (price * 1.01).toFixed(2);
-            const stopLoss = (low24 * 0.97).toFixed(2);
-            const tp1 = (price * 1.08).toFixed(2);
-            const tp2 = (price * 1.15).toFixed(2);
-            const risk = price - parseFloat(stopLoss);
-            const reward = parseFloat(tp1) - price;
-            const rr = risk > 0 ? (reward / risk).toFixed(1) : 'N/A';
-            
-            let confidence = 50;
-            if (signalStrength === 'high') confidence += 25;
+
+            const entryLow = fmtSigPrice(price * 0.995);
+            const entryHigh = fmtSigPrice(price * 1.005);
+            const stopNum = Math.min(low24 * 0.98, price * 0.94);
+            const stopLoss = fmtSigPrice(stopNum);
+            const tp1Num = price + (price - stopNum) * 1.8;
+            const tp2Num = price + (price - stopNum) * 2.8;
+            const tp1 = fmtSigPrice(tp1Num);
+            const tp2 = fmtSigPrice(tp2Num);
+
+            const risk = price - stopNum;
+            const reward = tp1Num - price;
+            const rr = risk > 0 ? (reward / risk).toFixed(1) : '1.8';
+
+            let confidence = 40;
+            if (signalStrength === 'high') confidence += 20;
             else if (signalStrength === 'medium') confidence += 10;
-            if (rsi < 50) confidence += 10;
-            else if (rsi < 65) confidence += 5;
-            if (trend.includes('Up')) confidence += 10;
-            if (volumeLevel.includes('High') || volumeLevel === 'Very High') confidence += 10;
-            const rrNum = parseFloat(rr);
-            if (rrNum >= 2) confidence += 5;
-            else if (rrNum >= 1.5) confidence += 3;
-            confidence = Math.min(99, Math.max(10, confidence));
+            if (rsiVal >= 40 && rsiVal <= 60) confidence += 15;
+            else if (rsiVal < 40) confidence += 10;
+            if (macd === 'Bullish') confidence += 15;
+            if (isAboveEMA) confidence += 10;
+            confidence = Math.min(95, Math.max(30, confidence));
 
             suggestions.push({
                 id: coin.id, name: coin.name, symbol: coin.symbol, price, change, change7d, change30d, rank, signal, confidence,
@@ -792,7 +860,7 @@
         });
         
         const sellCandidates = coins
-            .filter(c => c.price_change_percentage_24h < -3 && c.total_volume > 3e7)
+            .filter(c => c.price_change_percentage_24h < -2.5 && c.total_volume > 3e7)
             .sort((a, b) => a.price_change_percentage_24h - b.price_change_percentage_24h)
             .slice(0, 3);
         
@@ -802,75 +870,65 @@
             const change7d = coin.price_change_percentage_7d_in_currency || 0;
             const change30d = coin.price_change_percentage_30d_in_currency || 0;
             const high24 = coin.high_24h || price * 1.02;
-            const low24 = coin.low_24h || price * 0.98;
             const volume = coin.total_volume || 0;
             const rank = coin.market_cap_rank || 999;
-            
-            const rsi = Math.max(10, Math.min(90, 50 + change * 2.5));
-            const rsiClass = rsi < 30 ? 'good' : rsi > 70 ? 'bad' : 'neutral';
-            const rsiText = rsi.toFixed(0);
-            
-            const trend = change30d > 10 ? 'Strong Up' : change30d > 0 ? 'Uptrend' : change30d < -10 ? 'Strong Down' : change30d < 0 ? 'Downtrend' : 'Sideways';
-            const trendClass = trend.includes('Up') ? 'good' : trend.includes('Down') ? 'bad' : 'neutral';
-            
-            const volumeLevel = volume > 1e9 ? 'Very High' : volume > 5e8 ? 'High' : volume > 1e8 ? 'Normal' : 'Low';
-            const volumeClass = volumeLevel.includes('High') ? 'good' : volumeLevel === 'Low' ? 'bad' : 'neutral';
-            
-            const volatility = Math.abs(change) > 5 ? 'High' : Math.abs(change) > 2 ? 'Medium' : 'Low';
-            const volatilityClass = volatility === 'High' ? 'bad' : 'neutral';
-            
-            const macd = change > 2 ? 'Bullish' : change < -2 ? 'Bearish' : 'Neutral';
-            
-            let signal;
-            if (change < -8) {
-                signal = 'STRONG SELL';
-            } else {
-                signal = 'SELL';
-            }
-            
+            const sparkline = coin.sparkline_in_7d?.price || [];
+
+            const rsiVal = sparkline.length >= 15 ? calculateRealRSI(sparkline, 14) : Math.max(10, Math.min(90, Math.round(50 + change * 2.5)));
+            const rsiClass = rsiVal > 65 ? 'bad' : rsiVal < 30 ? 'good' : 'neutral';
+            const rsiText = String(rsiVal);
+
+            const macdObj = sparkline.length >= 26 ? calculateRealMACD(sparkline) : { status: change < -2 ? 'Bearish' : 'Neutral' };
+            const macd = macdObj.status;
+
+            const trend = change30d > 0 ? 'Uptrend' : 'Downtrend';
+            const trendClass = trend === 'Uptrend' ? 'good' : 'bad';
+
+            const volumeLevel = volume > 1e9 ? 'Very High' : volume > 5e8 ? 'High' : 'Normal';
+            const volumeClass = volumeLevel.includes('High') ? 'good' : 'neutral';
+
+            let signal = (change < -6 || macd === 'Bearish') ? 'STRONG SELL' : 'SELL';
+
             const indicators = [
                 { label: `RSI ${rsiText}`, class: rsiClass },
-                { label: `MACD ${macd}`, class: macd === 'Bullish' ? 'bullish' : macd === 'Bearish' ? 'bearish' : 'neutral-tag' },
+                { label: `MACD ${macd}`, class: macd === 'Bearish' ? 'bearish' : 'neutral-tag' },
                 { label: trend, class: trendClass },
-                { label: volatility === 'High' ? 'High Vol' : 'Stable', class: volatility === 'High' ? 'bearish' : 'bullish' }
+                { label: 'Risk Off', class: 'bearish' }
             ];
-            
-            const entry = `Current: $${price.toFixed(2)}`;
-            const stopLoss = (high24 * 1.03).toFixed(2);
-            const tp1 = (price * 0.92).toFixed(2);
-            const tp2 = (price * 0.85).toFixed(2);
-            const risk = parseFloat(stopLoss) - price;
-            const reward = price - parseFloat(tp1);
-            const rr = risk > 0 ? (reward / risk).toFixed(1) : 'N/A';
-            
-            let confidence = 50;
-            if (change < -8) confidence += 25;
-            else confidence += 10;
-            if (rsi > 70) confidence += 10;
-            else if (rsi > 60) confidence += 5;
-            if (trend.includes('Down')) confidence += 10;
-            if (volumeLevel.includes('High') || volumeLevel === 'Very High') confidence += 10;
-            const rrNum = parseFloat(rr);
-            if (rrNum >= 2) confidence += 5;
-            else if (rrNum >= 1.5) confidence += 3;
-            confidence = Math.min(99, Math.max(10, confidence));
+
+            const stopNum = Math.max(high24 * 1.02, price * 1.05);
+            const stopLoss = fmtSigPrice(stopNum);
+            const tp1Num = price - (stopNum - price) * 1.8;
+            const tp2Num = price - (stopNum - price) * 2.8;
+            const tp1 = fmtSigPrice(Math.max(0.000001, tp1Num));
+            const tp2 = fmtSigPrice(Math.max(0.000001, tp2Num));
+
+            const risk = stopNum - price;
+            const reward = price - tp1Num;
+            const rr = risk > 0 ? (reward / risk).toFixed(1) : '1.8';
+
+            let confidence = 45;
+            if (change < -6) confidence += 20;
+            if (macd === 'Bearish') confidence += 15;
+            if (rsiVal < 40) confidence += 10;
+            confidence = Math.min(92, Math.max(30, confidence));
 
             suggestions.push({
                 id: coin.id, name: coin.name, symbol: coin.symbol, price, change, change7d, change30d, rank, signal, confidence,
                 rsi: { value: rsiText, class: rsiClass },
                 trend: { value: trend, class: trendClass },
                 volume: { value: volumeLevel, class: volumeClass },
-                volatility: { value: volatility, class: volatilityClass },
+                volatility: { value: 'High Vol', class: 'bearish' },
                 indicators,
-                levels: { entry, stopLoss: `$${stopLoss}`, takeProfit1: `$${tp1}`, takeProfit2: `$${tp2}`, riskReward: rr }
+                levels: { entry: `Current: $${fmtSigPrice(price)}`, stopLoss: `$${stopLoss}`, takeProfit1: `$${tp1}`, takeProfit2: `$${tp2}`, riskReward: rr }
             });
         });
-        
+
         const watchCandidates = coins
-            .filter(c => c.price_change_percentage_24h > -1 && c.price_change_percentage_24h < 2 && c.total_volume > 3e8)
+            .filter(c => c.price_change_percentage_24h > -1 && c.price_change_percentage_24h < 1.5 && c.total_volume > 2e8)
             .sort((a, b) => b.total_volume - a.total_volume)
             .slice(0, 3);
-        
+
         watchCandidates.forEach(coin => {
             const price = coin.current_price || 0;
             const change = coin.price_change_percentage_24h || 0;
@@ -880,59 +938,44 @@
             const low24 = coin.low_24h || price * 0.98;
             const volume = coin.total_volume || 0;
             const rank = coin.market_cap_rank || 999;
-            
-            const rsi = Math.max(10, Math.min(90, 50 + change * 2.5));
-            const rsiClass = rsi < 30 ? 'good' : rsi > 70 ? 'bad' : 'neutral';
-            const rsiText = rsi.toFixed(0);
-            
-            const trend = change30d > 10 ? 'Strong Up' : change30d > 0 ? 'Uptrend' : change30d < -10 ? 'Strong Down' : change30d < 0 ? 'Downtrend' : 'Sideways';
-            const trendClass = trend.includes('Up') ? 'good' : trend.includes('Down') ? 'bad' : 'neutral';
-            
-            const volumeLevel = volume > 1e9 ? 'Very High' : volume > 5e8 ? 'High' : volume > 1e8 ? 'Normal' : 'Low';
-            const volumeClass = volumeLevel.includes('High') ? 'good' : volumeLevel === 'Low' ? 'bad' : 'neutral';
-            
-            const volatility = 'Low';
-            const volatilityClass = 'neutral';
-            
-            const macd = 'Neutral';
-            
+            const sparkline = coin.sparkline_in_7d?.price || [];
+
+            const rsiVal = sparkline.length >= 15 ? calculateRealRSI(sparkline, 14) : 50;
+            const rsiClass = 'neutral';
+            const rsiText = String(rsiVal);
+
+            const trend = change30d > 5 ? 'Uptrend' : change30d < -5 ? 'Downtrend' : 'Consolidating';
+            const trendClass = trend === 'Uptrend' ? 'good' : trend === 'Downtrend' ? 'bad' : 'neutral';
+
+            const volumeLevel = volume > 1e9 ? 'Very High' : volume > 5e8 ? 'High' : 'Normal';
+            const volumeClass = volumeLevel.includes('High') ? 'good' : 'neutral';
+
             const indicators = [
                 { label: `RSI ${rsiText}`, class: 'neutral-tag' },
-                { label: `MACD ${macd}`, class: 'neutral-tag' },
+                { label: 'MACD Neutral', class: 'neutral-tag' },
                 { label: trend, class: trendClass },
-                { label: 'Stable', class: 'bullish' }
+                { label: 'Range Bound', class: 'neutral-tag' }
             ];
-            
-            const entryLow = (low24 * 0.98).toFixed(2);
-            const entryHigh = (high24 * 1.02).toFixed(2);
-            const stopLoss = (low24 * 0.95).toFixed(2);
-            const tp1 = (high24 * 1.05).toFixed(2);
-            const tp2 = (high24 * 1.10).toFixed(2);
-            const risk = price - parseFloat(stopLoss);
-            const reward = parseFloat(tp1) - price;
-            const rr = risk > 0 ? (reward / risk).toFixed(1) : 'N/A';
-            
-            let confidence = 40;
-            if (volumeLevel === 'Very High') confidence += 20;
-            else if (volumeLevel.includes('High')) confidence += 10;
-            if (trend.includes('Up')) confidence += 10;
-            const rrNum = parseFloat(rr);
-            if (rrNum >= 2) confidence += 10;
-            else if (rrNum >= 1.5) confidence += 5;
-            confidence = Math.min(85, Math.max(10, confidence));
+
+            const stopNum = low24 * 0.96;
+            const tp1Num = high24 * 1.04;
+            const tp2Num = high24 * 1.08;
+            const risk = price - stopNum;
+            const reward = tp1Num - price;
+            const rr = risk > 0 ? (reward / risk).toFixed(1) : '1.5';
 
             suggestions.push({
-                id: coin.id, name: coin.name, symbol: coin.symbol, price, change, change7d, change30d, rank, signal: 'WATCH', confidence,
+                id: coin.id, name: coin.name, symbol: coin.symbol, price, change, change7d, change30d, rank, signal: 'WATCH', confidence: 55,
                 rsi: { value: rsiText, class: rsiClass },
                 trend: { value: trend, class: trendClass },
                 volume: { value: volumeLevel, class: volumeClass },
-                volatility: { value: volatility, class: volatilityClass },
+                volatility: { value: 'Low', class: 'neutral' },
                 indicators,
-                levels: { entry: `$${entryLow} - $${entryHigh}`, stopLoss: `$${stopLoss}`, takeProfit1: `$${tp1}`, takeProfit2: `$${tp2}`, riskReward: rr }
+                levels: { entry: `$${fmtSigPrice(low24)} - $${fmtSigPrice(high24)}`, stopLoss: `$${fmtSigPrice(stopNum)}`, takeProfit1: `$${fmtSigPrice(tp1Num)}`, takeProfit2: `$${fmtSigPrice(tp2Num)}`, riskReward: rr }
             });
         });
-        
-        return suggestions.slice(0, 11);
+
+        return suggestions;
     }
 
     document.addEventListener('DOMContentLoaded', () => {

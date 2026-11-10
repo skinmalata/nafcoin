@@ -56,9 +56,9 @@ const API = {
             const cached = Cache.get(cacheKey);
             if (cached) return cached;
 
-            let url = `${this.base}/coins/markets?vs_currency=usd&sparkline=false&price_change_percentage=24h%2C7d%2C30d&per_page=100&page=1`;
+            let url = `${this.base}/coins/markets?vs_currency=usd&sparkline=true&price_change_percentage=24h%2C7d%2C30d&per_page=100&page=1`;
             if (ids && ids.length > 0) {
-                url = `${this.base}/coins/markets?vs_currency=usd&ids=${ids.join(',')}&sparkline=false&price_change_percentage=24h%2C7d%2C30d`;
+                url = `${this.base}/coins/markets?vs_currency=usd&ids=${ids.join(',')}&sparkline=true&price_change_percentage=24h%2C7d%2C30d`;
             } else {
                 url += `&order=market_cap_desc&per_page=${perPage}&page=1`;
             }
@@ -110,10 +110,29 @@ const API = {
             return data;
         }
     },
+    exchange_tickers: {
+        async getTickers(coinId = 'bitcoin') {
+            const cacheKey = 'tickers_' + coinId;
+            const cached = Cache.get(cacheKey);
+            if (cached) return cached;
+
+            const res = await fetch(`https://api.coingecko.com/api/v3/coins/${coinId}/tickers?include_exchange_logo=false&page=1`);
+            if (!res.ok) throw new Error(`CoinGecko tickers error: ${res.status}`);
+            const data = await res.json();
+            const tickers = (data.tickers || []).filter(t => 
+                !t.is_anomaly && 
+                !t.is_stale && 
+                t.converted_last?.usd && 
+                parseFloat(t.converted_last.usd) > 0 &&
+                parseFloat(t.volume || 0) > 1000
+            );
+            Cache.set(cacheKey, tickers, 45000); // 45 sec cache
+            return tickers;
+        }
+    },
     rapidapi_arbitrage: {
         base: 'https://crypto-arbitrage3.p.rapidapi.com',
         async getArbitrage(coin = 'btc', exchange = '') {
-            // Shared credentials belong on a server-side proxy, never in this bundle.
             const apiKey = localStorage.getItem('rapidapi-key');
             if (!apiKey) throw new Error('Live arbitrage data is not configured');
 

@@ -41,8 +41,33 @@ async function loadPumpData() {
         if (!r.ok) throw new Error(`HTTP ${r.status}`);
         pumpCoins = await r.json();
     } catch (e) {
-        console.warn('CoinGecko failed, using fallback');
-        pumpCoins = getFallbackPumpCoins();
+        console.warn('CoinGecko failed, attempting DexScreener trending fallback:', e);
+        try {
+            const dexRes = await fetch('https://api.dexscreener.com/latest/dex/search?q=sol');
+            if (dexRes.ok) {
+                const dData = await dexRes.json();
+                const pairs = (dData.pairs || []).slice(0, 30);
+                pumpCoins = pairs.map((p, idx) => ({
+                    id: p.baseToken?.address || 'dex-' + idx,
+                    name: p.baseToken?.name || 'Token',
+                    symbol: p.baseToken?.symbol || '',
+                    image: '../logo-64.png',
+                    current_price: parseFloat(p.priceUsd) || 0,
+                    price_change_percentage_24h: parseFloat(p.priceChange?.h24) || 0,
+                    price_change_percentage_7d_in_currency: parseFloat(p.priceChange?.h6 || 0) * 2,
+                    price_change_percentage_30d_in_currency: parseFloat(p.priceChange?.h24 || 0) * 3,
+                    total_volume: parseFloat(p.volume?.h24) || 0,
+                    market_cap: parseFloat(p.marketCap || p.fdv) || (parseFloat(p.liquidity?.usd || 0) * 3),
+                    high_24h: (parseFloat(p.priceUsd) || 0) * 1.05,
+                    low_24h: (parseFloat(p.priceUsd) || 0) * 0.95,
+                    market_cap_rank: idx + 1
+                }));
+            } else {
+                throw new Error('DEX fallback failed');
+            }
+        } catch {
+            pumpCoins = getFallbackPumpCoins();
+        }
     }
 
     if (!pumpCoins || !pumpCoins.length) {
