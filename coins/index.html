@@ -142,20 +142,20 @@
           {
             "@type": "ListItem",
             "position": 13,
-            "name": "Uniswap",
-            "url": "https://nafcoin.com/coins/uniswap.html"
-          },
-          {
-            "@type": "ListItem",
-            "position": 14,
             "name": "Litecoin",
             "url": "https://nafcoin.com/coins/litecoin.html"
           },
           {
             "@type": "ListItem",
-            "position": 15,
+            "position": 14,
             "name": "Avalanche",
             "url": "https://nafcoin.com/coins/avalanche.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 15,
+            "name": "Uniswap",
+            "url": "https://nafcoin.com/coins/uniswap.html"
           }
         ]
       }
@@ -204,7 +204,7 @@
             <p class="hero-subtitle">Live prices, market data, and step-by-step guides for the most popular cryptocurrencies.</p>
         </div>
         <div class="refresh-bar">
-            <span data-updated>Updated November 9, 2026</span>
+            <span data-updated>Updated November 16, 2026</span>
             <button class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.8125rem;" onclick="refreshTable()">Refresh</button>
         </div>
         <div class="coin-table-wrap">
@@ -213,36 +213,36 @@
                     <tr><th>#</th><th>Coin</th><th>Price</th><th>24h</th><th>7d</th><th>Market Cap</th><th>Volume (24h)</th></tr>
                 </thead>
                 <tbody id="coin-rows">
-                    <tr data-id="bitcoin"><td>1</td><td><a href="bitcoin.html">Bitcoin<span class="coin-sym">BTC</span></a></td><td class="cell-price">$74,183.00</td><td class="cell-24h negative">-2.16%</td><td class="cell-7d negative">-5.05%</td><td class="cell-mcap">$1.49T</td><td class="cell-vol">$26.73B</td></tr>
-                    <tr data-id="ethereum"><td>2</td><td><a href="ethereum.html">Ethereum<span class="coin-sym">ETH</span></a></td><td class="cell-price">$2,105.36</td><td class="cell-24h negative">-5.73%</td><td class="cell-7d negative">-8.20%</td><td class="cell-mcap">$257.30B</td><td class="cell-vol">$13.56B</td></tr>
-                    <tr data-id="binancecoin"><td>4</td><td><a href="bnb.html">BNB<span class="coin-sym">BNB</span></a></td><td class="cell-price">$680.26</td><td class="cell-24h negative">-2.39%</td><td class="cell-7d negative">-4.14%</td><td class="cell-mcap">$89.46B</td><td class="cell-vol">$853.63M</td></tr>
-                    <tr data-id="ripple"><td>6</td><td><a href="xrp.html">XRP<span class="coin-sym">XRP</span></a></td><td class="cell-price">$1.09</td><td class="cell-24h negative">-6.36%</td><td class="cell-7d negative">-13.04%</td><td class="cell-mcap">$69.09B</td><td class="cell-vol">$2.11B</td></tr>
-                    <tr data-id="solana"><td>7</td><td><a href="solana.html">Solana<span class="coin-sym">SOL</span></a></td><td class="cell-price">$86.30</td><td class="cell-24h negative">-3.24%</td><td class="cell-7d negative">-8.62%</td><td class="cell-mcap">$51.01B</td><td class="cell-vol">$2.59B</td></tr>
-                    <tr data-id="tron"><td>8</td><td><a href="tron.html">TRON<span class="coin-sym">TRX</span></a></td><td class="cell-price">$0.3177</td><td class="cell-24h negative">-0.75%</td><td class="cell-7d positive">+0.68%</td><td class="cell-mcap">$30.19B</td><td class="cell-vol">$347.00M</td></tr>
-                    <tr data-id="dogecoin"><td>13</td><td><a href="dogecoin.html">Dogecoin<span class="coin-sym">DOGE</span></a></td><td class="cell-price">$0.0689</td><td class="cell-24h negative">-2.65%</td><td class="cell-7d negative">-8.36%</td><td class="cell-mcap">$10.80B</td><td class="cell-vol">$627.53M</td></tr>
-                    <tr data-id="chainlink"><td>17</td><td><a href="chainlink.html">Chainlink<span class="coin-sym">LINK</span></a></td><td class="cell-price">$10.41</td><td class="cell-24h negative">-3.25%</td><td class="cell-7d negative">-8.17%</td><td class="cell-mcap">$7.98B</td><td class="cell-vol">$273.47M</td></tr>
-                    <tr data-id="cardano"><td>18</td><td><a href="cardano.html">Cardano<span class="coin-sym">ADA</span></a></td><td class="cell-price">$0.1755</td><td class="cell-24h negative">-2.31%</td><td class="cell-7d negative">-8.24%</td><td class="cell-mcap">$6.59B</td><td class="cell-vol">$216.23M</td></tr>
-                    <tr data-id="stellar"><td>19</td><td><a href="stellar.html">Stellar<span class="coin-sym">XLM</span></a></td><td class="cell-price">$0.1461</td><td class="cell-24h negative">-2.76%</td><td class="cell-7d negative">-12.71%</td><td class="cell-mcap">$5.17B</td><td class="cell-vol">$120.90M</td></tr>
-                    <tr data-id="bitcoin-cash"><td>21</td><td><a href="bitcoin-cash.html">Bitcoin Cash<span class="coin-sym">BCH</span></a></td><td class="cell-price">$239.76</td><td class="cell-24h negative">-2.36%</td><td class="cell-7d negative">-13.62%</td><td class="cell-mcap">$4.82B</td><td class="cell-vol">$146.31M</td></tr>
-                    <tr data-id="near"><td>22</td><td><a href="near.html">NEAR Protocol<span class="coin-sym">NEAR</span></a></td><td class="cell-price">$3.51</td><td class="cell-24h negative">-5.43%</td><td class="cell-7d negative">-14.85%</td><td class="cell-mcap">$4.60B</td><td class="cell-vol">$532.42M</td></tr>
-                    <tr data-id="uniswap"><td>24</td><td><a href="uniswap.html">Uniswap<span class="coin-sym">UNI</span></a></td><td class="cell-price">$6.77</td><td class="cell-24h negative">-3.75%</td><td class="cell-7d negative">-6.06%</td><td class="cell-mcap">$4.11B</td><td class="cell-vol">$395.79M</td></tr>
-                    <tr data-id="litecoin"><td>25</td><td><a href="litecoin.html">Litecoin<span class="coin-sym">LTC</span></a></td><td class="cell-price">$50.93</td><td class="cell-24h negative">-1.70%</td><td class="cell-7d negative">-7.50%</td><td class="cell-mcap">$3.96B</td><td class="cell-vol">$198.75M</td></tr>
-                    <tr data-id="avalanche-2"><td>26</td><td><a href="avalanche.html">Avalanche<span class="coin-sym">AVAX</span></a></td><td class="cell-price">$8.00</td><td class="cell-24h negative">-1.97%</td><td class="cell-7d negative">-7.00%</td><td class="cell-mcap">$3.56B</td><td class="cell-vol">$172.04M</td></tr>
-                    <tr data-id="sui"><td>28</td><td><a href="sui.html">Sui<span class="coin-sym">SUI</span></a></td><td class="cell-price">$0.8221</td><td class="cell-24h negative">-3.07%</td><td class="cell-7d negative">-7.72%</td><td class="cell-mcap">$3.40B</td><td class="cell-vol">$321.29M</td></tr>
-                    <tr data-id="hedera-hashgraph"><td>32</td><td><a href="hedera-hashgraph.html">Hedera<span class="coin-sym">HBAR</span></a></td><td class="cell-price">$0.0668</td><td class="cell-24h positive">+0.36%</td><td class="cell-7d negative">-6.09%</td><td class="cell-mcap">$2.96B</td><td class="cell-vol">$47.55M</td></tr>
-                    <tr data-id="the-open-network"><td>34</td><td><a href="toncoin.html">Gram (prev. Toncoin)<span class="coin-sym">GRAM</span></a></td><td class="cell-price">$1.02</td><td class="cell-24h negative">-4.58%</td><td class="cell-7d negative">-15.16%</td><td class="cell-mcap">$2.90B</td><td class="cell-vol">$46.72M</td></tr>
-                    <tr data-id="shiba-inu"><td>38</td><td><a href="shiba-inu.html">Shiba Inu<span class="coin-sym">SHIB</span></a></td><td class="cell-price">$0.00000439</td><td class="cell-24h negative">-1.61%</td><td class="cell-7d negative">-5.55%</td><td class="cell-mcap">$2.59B</td><td class="cell-vol">$57.51M</td></tr>
-                    <tr data-id="pepe"><td>42</td><td><a href="pepe.html">Pepe<span class="coin-sym">PEPE</span></a></td><td class="cell-price">$0.00000511</td><td class="cell-24h positive">+3.68%</td><td class="cell-7d positive">+5.02%</td><td class="cell-mcap">$2.15B</td><td class="cell-vol">$504.04M</td></tr>
-                    <tr data-id="polkadot"><td>59</td><td><a href="polkadot.html">Polkadot<span class="coin-sym">DOT</span></a></td><td class="cell-price">$0.8633</td><td class="cell-24h negative">-3.56%</td><td class="cell-7d negative">-9.41%</td><td class="cell-mcap">$1.48B</td><td class="cell-vol">$70.06M</td></tr>
-                    <tr data-id="internet-computer"><td>65</td><td><a href="internet-computer.html">Internet Computer<span class="coin-sym">ICP</span></a></td><td class="cell-price">$2.36</td><td class="cell-24h negative">-1.72%</td><td class="cell-7d negative">-6.06%</td><td class="cell-mcap">$1.32B</td><td class="cell-vol">$33.90M</td></tr>
-                    <tr data-id="arbitrum"><td>66</td><td><a href="arbitrum.html">Arbitrum<span class="coin-sym">ARB</span></a></td><td class="cell-price">$0.1765</td><td class="cell-24h positive">+4.17%</td><td class="cell-7d positive">+9.59%</td><td class="cell-mcap">$1.21B</td><td class="cell-vol">$185.15M</td></tr>
-                    <tr data-id="polygon-ecosystem-token"><td>75</td><td><a href="polygon.html">POL (ex-MATIC)<span class="coin-sym">POL</span></a></td><td class="cell-price">$0.0883</td><td class="cell-24h negative">-2.04%</td><td class="cell-7d negative">-1.18%</td><td class="cell-mcap">$940.03M</td><td class="cell-vol">$39.93M</td></tr>
-                    <tr data-id="render-token"><td>77</td><td><a href="render-token.html">Render<span class="coin-sym">RENDER</span></a></td><td class="cell-price">$1.60</td><td class="cell-24h positive">+3.91%</td><td class="cell-7d positive">+2.98%</td><td class="cell-mcap">$855.11M</td><td class="cell-vol">$37.51M</td></tr>
-                    <tr data-id="injective-protocol"><td>80</td><td><a href="injective-protocol.html">Injective<span class="coin-sym">INJ</span></a></td><td class="cell-price">$7.94</td><td class="cell-24h negative">-3.74%</td><td class="cell-7d positive">+8.47%</td><td class="cell-mcap">$793.55M</td><td class="cell-vol">$85.09M</td></tr>
-                    <tr data-id="cosmos"><td>84</td><td><a href="cosmos.html">Cosmos Hub<span class="coin-sym">ATOM</span></a></td><td class="cell-price">$1.33</td><td class="cell-24h negative">-2.40%</td><td class="cell-7d negative">-8.61%</td><td class="cell-mcap">$720.07M</td><td class="cell-vol">$38.79M</td></tr>
-                    <tr data-id="filecoin"><td>90</td><td><a href="filecoin.html">Filecoin<span class="coin-sym">FIL</span></a></td><td class="cell-price">$0.7548</td><td class="cell-24h negative">-2.69%</td><td class="cell-7d negative">-12.85%</td><td class="cell-mcap">$637.89M</td><td class="cell-vol">$71.02M</td></tr>
-                    <tr data-id="aptos"><td>101</td><td><a href="aptos.html">Aptos<span class="coin-sym">APT</span></a></td><td class="cell-price">$0.5746</td><td class="cell-24h negative">-2.60%</td><td class="cell-7d negative">-8.34%</td><td class="cell-mcap">$508.14M</td><td class="cell-vol">$30.20M</td></tr>
-                    <tr data-id="optimism"><td>147</td><td><a href="optimism.html">Optimism<span class="coin-sym">OP</span></a></td><td class="cell-price">$0.0996</td><td class="cell-24h negative">-2.47%</td><td class="cell-7d negative">-11.56%</td><td class="cell-mcap">$228.08M</td><td class="cell-vol">$29.91M</td></tr>
+                    <tr data-id="bitcoin"><td>1</td><td><a href="bitcoin.html">Bitcoin<span class="coin-sym">BTC</span></a></td><td class="cell-price">$64,314.00</td><td class="cell-24h negative">-1.70%</td><td class="cell-7d negative">-13.72%</td><td class="cell-mcap">$1.29T</td><td class="cell-vol">$29.51B</td></tr>
+                    <tr data-id="ethereum"><td>2</td><td><a href="ethereum.html">Ethereum<span class="coin-sym">ETH</span></a></td><td class="cell-price">$1,802.89</td><td class="cell-24h negative">-1.52%</td><td class="cell-7d negative">-14.84%</td><td class="cell-mcap">$220.33B</td><td class="cell-vol">$10.36B</td></tr>
+                    <tr data-id="binancecoin"><td>4</td><td><a href="bnb.html">BNB<span class="coin-sym">BNB</span></a></td><td class="cell-price">$587.31</td><td class="cell-24h negative">-1.44%</td><td class="cell-7d negative">-14.10%</td><td class="cell-mcap">$77.24B</td><td class="cell-vol">$611.14M</td></tr>
+                    <tr data-id="ripple"><td>6</td><td><a href="xrp.html">XRP<span class="coin-sym">XRP</span></a></td><td class="cell-price">$0.9496</td><td class="cell-24h negative">-2.26%</td><td class="cell-7d negative">-12.20%</td><td class="cell-mcap">$60.31B</td><td class="cell-vol">$1.45B</td></tr>
+                    <tr data-id="solana"><td>7</td><td><a href="solana.html">Solana<span class="coin-sym">SOL</span></a></td><td class="cell-price">$71.00</td><td class="cell-24h negative">-2.25%</td><td class="cell-7d negative">-17.93%</td><td class="cell-mcap">$42.00B</td><td class="cell-vol">$2.74B</td></tr>
+                    <tr data-id="tron"><td>8</td><td><a href="tron.html">TRON<span class="coin-sym">TRX</span></a></td><td class="cell-price">$0.3041</td><td class="cell-24h negative">-0.89%</td><td class="cell-7d negative">-4.50%</td><td class="cell-mcap">$28.90B</td><td class="cell-vol">$275.90M</td></tr>
+                    <tr data-id="dogecoin"><td>13</td><td><a href="dogecoin.html">Dogecoin<span class="coin-sym">DOGE</span></a></td><td class="cell-price">$0.0583</td><td class="cell-24h negative">-1.61%</td><td class="cell-7d negative">-15.26%</td><td class="cell-mcap">$9.15B</td><td class="cell-vol">$466.97M</td></tr>
+                    <tr data-id="chainlink"><td>17</td><td><a href="chainlink.html">Chainlink<span class="coin-sym">LINK</span></a></td><td class="cell-price">$9.10</td><td class="cell-24h negative">-2.52%</td><td class="cell-7d negative">-13.65%</td><td class="cell-mcap">$6.97B</td><td class="cell-vol">$184.64M</td></tr>
+                    <tr data-id="cardano"><td>18</td><td><a href="cardano.html">Cardano<span class="coin-sym">ADA</span></a></td><td class="cell-price">$0.1513</td><td class="cell-24h negative">-2.66%</td><td class="cell-7d negative">-14.27%</td><td class="cell-mcap">$5.68B</td><td class="cell-vol">$200.79M</td></tr>
+                    <tr data-id="stellar"><td>20</td><td><a href="stellar.html">Stellar<span class="coin-sym">XLM</span></a></td><td class="cell-price">$0.1364</td><td class="cell-24h negative">-2.66%</td><td class="cell-7d negative">-6.05%</td><td class="cell-mcap">$4.83B</td><td class="cell-vol">$138.22M</td></tr>
+                    <tr data-id="bitcoin-cash"><td>22</td><td><a href="bitcoin-cash.html">Bitcoin Cash<span class="coin-sym">BCH</span></a></td><td class="cell-price">$205.46</td><td class="cell-24h negative">-2.38%</td><td class="cell-7d negative">-15.80%</td><td class="cell-mcap">$4.13B</td><td class="cell-vol">$61.07M</td></tr>
+                    <tr data-id="near"><td>23</td><td><a href="near.html">NEAR Protocol<span class="coin-sym">NEAR</span></a></td><td class="cell-price">$3.13</td><td class="cell-24h negative">-1.37%</td><td class="cell-7d negative">-10.76%</td><td class="cell-mcap">$4.11B</td><td class="cell-vol">$301.69M</td></tr>
+                    <tr data-id="litecoin"><td>25</td><td><a href="litecoin.html">Litecoin<span class="coin-sym">LTC</span></a></td><td class="cell-price">$44.22</td><td class="cell-24h negative">-2.36%</td><td class="cell-7d negative">-12.94%</td><td class="cell-mcap">$3.44B</td><td class="cell-vol">$154.45M</td></tr>
+                    <tr data-id="avalanche-2"><td>27</td><td><a href="avalanche.html">Avalanche<span class="coin-sym">AVAX</span></a></td><td class="cell-price">$7.09</td><td class="cell-24h negative">-3.00%</td><td class="cell-7d negative">-11.89%</td><td class="cell-mcap">$3.17B</td><td class="cell-vol">$168.09M</td></tr>
+                    <tr data-id="uniswap"><td>29</td><td><a href="uniswap.html">Uniswap<span class="coin-sym">UNI</span></a></td><td class="cell-price">$5.05</td><td class="cell-24h negative">-2.43%</td><td class="cell-7d negative">-25.26%</td><td class="cell-mcap">$3.07B</td><td class="cell-vol">$269.35M</td></tr>
+                    <tr data-id="the-open-network"><td>31</td><td><a href="toncoin.html">Gram (prev. Toncoin)<span class="coin-sym">GRAM</span></a></td><td class="cell-price">$1.03</td><td class="cell-24h negative">-1.36%</td><td class="cell-7d positive">+0.05%</td><td class="cell-mcap">$2.96B</td><td class="cell-vol">$30.60M</td></tr>
+                    <tr data-id="sui"><td>32</td><td><a href="sui.html">Sui<span class="coin-sym">SUI</span></a></td><td class="cell-price">$0.7133</td><td class="cell-24h negative">-2.72%</td><td class="cell-7d negative">-13.68%</td><td class="cell-mcap">$2.95B</td><td class="cell-vol">$254.59M</td></tr>
+                    <tr data-id="hedera-hashgraph"><td>35</td><td><a href="hedera-hashgraph.html">Hedera<span class="coin-sym">HBAR</span></a></td><td class="cell-price">$0.0576</td><td class="cell-24h negative">-2.45%</td><td class="cell-7d negative">-14.14%</td><td class="cell-mcap">$2.55B</td><td class="cell-vol">$54.40M</td></tr>
+                    <tr data-id="shiba-inu"><td>38</td><td><a href="shiba-inu.html">Shiba Inu<span class="coin-sym">SHIB</span></a></td><td class="cell-price">$0.00000384</td><td class="cell-24h negative">-3.14%</td><td class="cell-7d negative">-13.02%</td><td class="cell-mcap">$2.26B</td><td class="cell-vol">$39.80M</td></tr>
+                    <tr data-id="pepe"><td>51</td><td><a href="pepe.html">Pepe<span class="coin-sym">PEPE</span></a></td><td class="cell-price">$0.00000380</td><td class="cell-24h negative">-5.41%</td><td class="cell-7d negative">-25.29%</td><td class="cell-mcap">$1.60B</td><td class="cell-vol">$270.76M</td></tr>
+                    <tr data-id="internet-computer"><td>60</td><td><a href="internet-computer.html">Internet Computer<span class="coin-sym">ICP</span></a></td><td class="cell-price">$2.26</td><td class="cell-24h positive">+0.63%</td><td class="cell-7d negative">-5.75%</td><td class="cell-mcap">$1.26B</td><td class="cell-vol">$34.18M</td></tr>
+                    <tr data-id="polkadot"><td>61</td><td><a href="polkadot.html">Polkadot<span class="coin-sym">DOT</span></a></td><td class="cell-price">$0.7248</td><td class="cell-24h negative">-2.08%</td><td class="cell-7d negative">-16.14%</td><td class="cell-mcap">$1.24B</td><td class="cell-vol">$58.62M</td></tr>
+                    <tr data-id="arbitrum"><td>72</td><td><a href="arbitrum.html">Arbitrum<span class="coin-sym">ARB</span></a></td><td class="cell-price">$0.1318</td><td class="cell-24h negative">-3.01%</td><td class="cell-7d negative">-25.73%</td><td class="cell-mcap">$908.60M</td><td class="cell-vol">$80.97M</td></tr>
+                    <tr data-id="polygon-ecosystem-token"><td>75</td><td><a href="polygon.html">POL (ex-MATIC)<span class="coin-sym">POL</span></a></td><td class="cell-price">$0.0787</td><td class="cell-24h negative">-2.93%</td><td class="cell-7d negative">-11.25%</td><td class="cell-mcap">$838.45M</td><td class="cell-vol">$36.82M</td></tr>
+                    <tr data-id="render-token"><td>77</td><td><a href="render-token.html">Render<span class="coin-sym">RENDER</span></a></td><td class="cell-price">$1.36</td><td class="cell-24h negative">-2.88%</td><td class="cell-7d negative">-14.56%</td><td class="cell-mcap">$755.72M</td><td class="cell-vol">$21.41M</td></tr>
+                    <tr data-id="cosmos"><td>81</td><td><a href="cosmos.html">Cosmos Hub<span class="coin-sym">ATOM</span></a></td><td class="cell-price">$1.30</td><td class="cell-24h negative">-0.91%</td><td class="cell-7d negative">-2.80%</td><td class="cell-mcap">$706.77M</td><td class="cell-vol">$27.50M</td></tr>
+                    <tr data-id="injective-protocol"><td>85</td><td><a href="injective-protocol.html">Injective<span class="coin-sym">INJ</span></a></td><td class="cell-price">$6.66</td><td class="cell-24h negative">-7.49%</td><td class="cell-7d negative">-17.35%</td><td class="cell-mcap">$666.32M</td><td class="cell-vol">$70.58M</td></tr>
+                    <tr data-id="filecoin"><td>97</td><td><a href="filecoin.html">Filecoin<span class="coin-sym">FIL</span></a></td><td class="cell-price">$0.5945</td><td class="cell-24h negative">-3.94%</td><td class="cell-7d negative">-22.21%</td><td class="cell-mcap">$503.24M</td><td class="cell-vol">$63.76M</td></tr>
+                    <tr data-id="aptos"><td>111</td><td><a href="aptos.html">Aptos<span class="coin-sym">APT</span></a></td><td class="cell-price">$0.4563</td><td class="cell-24h positive">+0.23%</td><td class="cell-7d negative">-21.19%</td><td class="cell-mcap">$405.63M</td><td class="cell-vol">$29.53M</td></tr>
+                    <tr data-id="optimism"><td>164</td><td><a href="optimism.html">Optimism<span class="coin-sym">OP</span></a></td><td class="cell-price">$0.0794</td><td class="cell-24h negative">-3.38%</td><td class="cell-7d negative">-20.02%</td><td class="cell-mcap">$181.69M</td><td class="cell-vol">$25.62M</td></tr>
                 </tbody>
             </table>
         </div>
@@ -254,7 +254,7 @@
         <p class="disclaimer">This directory is for informational purposes only and is not financial advice. Cryptocurrency prices are volatile and you can lose money.</p>
     </main>
     <script>
-        var IDS = ["bitcoin", "ethereum", "binancecoin", "ripple", "solana", "tron", "dogecoin", "chainlink", "cardano", "stellar", "bitcoin-cash", "near", "uniswap", "litecoin", "avalanche-2", "sui", "hedera-hashgraph", "the-open-network", "shiba-inu", "pepe", "polkadot", "internet-computer", "arbitrum", "polygon-ecosystem-token", "render-token", "injective-protocol", "cosmos", "filecoin", "aptos", "optimism"];
+        var IDS = ["bitcoin", "ethereum", "binancecoin", "ripple", "solana", "tron", "dogecoin", "chainlink", "cardano", "stellar", "bitcoin-cash", "near", "litecoin", "avalanche-2", "uniswap", "the-open-network", "sui", "hedera-hashgraph", "shiba-inu", "pepe", "internet-computer", "polkadot", "arbitrum", "polygon-ecosystem-token", "render-token", "cosmos", "injective-protocol", "filecoin", "aptos", "optimism"];
         function fmtPrice(n) {
             if (n === null || n === undefined || isNaN(n)) return 'N/A';
             if (n >= 1) return '$' + Number(n).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
